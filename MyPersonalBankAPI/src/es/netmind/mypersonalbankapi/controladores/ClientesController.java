@@ -10,7 +10,7 @@ import java.util.List;
 
 public class ClientesController {
 
-    private static List<Cliente> clientes;
+    public final static List<Cliente> clientes;
 
     static {
         clientes = new ArrayList<>();

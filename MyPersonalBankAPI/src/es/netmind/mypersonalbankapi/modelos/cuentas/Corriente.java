@@ -8,8 +8,8 @@ public class Corriente extends Cuenta {
     private List<Cheque> chequesIngresados;
     private List<Cheque> chequesEmitidos;
 
-    public Corriente(Integer id, LocalDate fechaCreacion, Double saldo, List<Transaccion> transacciones, Double interes, Double comision) {
-        super(id, fechaCreacion, saldo, transacciones, interes, comision);
+    public Corriente(Integer id, LocalDate fechaCreacion, Double saldo, Double interes, Double comision) {
+        super(id, fechaCreacion, saldo, interes, comision);
     }
 
     @Override

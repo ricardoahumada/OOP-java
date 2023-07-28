@@ -13,7 +13,7 @@ public abstract class Cuenta {
     private Double comision;
 
     /* CONSTRUCTOR */
-    public Cuenta(Integer id, LocalDate fechaCreacion, Double saldo, List<Transaccion> transacciones, Double interes, Double comision) {
+    public Cuenta(Integer id, LocalDate fechaCreacion, Double saldo, Double interes, Double comision) {
         this.id = id;
         this.fechaCreacion = fechaCreacion;
         this.saldo = saldo;

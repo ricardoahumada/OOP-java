@@ -5,8 +5,8 @@ import java.util.List;
 
 public class Ahorro extends Cuenta {
 
-    public Ahorro(Integer id, LocalDate fechaCreacion, Double saldo, List<Transaccion> transacciones, Double interes, Double comision) {
-        super(id, fechaCreacion, saldo, transacciones, interes, comision);
+    public Ahorro(Integer id, LocalDate fechaCreacion, Double saldo, Double interes, Double comision) {
+        super(id, fechaCreacion, saldo, interes, comision);
     }
 
     public boolean validar() {

@@ -18,6 +18,7 @@ public class Main {
                 mostrarInstrucciones();
             } catch (Exception e) {
                 System.out.println("⚠ HA HABIDO UN ERROR... CONTACTE CON EL ADMINISTRADOR ⚠");
+                e.printStackTrace();
             }
 
         } else mostrarInstrucciones();
@@ -38,11 +39,12 @@ public class Main {
             if (arg1.equals("list")) ClientesController.mostrarLista();
             else ClientesController.mostrarDetalle(Integer.valueOf(arg1));
         } else if (argsLength >= 3) {
+            int uid = Integer.valueOf(arg1);
             String arg2 = args[2].toLowerCase();
-            if (arg2.equals("accounts") && args[3] == null) CuentasController.mostrarLista();
-            else if (arg2.equals("accounts")) CuentasController.mostrarDetalle(Integer.valueOf(args[3]));
-            else if (arg2.equals("loans") && args[3] == null) PrestamosController.mostrarLista();
-            else if (arg2.equals("loans")) PrestamosController.mostrarDetalle(Integer.valueOf(args[3]));
+            if (arg2.equals("accounts") && argsLength == 3) CuentasController.mostrarLista(uid);
+            else if (arg2.equals("accounts")) CuentasController.mostrarDetalle(uid, Integer.valueOf(args[3]));
+            else if (arg2.equals("loans") && argsLength == 3) PrestamosController.mostrarLista(uid);
+            else if (arg2.equals("loans")) PrestamosController.mostrarDetalle(uid, Integer.valueOf(args[3]));
         } else mostrarInstrucciones();
     }
 
