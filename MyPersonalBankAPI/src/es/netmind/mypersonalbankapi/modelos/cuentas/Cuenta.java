@@ -23,7 +23,7 @@ public abstract class Cuenta {
     }
 
     /* LOGICA IMPORTANTE */
-    public void anadirTransaccion(Transaccion tr) {
+    public void aniadirTransaccion(Transaccion tr) {
         if (this.transacciones == null) this.transacciones = new ArrayList<>();
         if (tr.validar()) {
             this.transacciones.add(tr);

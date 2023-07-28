@@ -30,6 +30,7 @@ public class CuentasController {
             System.out.println("⚠ Error al crear cuentas: " + e.getMessage());
         }
     }
+
     public static void mostrarLista(Integer uid) {
         System.out.println("\nLista de cuentas del cliente: " + uid);
         System.out.println("───────────────────────────────────");
@@ -37,7 +38,8 @@ public class CuentasController {
         Cliente elCliente = ClienteUtils.encontrarCliente(uid);
 
         if (elCliente != null)
-            System.out.println(elCliente.getCuentas());
+            if (elCliente.getCuentas() != null) System.out.println(elCliente.getCuentas());
+            else System.out.println("El cliente no tiene cuentas!");
         else System.out.println("Cliente NO encontrado 😞!");
     }
 
