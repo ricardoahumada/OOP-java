@@ -4,7 +4,7 @@ import es.netmind.mypersonalbankapi.controladores.ClientesController;
 import es.netmind.mypersonalbankapi.controladores.CuentasController;
 import es.netmind.mypersonalbankapi.controladores.PrestamosController;
 
-public class Main {
+public class Main2 {
     public static void main(String[] args) {
         System.out.println("╔════════════════════════╗");
         System.out.println("║  MY PERSONAL BANK API  ║");
