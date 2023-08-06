@@ -28,7 +28,14 @@ public class ClientesController {
         System.out.println("\nLista de clientes:");
         System.out.println("───────────────────────────────────");
         for (Cliente cl : clientes) {
-            System.out.println(cl);
+
+            try {
+                cl.validar();
+                System.out.println(cl);
+            } catch (Exception e) {
+                System.out.println("El cliente solicitado tiene datos erroneos, ponerse en contacto con el admin.");
+            }
+
         }
     }
 
@@ -44,6 +51,6 @@ public class ClientesController {
             }
         }
 
-        if(!encontrado) System.out.println("Cliente NO encontrado 😞!");
+        if (!encontrado) System.out.println("Cliente NO encontrado 😞!");
     }
 }

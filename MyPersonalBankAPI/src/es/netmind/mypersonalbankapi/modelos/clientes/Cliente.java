@@ -19,6 +19,7 @@ public abstract class Cliente {
     private List<Prestamo> prestamos;
 
     /* CONSTRUCTOR */
+
     public Cliente(Integer id, String nombre, String email, String direccion, LocalDate alta, boolean activo, boolean moroso) {
         this.id = id;
         this.nombre = nombre;

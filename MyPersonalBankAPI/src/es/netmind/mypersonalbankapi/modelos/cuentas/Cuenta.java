@@ -17,7 +17,6 @@ public abstract class Cuenta {
         this.id = id;
         this.fechaCreacion = fechaCreacion;
         this.saldo = saldo;
-        this.transacciones = transacciones;
         this.interes = interes;
         this.comision = comision;
     }
