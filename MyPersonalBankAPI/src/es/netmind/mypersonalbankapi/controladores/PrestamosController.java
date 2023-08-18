@@ -1,5 +1,6 @@
 package es.netmind.mypersonalbankapi.controladores;
 
+import es.netmind.mypersonalbankapi.exceptions.PrestamoException;
 import es.netmind.mypersonalbankapi.modelos.prestamos.Prestamo;
 import es.netmind.mypersonalbankapi.persistencia.IPrestamosRepo;
 import es.netmind.mypersonalbankapi.persistencia.PrestamosInMemoryRepo;
@@ -17,8 +18,10 @@ public class PrestamosController {
             List<Prestamo> prestamos = prestamosRepo.getLoansByClient(uid);
             if (prestamos != null && prestamos.size() > 0) System.out.println(prestamos);
             else System.out.println("El cliente no tiene prestamos!");
+        } catch (PrestamoException e) {
+            System.out.println("Cliente NO encontrado 😞! \nCode: " + e.getCode());
         } catch (Exception e) {
-            System.out.println("Cliente NO encontrado 😞!");
+            System.out.println("Oops ha habido un problema, inténtelo más tarde 😞!");
         }
     }
 
@@ -29,8 +32,10 @@ public class PrestamosController {
         try {
             Prestamo cuenta = prestamosRepo.getLoansByClientAndId(uid, aid);
             System.out.println(cuenta);
+        } catch (PrestamoException e) {
+            System.out.println("Prestamo NO encontrado para el cliente 😞! \nCode: " + e.getCode());
         } catch (Exception e) {
-            System.out.println("Prestamo NO encontrado para el cliente 😞!");
+            System.out.println("Oops ha habido un problema, inténtelo más tarde 😞!");
         }
     }
 

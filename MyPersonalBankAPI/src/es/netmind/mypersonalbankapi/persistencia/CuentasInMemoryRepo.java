@@ -1,5 +1,7 @@
 package es.netmind.mypersonalbankapi.persistencia;
 
+import es.netmind.mypersonalbankapi.exceptions.CuentaException;
+import es.netmind.mypersonalbankapi.exceptions.ErrorCode;
 import es.netmind.mypersonalbankapi.modelos.clientes.Cliente;
 import es.netmind.mypersonalbankapi.modelos.cuentas.Ahorro;
 import es.netmind.mypersonalbankapi.modelos.cuentas.Corriente;
@@ -54,9 +56,9 @@ public class CuentasInMemoryRepo implements ICuentasRepo {
                 if (c.getId().equals(id)) return c;
             }
 
-            throw new NoSuchElementException("Cuenta no encontrada");
+            throw new CuentaException("Cuenta no encontrada", ErrorCode.NONEXISTINGACCOUNT);
         }
-        throw new NoSuchElementException("Cuenta no encontrada");
+        throw new CuentaException("Cuenta no encontrada", ErrorCode.NONEXISTINGACCOUNT);
     }
 
     @Override
@@ -65,7 +67,7 @@ public class CuentasInMemoryRepo implements ICuentasRepo {
             cuenta.setId(cuentas.size() + 1);
             cuentas.add(cuenta);
             return cuenta;
-        } else throw new InvalidObjectException("Cuenta inválida");
+        } else throw new CuentaException("Cuenta inválida", ErrorCode.INVALIDACCOUNT);
     }
 
     @Override
@@ -75,8 +77,8 @@ public class CuentasInMemoryRepo implements ICuentasRepo {
                 if (c.getId().equals(cuenta.getId())) cuentas.remove(c);
                 return true;
             }
-            throw new NoSuchElementException("Cuenta no encontrada");
-        } else throw new Exception("Cuenta inválida");
+            throw new CuentaException("Cuenta no encontrada", ErrorCode.NONEXISTINGACCOUNT);
+        } else throw new CuentaException("Cuenta inválida", ErrorCode.INVALIDACCOUNT);
     }
 
     @Override
@@ -88,8 +90,8 @@ public class CuentasInMemoryRepo implements ICuentasRepo {
                     return cuenta;
                 }
             }
-            throw new NoSuchElementException("Cliente no encontrada");
-        } else throw new InvalidObjectException("Cliente inválida");
+            throw new CuentaException("Cliente no encontrada", ErrorCode.NONEXISTINGCLIENT);
+        } else throw new CuentaException("Cliente inválida", ErrorCode.INVALIDACCOUNT);
     }
 
     @Override
@@ -98,7 +100,7 @@ public class CuentasInMemoryRepo implements ICuentasRepo {
 
         if (elCliente != null)
             return elCliente.getCuentas();
-        else throw new NoSuchElementException("Cliente NO encontrado para cuentas");
+        else throw new CuentaException("Cliente NO encontrado para cuentas", ErrorCode.NONEXISTINGCLIENT);
     }
 
     @Override
@@ -112,8 +114,8 @@ public class CuentasInMemoryRepo implements ICuentasRepo {
             for (Cuenta cu : cuentas) {
                 if (cu.getId().equals(aid)) return cu;
             }
-            throw new NoSuchElementException("Cuenta NO encontrada para cliente");
-        } else throw new NoSuchElementException("Cuentas NO encontradas para cliente");
+            throw new CuentaException("Cuenta NO encontrada para cliente", ErrorCode.NONEXISTINGACCOUNT);
+        } else throw new CuentaException("Cuentas NO encontradas para cliente", ErrorCode.NONEXISTINGACCOUNT);
 
     }
 

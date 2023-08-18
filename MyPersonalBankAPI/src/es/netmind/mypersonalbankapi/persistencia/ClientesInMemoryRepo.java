@@ -1,14 +1,14 @@
 package es.netmind.mypersonalbankapi.persistencia;
 
+import es.netmind.mypersonalbankapi.exceptions.ClienteException;
+import es.netmind.mypersonalbankapi.exceptions.ErrorCode;
 import es.netmind.mypersonalbankapi.modelos.clientes.Cliente;
 import es.netmind.mypersonalbankapi.modelos.clientes.Empresa;
 import es.netmind.mypersonalbankapi.modelos.clientes.Personal;
 
-import java.io.InvalidObjectException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.NoSuchElementException;
 
 public class ClientesInMemoryRepo implements IClientesRepo {
     private static ClientesInMemoryRepo instance;
@@ -40,14 +40,14 @@ public class ClientesInMemoryRepo implements IClientesRepo {
     }
 
     @Override
-    public Cliente getClientById(Integer id) {
+    public Cliente getClientById(Integer id) throws Exception {
         if (clientes != null) {
             for (Cliente c : clientes) {
-                if (c.getId().equals(id)) return c;
+                if (c.getId() == id) return c;
             }
 
-            return null;
-        } else return null;
+            throw new ClienteException("Cliente no existe", ErrorCode.NONEXISTINGCLIENT);
+        } else throw new ClienteException("Cliente no existe", ErrorCode.NONEXISTINGCLIENT);
     }
 
     @Override
@@ -56,7 +56,8 @@ public class ClientesInMemoryRepo implements IClientesRepo {
             cliente.setId(clientes.size() + 1);
             clientes.add(cliente);
             return cliente;
-        } else throw new InvalidObjectException("Cliente inválido");
+        }
+        throw new ClienteException("Cliente no válido", ErrorCode.INVALIDCLIENT);
     }
 
     @Override
@@ -66,8 +67,8 @@ public class ClientesInMemoryRepo implements IClientesRepo {
                 if (c.getId().equals(cliente.getId())) clientes.remove(c);
                 return true;
             }
-            throw new NoSuchElementException("Cliente no encontrado");
-        } else throw new Exception("Cliente inválido");
+            throw new ClienteException("Cliente no existe", ErrorCode.NONEXISTINGCLIENT);
+        } else throw new ClienteException("Cliente no válido", ErrorCode.INVALIDCLIENT);
     }
 
     @Override
@@ -79,7 +80,7 @@ public class ClientesInMemoryRepo implements IClientesRepo {
                     return cliente;
                 }
             }
-            throw new NoSuchElementException("Cliente no encontrado");
-        } else throw new InvalidObjectException("Cliente inválido");
+            throw new ClienteException("Cliente no existe", ErrorCode.NONEXISTINGCLIENT);
+        } else throw new ClienteException("Cliente no válido", ErrorCode.INVALIDCLIENT);
     }
 }

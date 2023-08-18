@@ -7,7 +7,7 @@ import java.util.List;
 public interface IClientesRepo {
     public List<Cliente> getAll();
 
-    public Cliente getClientById(Integer id);
+    public Cliente getClientById(Integer id) throws Exception;
 
     public Cliente addClient(Cliente cliente) throws Exception;
 

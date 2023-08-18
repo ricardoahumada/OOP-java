@@ -1,9 +1,10 @@
 package es.netmind.mypersonalbankapi.persistencia;
 
+import es.netmind.mypersonalbankapi.exceptions.ErrorCode;
+import es.netmind.mypersonalbankapi.exceptions.PrestamoException;
 import es.netmind.mypersonalbankapi.modelos.clientes.Cliente;
 import es.netmind.mypersonalbankapi.modelos.prestamos.Prestamo;
 
-import java.io.InvalidObjectException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -44,14 +45,14 @@ public class PrestamosInMemoryRepo implements IPrestamosRepo {
     }
 
     @Override
-    public Prestamo getLoanById(Integer id) throws Exception{
+    public Prestamo getLoanById(Integer id) throws Exception {
         if (prestamos != null) {
             for (Prestamo p : prestamos) {
                 if (p.getId().equals(id)) return p;
             }
 
-            throw new NoSuchElementException("Prestamo no encontrado");
-        } throw new NoSuchElementException("Prestamo no encontrado");
+            throw new PrestamoException("Prestamo no encontrado", ErrorCode.NONEXISTINGLOAN);
+        } else throw new PrestamoException("Prestamo no encontrado", ErrorCode.NONEXISTINGLOAN);
     }
 
     @Override
@@ -60,7 +61,7 @@ public class PrestamosInMemoryRepo implements IPrestamosRepo {
             prestamo.setId(prestamos.size() + 1);
             prestamos.add(prestamo);
             return prestamo;
-        } else throw new InvalidObjectException("Prestamo inválido");
+        } else throw new PrestamoException("Prestamo inválido", ErrorCode.INVALIDLOAN);
     }
 
     @Override
@@ -70,8 +71,8 @@ public class PrestamosInMemoryRepo implements IPrestamosRepo {
                 if (p.getId().equals(prestamo.getId())) prestamos.remove(p);
                 return true;
             }
-            throw new NoSuchElementException("Prestamo no encontrado");
-        } else throw new Exception("Prestamo inválido");
+            throw new PrestamoException("Prestamo no encontrado", ErrorCode.NONEXISTINGLOAN);
+        } else throw new PrestamoException("Prestamo inválido", ErrorCode.INVALIDLOAN);
     }
 
     @Override
@@ -83,8 +84,8 @@ public class PrestamosInMemoryRepo implements IPrestamosRepo {
                     return prestamo;
                 }
             }
-            throw new NoSuchElementException("Cliente no encontrado");
-        } else throw new InvalidObjectException("Cliente inválido");
+            throw new PrestamoException("Préstamo no encontrado", ErrorCode.NONEXISTINGLOAN);
+        } else throw new PrestamoException("Préstamo inválido", ErrorCode.INVALIDLOAN);
     }
 
     @Override
@@ -93,7 +94,7 @@ public class PrestamosInMemoryRepo implements IPrestamosRepo {
 
         if (elCliente != null)
             return elCliente.getPrestamos();
-        else throw new NoSuchElementException("Cliente NO encontrado para prestamos");
+        else throw new PrestamoException("Cliente NO encontrado para prestamos", ErrorCode.NONEXISTINGCLIENT);
     }
 
     @Override
@@ -107,8 +108,8 @@ public class PrestamosInMemoryRepo implements IPrestamosRepo {
             for (Prestamo cu : prestamos) {
                 if (cu.getId().equals(aid)) return cu;
             }
-            throw new NoSuchElementException("Prestamo NO encontrado para cliente");
-        } else throw new NoSuchElementException("Prestamos NO encontrados para cliente");
+            throw new PrestamoException("Prestamo NO encontrado para cliente", ErrorCode.NONEXISTINGLOAN);
+        } else throw new PrestamoException("Prestamos NO encontrados para cliente", ErrorCode.NONEXISTINGLOAN);
 
     }
 

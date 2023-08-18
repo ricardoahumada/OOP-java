@@ -1,5 +1,6 @@
 package es.netmind.mypersonalbankapi.controladores;
 
+import es.netmind.mypersonalbankapi.exceptions.ClienteException;
 import es.netmind.mypersonalbankapi.modelos.clientes.Cliente;
 import es.netmind.mypersonalbankapi.persistencia.ClientesInMemoryRepo;
 import es.netmind.mypersonalbankapi.persistencia.IClientesRepo;
@@ -19,8 +20,10 @@ public class ClientesController {
             try {
                 cl.validar();
                 System.out.println(cl);
+            } catch (ClienteException e) {
+                System.out.println("El cliente solicitado tiene datos erroneos 😞! Ponte en contacto con el admin. \nCode: " + e.getCode());
             } catch (Exception e) {
-                System.out.println("El cliente solicitado tiene datos erroneos, ponerse en contacto con el admin.");
+                System.out.println("Oops ha habido un problema, inténtelo más tarde 😞!");
             }
 
         }
@@ -29,9 +32,15 @@ public class ClientesController {
     public static void mostrarDetalle(Integer uid) {
         System.out.println("\nDetalle de cliente: " + uid);
         System.out.println("───────────────────────────────────");
-        Cliente cl = clientesRepo.getClientById(uid);
-        if (cl != null) {
+
+        try {
+            Cliente cl = clientesRepo.getClientById(uid);
             System.out.println(cl);
-        } else System.out.println("Cliente NO encontrado 😞!");
+        } catch (ClienteException e) {
+            System.out.println("Cliente NO encontrado 😞! \nCode: " + e.getCode());
+        } catch (Exception e) {
+            System.out.println("Oops ha habido un problema, inténtelo más tarde 😞!");
+        }
+
     }
 }
