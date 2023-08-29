@@ -15,10 +15,10 @@ public class Empresa extends Cliente {
 
     private boolean validarCIF(String cif) throws Exception{
         if (cif != null && cif.length() == 9) {
-            String intPartCIF = cif.trim().replaceAll(" ", "").substring(1, 8);
-            char ltrDNI = cif.charAt(0);
+            String intPartCIF = cif.trim().replaceAll(" ", "").substring(1, 9);
+            char ltrCIF = cif.charAt(0);
             int valNumCif = Integer.parseInt(intPartCIF);
-            return valNumCif > 0 || !Character.isLetter(ltrDNI);
+            return valNumCif > 0 || !Character.isLetter(ltrCIF);
         } else return false;
     }
 
