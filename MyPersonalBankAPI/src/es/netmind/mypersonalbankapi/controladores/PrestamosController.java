@@ -69,6 +69,7 @@ public class PrestamosController {
         for (String arg : args) {
             System.out.println(arg);
         }
+        // TODO
     }
 
     public static void actualizar(Integer uid, Integer lid, String[] args) {
@@ -77,5 +78,6 @@ public class PrestamosController {
         for (String arg : args) {
             System.out.println(arg);
         }
+        // TODO
     }
 }

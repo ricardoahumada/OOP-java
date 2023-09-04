@@ -88,6 +88,34 @@ public abstract class Cliente {
         }
     }
 
+
+    public double obtenerSaldoTotal() {
+        if (this.getCuentas() != null && getCuentas().size() > 0) {
+            double acumulador = 0;
+            for (Cuenta cuenta : this.getCuentas()) {
+                acumulador += cuenta.getSaldo();
+            }
+            return acumulador;
+        } else return 0;
+    }
+
+    public boolean evaluarSolicitudPrestamo(Prestamo prestamo) {
+        double monto = prestamo.getMonto();
+        double saldoTotal = this.obtenerSaldoTotal();
+        int numPrestamos = this.prestamos != null ? this.prestamos.size() : 0;
+        double proporcionSaldoPrestamo = saldoTotal / monto;
+        
+        if (saldoTotal <= 0) return false;
+        else if (numPrestamos == 0) {
+            return proporcionSaldoPrestamo >= 0.3;
+        } else if (numPrestamos == 1) {
+            return proporcionSaldoPrestamo >= 0.5;
+        } else if (numPrestamos == 2) {
+            return proporcionSaldoPrestamo >= 0.7;
+        } else return false;
+
+    }
+
     /* GETTERS */
     public Integer getId() {
         return id;

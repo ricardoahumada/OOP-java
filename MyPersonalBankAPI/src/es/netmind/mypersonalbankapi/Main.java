@@ -3,13 +3,10 @@ package es.netmind.mypersonalbankapi;
 import es.netmind.mypersonalbankapi.controladores.ClientesController;
 import es.netmind.mypersonalbankapi.controladores.CuentasController;
 import es.netmind.mypersonalbankapi.controladores.PrestamosController;
-import es.netmind.mypersonalbankapi.modelos.clientes.Cliente;
-import es.netmind.mypersonalbankapi.utils.ClientesUtils;
 
-import java.time.DateTimeException;
 import java.util.Arrays;
 
-public class Main2 {
+public class Main {
     public static void main(String[] args) {
         System.out.println("╔════════════════════════╗");
         System.out.println("║  MY PERSONAL BANK API  ║");
@@ -43,6 +40,8 @@ public class Main2 {
             procesarArgumentosCuentas(args);
         } else if (arg2 != null && arg2.equals("loans")) {
             procesarArgumentosPrestamos(args);
+        } else if (arg2 != null && arg2.equals("loan-evaluation")) {
+            procesarArgumentosEvaluacionPrestamo(args);
         } else {
             procesarArgumentosClientes(args);
         }
@@ -80,11 +79,22 @@ public class Main2 {
         int uid = Integer.valueOf(args[1]);
         if (argsLength == 3) PrestamosController.mostrarLista(uid);
         else if (argsLength == 4) PrestamosController.mostrarDetalle(uid, Integer.valueOf(args[3]));
-        else if (args[3].toLowerCase().equals("add")) PrestamosController.add(uid, Arrays.copyOfRange(args, 4, argsLength));
-        else if (args[3].toLowerCase().equals("update")) PrestamosController.actualizar(uid, Integer.valueOf(args[4]), Arrays.copyOfRange(args, 5, argsLength));
+        else if (args[3].toLowerCase().equals("add"))
+            PrestamosController.add(uid, Arrays.copyOfRange(args, 4, argsLength));
+        else if (args[3].toLowerCase().equals("update"))
+            PrestamosController.actualizar(uid, Integer.valueOf(args[4]), Arrays.copyOfRange(args, 5, argsLength));
         else if (args[3].toLowerCase().equals("remove"))
             PrestamosController.eliminar(uid, Integer.valueOf(args[4]));
         else mostrarInstrucciones();
+    }
+
+    private static void procesarArgumentosEvaluacionPrestamo(String[] args) {
+        int argsLength = args.length;
+        int uid = Integer.valueOf(args[1]);
+        Double cantidad = argsLength >= 4 ? Double.valueOf(args[3]) : 0;
+        if (cantidad > 0) {
+            ClientesController.evaluarPrestamo(uid, cantidad);
+        } else mostrarInstrucciones();
     }
 
     private static void mostrarInstrucciones() {
@@ -112,6 +122,6 @@ public class Main2 {
         System.out.println("clients {uid} loans update {lid} {fechaConcesion (yyyy-mm-dd)} {monto} {interes} {interesMora}");
 
         System.out.println("\nEVALUAR PRÉSTAMO:");
-        System.out.println("clients {uid} loan-evaluation {cantidad}");
+        System.out.println("clients {uid} loan-evaluation {cantidad > 0}");
     }
 }

@@ -2,16 +2,19 @@ package es.netmind.mypersonalbankapi.controladores;
 
 import es.netmind.mypersonalbankapi.exceptions.ClienteException;
 import es.netmind.mypersonalbankapi.modelos.clientes.Cliente;
-import es.netmind.mypersonalbankapi.persistencia.ClientesInMemoryRepo;
-import es.netmind.mypersonalbankapi.persistencia.IClientesRepo;
+import es.netmind.mypersonalbankapi.modelos.prestamos.Prestamo;
+import es.netmind.mypersonalbankapi.persistencia.*;
 import es.netmind.mypersonalbankapi.utils.ClientesUtils;
 
 import java.time.DateTimeException;
+import java.time.LocalDate;
 import java.util.List;
 
 public class ClientesController {
 
     private static IClientesRepo clientesRepo = ClientesInMemoryRepo.getInstance();
+    private static ICuentasRepo cuentasRepo = CuentasInMemoryRepo.getInstance();
+    private static IPrestamosRepo prestamosRepo = PrestamosInMemoryRepo.getInstance();
 
     public static void mostrarLista() {
         System.out.println("\nLista de clientes:");
@@ -103,6 +106,32 @@ public class ClientesController {
             System.out.println("Oops ha habido un problema, inténtelo más tarde 😞!");
             e.printStackTrace();
         }
+
+    }
+
+    public static void evaluarPrestamo(Integer uid, Double cantidad) {
+        System.out.println("\nEvaluando préstamos de " + cantidad + " EUR para el  cliente: " + uid);
+        System.out.println("───────────────────────────────────");
+
+        try {
+            Cliente cliente = clientesRepo.getClientById(uid);
+            System.out.println("Saldo total del cliente: " + cliente.obtenerSaldoTotal());
+            int numPrestamos = cliente.getPrestamos() != null ? cliente.getPrestamos().size() : 0;
+            System.out.println("Número total de préstamos del cliente: " + numPrestamos);
+
+            Prestamo prestamoSolictado = new Prestamo(null, LocalDate.now(), cantidad, cantidad, 10, 5, false, false, 5);
+
+            boolean aceptable = cliente.evaluarSolicitudPrestamo(prestamoSolictado);
+            if (aceptable) System.out.println("SÍ se puede conceder 🙂!!");
+            else System.out.println("NO puede conceder 😞!! Saldo insuficiente.");
+
+        } catch (ClienteException e) {
+            System.out.println("Cliente NO encontrado 😞! \nCode: " + e.getCode());
+        } catch (Exception e) {
+            System.out.println("Oops ha habido un problema, inténtelo más tarde 😞!");
+            e.printStackTrace();
+        }
+
 
     }
 }
