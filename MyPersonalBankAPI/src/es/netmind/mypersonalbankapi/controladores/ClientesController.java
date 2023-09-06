@@ -63,6 +63,7 @@ public class ClientesController {
             System.out.println("⚠ LAS FECHAS DEBEN TENER EL FORMATO yyyy-mm-dd, por ejemplo 2023-12-01 ⚠");
         } catch (Exception e) {
             System.out.println("Oops ha habido un problema, inténtelo más tarde 😞!");
+            e.printStackTrace();
         }
 
     }
