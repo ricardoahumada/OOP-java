@@ -44,6 +44,10 @@ public class Prestamo {
         this.saldo += monto;
     }
 
+    public void calcularMensualidad(Double mensualidad) {
+        this.mensualidad = this.monto * interes / (anios * 12);
+    }
+
     public void pagarMensualidad() {
         if (!this.liquidado) {
             this.saldo -= this.mensualidad;
@@ -130,10 +134,6 @@ public class Prestamo {
 
     public void setInteresMora(Integer interesMora) {
         this.interesMora = interesMora;
-    }
-
-    public void calcularMensualidad(Double mensualidad) {
-        this.mensualidad = this.monto * interes / (anios * 12);
     }
 
     public void setAnios(Integer anios) {
