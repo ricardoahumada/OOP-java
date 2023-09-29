@@ -13,5 +13,12 @@ public class BuilderClient {
 
         AModel anotherObject = new AModelBuilder().setAnotherProperty(45).build();
         System.out.println(anotherObject);
+
+        AModelBuilder mBuilder = new AModelBuilder();
+        mBuilder.setAProperty("email");
+        mBuilder.setAnotherProperty(23);
+
+        AModel aModelObj = mBuilder.build();
+
     }
 }

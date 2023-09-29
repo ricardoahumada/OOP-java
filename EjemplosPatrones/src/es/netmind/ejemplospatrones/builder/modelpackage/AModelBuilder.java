@@ -7,6 +7,10 @@ public class AModelBuilder {
     public AModelBuilder() {
     }
 
+    public AModelBuilder(String aP) {
+        this.aProperty=aP;
+    }
+
     public AModelBuilder setAProperty(String aProperty) {
         this.aProperty = aProperty;
         return this;
