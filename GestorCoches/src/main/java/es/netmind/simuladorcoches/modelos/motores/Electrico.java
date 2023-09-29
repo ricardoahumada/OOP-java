@@ -1,8 +1,6 @@
 package es.netmind.simuladorcoches.modelos.motores;
 
 public class Electrico extends Motor{
-
-
     public Electrico(Integer id, Integer potencia) {
         super(id, potencia);
     }

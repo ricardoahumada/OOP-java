@@ -1,8 +1,6 @@
 package es.netmind.simuladorcoches.modelos.motores;
 
-public class Combustion extends Motor{
-
-
+public class Combustion extends Motor {
     public Combustion(Integer id, Integer potencia) {
         super(id, potencia);
     }

@@ -1,23 +1,22 @@
 package es.netmind.simuladorcoches.modelos.coches;
 
-public class Familiar extends Coche implements ICoche {
+import lombok.*;
 
-    private int nAsientos = 5;
+@Getter @Setter @ToString
+public class Deportivo extends Coche implements ICoche, IVolador {
+    private boolean turbo;
 
-    public Familiar(String marca, String tipoCoche, int velocidad, int nAsientos) {
+    public Deportivo(String marca, String tipoCoche, int velocidad, boolean turbo) {
         super(marca, tipoCoche, velocidad);
-        this.nAsientos = nAsientos;
+        this.turbo = turbo;
     }
+
 
     @Override
     public double avanzar(int distancia) {
         if (this.arrancado) {
             motor.acelerar();
-
-            double inc = 1;
-            if (nAsientos > 5) inc = 0.5;
-            else if (nAsientos < 5) inc = 1.5;
-            else inc = 1;
+            int inc = this.turbo ? 2 : 1;
 
             double tiempo = (double) distancia / ((double) this.velocidad * inc);
             this.posicion += distancia;
@@ -32,6 +31,10 @@ public class Familiar extends Coche implements ICoche {
         return false;
     }
 
+    @Override
+    public boolean volar() {
+        return false;
+    }
 
     @Override
     public void ralenti() {

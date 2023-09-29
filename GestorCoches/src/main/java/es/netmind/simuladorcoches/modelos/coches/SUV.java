@@ -1,5 +1,10 @@
 package es.netmind.simuladorcoches.modelos.coches;
 
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
+@Getter @Setter @ToString
 public class SUV extends Coche implements ICoche{
 
     private int nCambios = 2;
