@@ -8,6 +8,13 @@ public class Rueda {
         this.diametro = l;
     }
 
+    @Override
+    public String toString() {
+        return "Rueda{" +
+                "diametro=" + diametro +
+                '}';
+    }
+
     public Long getDiametro() {
         return diametro;
     }
