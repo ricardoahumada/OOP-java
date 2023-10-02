@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/GestorCoches/GestorCoches.iml" filepath="$PROJECT_DIR$/GestorCoches/GestorCoches.iml" />
+      <module fileurl="file://$PROJECT_DIR$/MaquinaCafe/MaquinaCafe.iml" filepath="$PROJECT_DIR$/MaquinaCafe/MaquinaCafe.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/OOP-java-juan.iml" filepath="$PROJECT_DIR$/.idea/OOP-java-juan.iml" />
+      <module fileurl="file://$PROJECT_DIR$/PrimerProgramaJava/PrimerProgramaJava.iml" filepath="$PROJECT_DIR$/PrimerProgramaJava/PrimerProgramaJava.iml" />
+    </modules>
+  </component>
+</project>

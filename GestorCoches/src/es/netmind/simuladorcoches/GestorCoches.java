@@ -27,6 +27,7 @@ public class GestorCoches {
         c2.arrancar();
         ICoche c3 = new SUV("Seat", "SUV", 100, 1);
         c3.arrancar();
+        //ruedas
 
         c1.setMotor(new Combustion(1,100));
         c2.setMotor(new Combustion(2,120));
