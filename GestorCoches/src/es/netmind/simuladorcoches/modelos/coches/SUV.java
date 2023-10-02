@@ -13,7 +13,7 @@ public class SUV extends Coche implements ICoche{
     @Override
     public double avanzar(int distancia) {
         if (this.arrancado) {
-            motor.acelerar();
+            //motor.acelerar();
 
             double inc = (this.nCambios > 1) ? 0.5 : 1;
 

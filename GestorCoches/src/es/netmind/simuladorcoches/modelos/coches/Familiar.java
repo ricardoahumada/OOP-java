@@ -12,7 +12,7 @@ public class Familiar extends Coche implements ICoche {
     @Override
     public double avanzar(int distancia) {
         if (this.arrancado) {
-            motor.acelerar();
+            //motor.acelerar(); comentamos por nullpointerexception
 
             double inc = 1;
             if (nAsientos > 5) inc = 0.5;
