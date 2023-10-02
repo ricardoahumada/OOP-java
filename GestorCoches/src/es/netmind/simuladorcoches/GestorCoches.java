@@ -4,6 +4,7 @@ import es.netmind.simuladorcoches.modelos.coches.*;
 import es.netmind.simuladorcoches.modelos.motores.Combustion;
 import es.netmind.simuladorcoches.modelos.motores.Electrico;
 import es.netmind.simuladorcoches.modelos.motores.Motor;
+import es.netmind.simuladorcoches.modelos.ruedas.Rueda;
 
 public class GestorCoches {
 
@@ -33,6 +34,7 @@ public class GestorCoches {
         c3.setMotor(new Combustion(2,200));
         c3.arrancar();
 
+    Rueda ruedaEjemplo = new Rueda(20L);
 
 
 
