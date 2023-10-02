@@ -2,6 +2,7 @@ package es.netmind.simuladorcoches;
 
 import es.netmind.simuladorcoches.modelos.coches.*;
 import es.netmind.simuladorcoches.modelos.motores.Combustion;
+import es.netmind.simuladorcoches.ruedas.Ruedas;
 
 public class GestorCoches {
 
@@ -27,7 +28,7 @@ public class GestorCoches {
         c2.arrancar();
         ICoche c3 = new SUV("Seat", "SUV", 100, 1);
         c3.arrancar();
-        //ruedas
+        Ruedas ruedas = new Ruedas(20);
 
         c1.setMotor(new Combustion(1,100));
         c2.setMotor(new Combustion(2,120));
