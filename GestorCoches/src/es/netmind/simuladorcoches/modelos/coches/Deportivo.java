@@ -12,7 +12,7 @@ public class Deportivo extends Coche implements ICoche, IVolador {
     @Override
     public double avanzar(int distancia) {
         if (this.arrancado) {
-            motor.acelerar();
+            //motor.acelerar();
             int inc = this.turbo ? 2 : 1;
 
             double tiempo = (double) distancia / ((double) this.velocidad * inc);
