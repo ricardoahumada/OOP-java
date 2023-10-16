@@ -37,11 +37,12 @@ class CatTest {
         //dado
         Cat cat = new Cat();
 
-        //cuando
-        String valor = cat.maullar();
-
         // entonces
-        assertEquals("miau: null", valor);
+        assertThrows(NullPointerException.class, () -> {
+            //cuando
+            cat.maullar();
+        });
+
     }
 
     @Test
@@ -54,7 +55,7 @@ class CatTest {
         String valor = cat.maullar();
 
         // entonces
-        assertEquals("miau: " + misifu, valor);
+        assertEquals("miau: " + misifu.toUpperCase(), valor);
     }
 
 }

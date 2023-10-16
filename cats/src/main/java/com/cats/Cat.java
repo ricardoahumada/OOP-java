@@ -12,7 +12,7 @@ public class Cat {
     }
 
     public String maullar() {
-        return "miau: " + name;
+        return "miau: " + name.toUpperCase();
     }
 
     public Cat() {
