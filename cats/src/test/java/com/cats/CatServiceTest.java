@@ -19,7 +19,7 @@ class CatServiceTest {
 
         // cuando
         String valor = CatService.concatCats(catsAProbar);
-        System.out.println("valor:"+valor);
+        System.out.println("valor:" + valor);
 
         // entonces
         String[] elems = valor.split(":");
@@ -28,6 +28,38 @@ class CatServiceTest {
         for (int i = 0; i < catsAProbar.size(); i++) {
             assertTrue(valor.contains(catsAProbar.get(i).getName()));
         }
+
+    }
+
+    @Test
+    void dado_listaGatosSinNombre_cuandoconcatCats_entoncesExcepcion() {
+        // dado
+        List<Cat> catsAProbar = new ArrayList<>();
+        catsAProbar.add(new Cat());
+        catsAProbar.add(new Cat());
+        catsAProbar.add(new Cat());
+
+        // entonces
+        assertThrows(NullPointerException.class, () -> {
+            // cuando
+            CatService.concatCats(catsAProbar);
+        });
+
+    }
+
+    @Test
+    void dado_listaGatosNulos_cuandoconcatCats_entoncesExcepcion() {
+        // dado
+        List<Cat> catsAProbar = new ArrayList<>();
+        catsAProbar.add(null);
+        catsAProbar.add(null);
+        catsAProbar.add(null);
+
+        // entonces
+        assertThrows(NullPointerException.class, () -> {
+            // cuando
+            CatService.concatCats(catsAProbar);
+        });
 
     }
 
