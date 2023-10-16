@@ -23,7 +23,7 @@ class CocheTest {
     }
 
     @ParameterizedTest
-    @CsvSource({"ren,familiar,120", "renault,fa,120","renault,familiar,0"})
+    @CsvSource({"ren,familiar,120", "renault,fa,120", "renault,familiar,0", "renault,familiar,-20"})
     void dado_valoreInvalidosCondicionantes_cuandoValidar_entoncesExcepcion(String marca, String tipo, int velocidad) throws CocheException {
         // dado
         Coche coche = new Familiar(marca, tipo, velocidad, 5);
@@ -32,6 +32,19 @@ class CocheTest {
         assertThrows(CocheException.class, () -> {
             //cuando
             boolean esValido = coche.validar();
+
+        });
+    }
+
+    @ParameterizedTest
+    @CsvSource({",familiar,120", "renault,,120"})
+    void dado_valoreNulosCondicionantes_cuandoCreoCoche_entoncesExcepcion(String marca, String tipo, int velocidad) throws CocheException {
+        // dado nada
+
+        //entonces
+        assertThrows(NullPointerException.class, () -> {
+            //cuando
+            Coche coche = new Familiar(marca, tipo, velocidad, 5);
 
         });
     }
