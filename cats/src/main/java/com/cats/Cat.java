@@ -11,6 +11,10 @@ public class Cat {
         return name;
     }
 
+    public String maullar() {
+        return "miau: " + name;
+    }
+
     public Cat() {
     }
 }
