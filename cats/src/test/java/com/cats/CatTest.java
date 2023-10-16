@@ -7,17 +7,54 @@ import static org.junit.jupiter.api.Assertions.*;
 class CatTest {
 
     @Test
-    void getName_cuando_use_constructor_vacio() {
+    void dado_gatoSINnombre_cuando_getname_estonces_esNulo() {
+        //dado
         Cat cat = new Cat();
-        assertEquals(null, cat.getName());
 
+        //cuando
+        String nombre = cat.getName();
+
+        // entonces
+//        assertEquals(null, nombre);
+        assertNull(nombre);
     }
 
     @Test
-    void getName_cuando_use_constructor_con_parametros() {
+    void dado_gatoCONnombre_cuando_getname_estonces_tieneValor() {
+        //dado
         Cat cat = new Cat("misifu");
-        assertEquals("misifu", cat.getName());
 
+        //cuando
+        String nombre = cat.getName();
+
+        // entonces
+        assertEquals("misifu", nombre);
+    }
+
+
+    @Test
+    void dado_gatoSINnombre_cuando_maullar_estonces_miaunull() {
+        //dado
+        Cat cat = new Cat();
+
+        //cuando
+        String valor = cat.maullar();
+
+        // entonces
+        assertEquals("miau: null", valor);
+    }
+
+    @Test
+    void dado_gatoCONnombre_cuando_maullar_estonces_miaunombre() {
+        //dado
+        String misifu = "misifu";
+        Cat cat = new Cat(misifu);
+
+        //cuando
+        String valor = cat.maullar();
+
+        // entonces
+        assertEquals("miau: " + misifu, valor);
     }
 
 }
