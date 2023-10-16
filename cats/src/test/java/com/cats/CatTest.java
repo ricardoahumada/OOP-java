@@ -2,9 +2,13 @@ package com.cats;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.NullSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.junit.jupiter.api.Assertions.*;
+
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.*;
 
 class CatTest {
 
@@ -47,8 +51,8 @@ class CatTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"", "misifu", "mix", "cleopatra", "cesarycleopatra________________________________"})
-    void dado_gatoCONnombre_cuando_maullar_estonces_miauNombreMayusculas(String nombre) {
+    @ValueSource(strings = {"misifu", "cleopatra", "cesarycleopatra________________________________"})
+    void dado_valoresCorretos_cuando_maullar_estonces_miauNombreMayusculas(String nombre) {
         //dado
         Cat cat = new Cat(nombre);
 
@@ -56,7 +60,23 @@ class CatTest {
         String valor = cat.maullar();
 
         // entonces
-        assertEquals("miau: " + nombre.toUpperCase(), valor);
+//        assertEquals("miau: " + nombre.toUpperCase(), valor);
+        assertThat(valor, is("miau: " + nombre.toUpperCase()));
+    }
+
+    @ParameterizedTest
+    @NullSource
+    @ValueSource(strings = {"", "mix"})
+    void dado_valoresNoValidos_cuando_maullar_estonces_lanzaExcepcion(String nombre) {
+        //dado
+        Cat cat = new Cat(nombre);
+
+        // entonces
+        assertThrows(NullPointerException.class, () -> {
+            //cuando
+            cat.maullar();
+        });
+
     }
 
 }
