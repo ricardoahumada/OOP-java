@@ -60,7 +60,7 @@ class CatTest {
         String valor = cat.maullar();
 
         // entonces
-//        assertEquals("miau: " + nombre.toUpperCase(), valor);
+        // assertEquals("miau: " + nombre.toUpperCase(), valor);
         assertThat(valor, is("miau: " + nombre.toUpperCase()));
     }
 
