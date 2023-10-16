@@ -1,6 +1,8 @@
 package com.cats;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -31,9 +33,8 @@ class CatTest {
         assertEquals("misifu", nombre);
     }
 
-
     @Test
-    void dado_gatoSINnombre_cuando_maullar_estonces_miaunull() {
+    void dado_gatoSINnombre_cuando_maullar_estonces_lanzaExcepcion() {
         //dado
         Cat cat = new Cat();
 
@@ -45,17 +46,17 @@ class CatTest {
 
     }
 
-    @Test
-    void dado_gatoCONnombre_cuando_maullar_estonces_miaunombre() {
+    @ParameterizedTest
+    @ValueSource(strings = {"", "misifu", "mix", "cleopatra", "cesarycleopatra________________________________"})
+    void dado_gatoCONnombre_cuando_maullar_estonces_miauNombreMayusculas(String nombre) {
         //dado
-        String misifu = "misifu";
-        Cat cat = new Cat(misifu);
+        Cat cat = new Cat(nombre);
 
         //cuando
         String valor = cat.maullar();
 
         // entonces
-        assertEquals("miau: " + misifu.toUpperCase(), valor);
+        assertEquals("miau: " + nombre.toUpperCase(), valor);
     }
 
 }
