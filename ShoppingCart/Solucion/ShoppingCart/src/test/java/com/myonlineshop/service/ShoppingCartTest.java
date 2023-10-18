@@ -29,9 +29,9 @@ class ShoppingCartTest {
     }
 
     @ParameterizedTest
-    @ValueSource(ints = {0, 1, 2, 5, 10})
+    @ValueSource(ints = {0, 1, 2, 5, 10, 1000})
     void cuando_está_vacío_el_carrito_tiene_0_artículos(int numProducts) {
-        // given ... void
+        // given
         ShoppingCart cart = new ShoppingCart();
 
         Random rand = new Random();
@@ -40,7 +40,8 @@ class ShoppingCartTest {
             cart.addItem(new Product("fake " + i, rand.nextDouble() * 100));
         }
 
-//        System.out.println("count: " + cart.getItemCount());
+        // System.out.println("count: " + cart.getItemCount());
+
         // when
         cart.empty();
 
