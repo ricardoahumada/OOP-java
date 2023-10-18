@@ -58,9 +58,30 @@ class ShoppingCartTest {
 
     }
 
-    @Test
-    void cuando_se_agrega_un_nuevo_producto_el_nuevo_saldo_debe_ser_la_suma_de_anteriores_más_el_costo_del_producto() {
+    @ParameterizedTest
+    @ValueSource(ints = {0, 1, 2, 5, 10, 1000})
+    void cuando_se_agrega_un_nuevo_producto_el_nuevo_saldo_debe_ser_la_suma_de_anteriores_más_el_costo_del_producto(int numProducts) {
+        // given
+        ShoppingCart cart = new ShoppingCart();
 
+        Random rand = new Random();
+
+        double inc = 0;
+
+        for (int i = 0; i < numProducts; i++) {
+            double precio = rand.nextDouble() * 100;
+            cart.addItem(new Product("fake " + i, precio));
+            inc += precio;
+        }
+
+        System.out.println("count: " + cart.getItemCount());
+
+        // then
+        int num = cart.getItemCount();
+        double bal = cart.getBalance();
+
+        assertThat(num, is(numProducts));
+        assertThat(bal, is(inc));
     }
 
     @Test

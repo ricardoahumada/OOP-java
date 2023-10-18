@@ -32,14 +32,19 @@ class ConverterTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"-32768", "-2", "2", "32768"})
+    @ValueSource(strings = {"-32768", "-2", "2", "32767"})
     void dado_rangocorrecto_cuando_convert_entonces_int(String texto) {
         Integer num = Converter.convert(texto);
         assertTrue(num instanceof Integer);
     }
 
-    @Test
-    void dado_real_cuando_convert_entonces_excepcion() {
+    @ParameterizedTest
+    @ValueSource(strings = {"-1.2", "1.2", "0.0"})
+    void dado_real_cuando_convert_entonces_excepcion(String texto) {
+        assertThrows(Exception.class, () -> {
+            Integer num = Converter.convert(texto);
+        });
+
     }
 
 }
