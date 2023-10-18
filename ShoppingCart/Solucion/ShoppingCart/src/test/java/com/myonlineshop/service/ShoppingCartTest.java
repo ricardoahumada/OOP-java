@@ -63,11 +63,10 @@ class ShoppingCartTest {
     void cuando_se_agrega_un_nuevo_producto_el_nuevo_saldo_debe_ser_la_suma_de_anteriores_más_el_costo_del_producto(int numProducts) {
         // given
         ShoppingCart cart = new ShoppingCart();
-
         Random rand = new Random();
-
         double inc = 0;
 
+        // when
         for (int i = 0; i < numProducts; i++) {
             double precio = rand.nextDouble() * 100;
             cart.addItem(new Product("fake " + i, precio));
