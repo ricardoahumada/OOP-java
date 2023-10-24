@@ -15,7 +15,7 @@ class UsuarioDBRepositoryTest {
 
     @BeforeEach
     void sepUp() {
-        repo = new UsuarioDBRepository();
+        repo = new UsuarioInMemoryRepository();
     }
 
     @Test
