@@ -1,5 +1,7 @@
 package com.myshoppingcart.persistence;
 
+import com.myshoppingcart.exception.ProductNotFoundException;
+import com.myshoppingcart.exception.UsuarioNotFoundException;
 import com.myshoppingcart.model.Producto;
 import com.myshoppingcart.model.Usuario;
 
@@ -51,79 +53,61 @@ public class ProductosDBRepository {
 
     }
 
-    public static Usuario getUsuario(String email, String pass) {
+    public static Usuario getUsuario(String email, String pass) throws UsuarioNotFoundException, Exception {
         Usuario usuarioADevolver = null;
 
-        try {
-            Connection conn = DriverManager.getConnection(connUrl);
+        Connection conn = DriverManager.getConnection(connUrl);
 
-            // ordenes sql
-            Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery(
-                    "SELECT u.* FROM usuario u WHERE u.email='" + email + "' AND password='" + pass + "' LIMIT 1");
+        // ordenes sql
+        Statement stmt = conn.createStatement();
+        ResultSet rs = stmt.executeQuery(
+                "SELECT u.* FROM usuario u WHERE u.email='" + email + "' AND password='" + pass + "' LIMIT 1");
 
-            if (rs.next()) {
-
-                usuarioADevolver = new Usuario(
-                        rs.getInt("uid"),
-                        rs.getString("nombre"),
-                        rs.getString("apellido"),
-                        rs.getString("email"),
-                        rs.getString("coquetitud"),
-                        rs.getDouble("saldo"),
-                        "",
-                        rs.getDate("nacimiento").toLocalDate(),
-                        rs.getBoolean("activo")
-                );
-            }
-
-            stmt.close();
-
-            conn.close();
-
-            logger.info("Conexión exitosa");
-
-        } catch (Exception e) {
-            logger.severe("Error en la conexión de BBDD:" + e);
-            usuarioADevolver = null;
+        if (rs.next()) {
+            usuarioADevolver = new Usuario(
+                    rs.getInt("uid"),
+                    rs.getString("nombre"),
+                    rs.getString("apellido"),
+                    rs.getString("email"),
+                    rs.getString("coquetitud"),
+                    rs.getDouble("saldo"),
+                    "",
+                    rs.getDate("nacimiento").toLocalDate(),
+                    rs.getBoolean("activo")
+            );
+        } else {
+            throw new UsuarioNotFoundException();
         }
+
+        stmt.close();
+
+        conn.close();
 
         return usuarioADevolver;
     }
 
-    public static List<Producto> getUserMakeups(int uid) {
+    public static List<Producto> getUserProducts(int uid) throws Exception {
         List<Producto> listADevolver = new ArrayList<Producto>();
+        Connection conn = DriverManager.getConnection(connUrl);
 
-        try {
+        // ordenes sql
+        Statement stmt = conn.createStatement();
+        ResultSet rs = stmt.executeQuery(
+                "SELECT m.* FROM producto m INNER JOIN compra c ON c.cosmetico=m.mid WHERE c.usuario=" + uid);
 
-            Connection conn = DriverManager.getConnection(connUrl);
-
-            // ordenes sql
-            Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery(
-                    "SELECT m.* FROM producto m INNER JOIN compra c ON c.cosmetico=m.mid WHERE c.usuario=" + uid);
-
-            while (rs.next()) {
-                listADevolver.add(new Producto(
-                        rs.getInt("mid"),
-                        rs.getString("codigo"),
-                        rs.getString("marca"),
-                        rs.getString("tipo"),
-                        rs.getInt("precio"),
-                        rs.getInt("existencias")
-                ));
-            }
-
-            stmt.close();
-
-            conn.close();
-
-            logger.info("Conexión exitosa");
-
-        } catch (Exception e) {
-            logger.severe("Error en la conexión de BBDD:" + e);
-            listADevolver = null;
+        while (rs.next()) {
+            listADevolver.add(new Producto(
+                    rs.getInt("mid"),
+                    rs.getString("codigo"),
+                    rs.getString("marca"),
+                    rs.getString("tipo"),
+                    rs.getInt("precio"),
+                    rs.getInt("existencias")
+            ));
         }
+
+        stmt.close();
+        conn.close();
 
         return listADevolver;
     }
