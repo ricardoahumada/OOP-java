@@ -1,20 +1,16 @@
 package com.myshoppingcart.persistence;
 
-import com.myshoppingcart.exception.ProductNotFoundException;
 import com.myshoppingcart.exception.UsuarioNotFoundException;
-import com.myshoppingcart.model.Producto;
 import com.myshoppingcart.model.Usuario;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.logging.Logger;
 
-public class ProductosDBRepository implements IProductosRepository{
-    private static Logger logger = Logger.getLogger("ProductosDBRepository");
+public class UsuarioDBRepository implements IUsuarioRepository {
+    private static Logger logger = Logger.getLogger("UsuarioDBRepository");
     private final static String connUrl = "jdbc:mysql://localhost/productos_db?user=productos_user&password=prod123";
 
     @Override
@@ -35,8 +31,6 @@ public class ProductosDBRepository implements IProductosRepository{
 
             stmt.close();
             conn.close();
-
-            logger.info("Conexión exitosa");
 
             return existeUsuario;
         } catch (Exception e) {
@@ -63,7 +57,7 @@ public class ProductosDBRepository implements IProductosRepository{
                     rs.getString("nombre"),
                     rs.getString("apellido"),
                     rs.getString("email"),
-                    rs.getString("coquetitud"),
+                    rs.getInt("interes"),
                     rs.getDouble("saldo"),
                     "",
                     rs.getDate("nacimiento").toLocalDate(),
@@ -81,30 +75,18 @@ public class ProductosDBRepository implements IProductosRepository{
     }
 
     @Override
-    public List<Producto> getUserProducts(int uid) throws Exception {
-        List<Producto> listADevolver = new ArrayList<Producto>();
-        Connection conn = DriverManager.getConnection(connUrl);
+    public Usuario insertUsuaio(Usuario nuevoUsuario) throws Exception {
+        return null;
+    }
 
-        // ordenes sql
-        Statement stmt = conn.createStatement();
-        ResultSet rs = stmt.executeQuery(
-                "SELECT m.* FROM producto m INNER JOIN compra c ON c.cosmetico=m.mid WHERE c.usuario=" + uid);
+    @Override
+    public Usuario updateUsuaio(Usuario nuevoUsuario) throws UsuarioNotFoundException {
+        return null;
+    }
 
-        while (rs.next()) {
-            listADevolver.add(new Producto(
-                    rs.getInt("mid"),
-                    rs.getString("codigo"),
-                    rs.getString("marca"),
-                    rs.getString("tipo"),
-                    rs.getInt("precio"),
-                    rs.getInt("existencias")
-            ));
-        }
-
-        stmt.close();
-        conn.close();
-
-        return listADevolver;
+    @Override
+    public boolean deleteUsuaio(Integer uid) throws UsuarioNotFoundException {
+        return false;
     }
 
 }

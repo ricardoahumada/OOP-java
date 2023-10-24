@@ -24,12 +24,12 @@ DROP TABLE IF EXISTS `almacen`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `almacen` (
   `aid` int(11) NOT NULL AUTO_INCREMENT,
-  `cosmetico` int(11) NOT NULL,
+  `producto` int(11) NOT NULL,
   `cantidad` int(11) NOT NULL,
-  PRIMARY KEY (`aid`,`cosmetico`,`cantidad`),
+  PRIMARY KEY (`aid`,`producto`,`cantidad`),
   UNIQUE KEY `aid_UNIQUE` (`aid`),
-  KEY `fk_almacen_cosmetico_idx` (`cosmetico`),
-  CONSTRAINT `fk_almacen_cosmetico` FOREIGN KEY (`cosmetico`) REFERENCES `producto` (`mid`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  KEY `fk_almacen_producto_idx` (`producto`),
+  CONSTRAINT `fk_almacen_producto` FOREIGN KEY (`producto`) REFERENCES `producto` (`pid`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -43,14 +43,14 @@ DROP TABLE IF EXISTS `compra`;
 CREATE TABLE `compra` (
   `cid` int(11) NOT NULL AUTO_INCREMENT,
   `usuario` int(11) NOT NULL,
-  `cosmetico` int(11) NOT NULL,
+  `producto` int(11) NOT NULL,
   `cantidad` int(11) NOT NULL,
   `fecha` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`cid`),
   UNIQUE KEY `cid_UNIQUE` (`cid`),
   KEY `fk_compra_usuario_idx` (`usuario`),
-  KEY `fk_compra_producto_idx` (`cosmetico`),
-  CONSTRAINT `fk_compra_producto` FOREIGN KEY (`cosmetico`) REFERENCES `producto` (`mid`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  KEY `fk_compra_producto_idx` (`producto`),
+  CONSTRAINT `fk_compra_producto` FOREIGN KEY (`producto`) REFERENCES `producto` (`pid`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_compra_usuario` FOREIGN KEY (`usuario`) REFERENCES `usuario` (`uid`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -63,15 +63,15 @@ DROP TABLE IF EXISTS `producto`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `producto` (
-  `mid` int(11) NOT NULL AUTO_INCREMENT,
+  `pid` int(11) NOT NULL AUTO_INCREMENT,
   `codigo` int(11) NOT NULL,
   `marca` varchar(255) NOT NULL,
   `Nombre` varchar(40) NOT NULL,
   `tipo` varchar(20) DEFAULT NULL,
   `precio` double NOT NULL,
   `existencias` int(11) DEFAULT NULL,
-  PRIMARY KEY (`mid`),
-  UNIQUE KEY `mid_UNIQUE` (`mid`)
+  PRIMARY KEY (`pid`),
+  UNIQUE KEY `pid_UNIQUE` (`pid`)
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -87,7 +87,7 @@ CREATE TABLE `usuario` (
   `nombre` varchar(30) NOT NULL,
   `apellido` varchar(30) NOT NULL,
   `email` varchar(255) NOT NULL,
-  `coquetitud` int(11) NOT NULL,
+  `interes` int(11) NOT NULL,
   `saldo` int(11) DEFAULT NULL,
   `password` text NOT NULL,
   `nacimiento` datetime DEFAULT NULL,

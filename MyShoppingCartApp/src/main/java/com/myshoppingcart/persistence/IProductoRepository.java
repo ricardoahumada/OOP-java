@@ -6,11 +6,8 @@ import com.myshoppingcart.model.Usuario;
 
 import java.util.List;
 
-public interface IProductosRepository {
-    public boolean existeUsuario(String email, String pass);
-
-    public Usuario getUsuario(String email, String pass) throws UsuarioNotFoundException, Exception;
-
+public interface IProductoRepository {
+    public List<Producto> getProducts() throws Exception;
     public List<Producto> getUserProducts(int uid) throws Exception;
 
 }
