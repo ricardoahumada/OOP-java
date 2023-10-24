@@ -13,11 +13,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
-public class ProductosDBRepository {
+public class ProductosDBRepository implements IProductosRepository{
     private static Logger logger = Logger.getLogger("ProductosDBRepository");
     private final static String connUrl = "jdbc:mysql://localhost/productos_db?user=productos_user&password=prod123";
 
-    public static boolean existeUsuario(String email, String pass) {
+    @Override
+    public boolean existeUsuario(String email, String pass) {
 
         try {
             Connection conn = DriverManager.getConnection(connUrl);
@@ -45,7 +46,8 @@ public class ProductosDBRepository {
 
     }
 
-    public static Usuario getUsuario(String email, String pass) throws UsuarioNotFoundException, Exception {
+    @Override
+    public Usuario getUsuario(String email, String pass) throws UsuarioNotFoundException, Exception {
         Usuario usuarioADevolver = null;
 
         Connection conn = DriverManager.getConnection(connUrl);
@@ -78,7 +80,8 @@ public class ProductosDBRepository {
         return usuarioADevolver;
     }
 
-    public static List<Producto> getUserProducts(int uid) throws Exception {
+    @Override
+    public List<Producto> getUserProducts(int uid) throws Exception {
         List<Producto> listADevolver = new ArrayList<Producto>();
         Connection conn = DriverManager.getConnection(connUrl);
 
