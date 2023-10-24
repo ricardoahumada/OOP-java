@@ -10,7 +10,7 @@ import java.util.Random;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 
-class ShoppingCartTest {
+public class ShoppingCartTest {
 
     @Test
     void cuando_se_crea_el_carrito_tiene_0_artículos() {
