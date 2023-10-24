@@ -17,14 +17,6 @@ public class ProductosDBRepository {
     private static Logger logger = Logger.getLogger("ProductosDBRepository");
     private final static String connUrl = "jdbc:mysql://localhost/productos_db?user=productos_user&password=prod123";
 
-    static {
-        try {
-            // Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
     public static boolean existeUsuario(String email, String pass) {
 
         try {
