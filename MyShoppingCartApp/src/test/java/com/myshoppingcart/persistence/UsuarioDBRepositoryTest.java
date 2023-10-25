@@ -14,18 +14,19 @@ public class UsuarioDBRepositoryTest {
     private IUsuarioRepository repo;
 
     @BeforeEach
-    void sepUp() {
-        repo = new UsuarioInMemoryRepository();
+    void setUp() {
+//        repo = new UsuarioInMemoryRepository();
+        repo = new UsuarioDBRepository();
     }
 
     @Test
-    void dadosUsuarios_cuandoExisteUsuarioEnDB_entoncesOK() {
+    void dadosUsuarios_cuandoExisteUsuarioEnDB_entoncesOK() throws Exception {
         boolean existe = repo.existeUsuario("juana@e.com", "juanason_1");
         assertThat(existe, is(true));
     }
 
     @Test
-    void dadosUsuarios_cuandoExisteUsuarioNoEnDB_entoncesNOK() {
+    void dadosUsuarios_cuandoExisteUsuarioNoEnDB_entoncesNOK() throws Exception {
         boolean existe = repo.existeUsuario("xxxx@e.com", "xxxx");
         assertThat(existe, is(false));
     }

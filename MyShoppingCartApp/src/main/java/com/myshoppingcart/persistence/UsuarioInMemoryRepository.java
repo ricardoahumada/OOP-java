@@ -60,7 +60,7 @@ public class UsuarioInMemoryRepository implements IUsuarioRepository {
     }
 
     @Override
-    public Usuario insertUsuaio(Usuario nuevoUsuario) throws Exception {
+    public Usuario insertUsuario(Usuario nuevoUsuario) throws Exception {
         int newId = SecureRandom.getInstance("SHA1PRNG").nextInt();
 
         nuevoUsuario.setUid(newId);
@@ -69,7 +69,7 @@ public class UsuarioInMemoryRepository implements IUsuarioRepository {
     }
 
     @Override
-    public Usuario updateUsuaio(Usuario unUsuario) throws UsuarioNotFoundException {
+    public Usuario updateUsuario(Usuario unUsuario) throws UsuarioNotFoundException {
         for (Usuario usuario : usuarios) {
             if (usuario.getUid() == unUsuario.getUid()) {
                 usuarios.remove(usuario);
@@ -82,7 +82,7 @@ public class UsuarioInMemoryRepository implements IUsuarioRepository {
     }
 
     @Override
-    public boolean deleteUsuaio(Integer uid) throws UsuarioNotFoundException {
+    public boolean deleteUsuario(Integer uid) throws UsuarioNotFoundException {
         for (Usuario usuario : usuarios) {
             if (usuario.getUid() == uid) {
                 usuarios.remove(usuario);

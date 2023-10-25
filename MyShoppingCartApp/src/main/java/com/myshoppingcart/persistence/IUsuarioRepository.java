@@ -1,20 +1,19 @@
 package com.myshoppingcart.persistence;
 
 import com.myshoppingcart.exception.UsuarioNotFoundException;
-import com.myshoppingcart.model.Producto;
 import com.myshoppingcart.model.Usuario;
 
-import java.util.List;
+import java.sql.SQLException;
 
 public interface IUsuarioRepository {
-    public boolean existeUsuario(String email, String pass);
+    public boolean existeUsuario(String email, String pass) throws Exception;
 
     public Usuario getUsuario(String email, String pass) throws UsuarioNotFoundException, Exception;
 
-    public Usuario insertUsuaio(Usuario nuevoUsuario) throws Exception;
+    public Usuario insertUsuario(Usuario nuevoUsuario) throws Exception;
 
-    public Usuario updateUsuaio(Usuario unUsuario) throws UsuarioNotFoundException;
+    public Usuario updateUsuario(Usuario unUsuario) throws UsuarioNotFoundException;
 
-    public boolean deleteUsuaio(Integer uid) throws UsuarioNotFoundException;
+    public boolean deleteUsuario(Integer uid) throws UsuarioNotFoundException;
 
 }
