@@ -1,4 +1,4 @@
-package es.netmind.maquinacafe.modelos;
+package com.mycompany.maquinacafe.modelos;
 
 public class Empleado {
     private String nombre;
@@ -59,7 +59,7 @@ public class Empleado {
 
     @Override
     public String toString() {
-        return "es.netmind.maquinacafe.modelos.Empleado{" +
+        return "modelos.com.mycompany.maquinacafe.Empleado{" +
                 "nombre='" + nombre + '\'' +
                 ", ID=" + ID +
                 ", email='" + email + '\'' +

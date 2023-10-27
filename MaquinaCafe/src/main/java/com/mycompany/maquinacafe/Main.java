@@ -1,8 +1,8 @@
-package es.netmind.maquinacafe;
+package com.mycompany.maquinacafe;
 
-import es.netmind.maquinacafe.modelos.tazacafe.Corto;
-import es.netmind.maquinacafe.modelos.tazacafe.Largo;
-import es.netmind.maquinacafe.modelos.tazacafe.TazaCafe;
+import com.mycompany.maquinacafe.modelos.tazacafe.Corto;
+import com.mycompany.maquinacafe.modelos.tazacafe.Largo;
+import com.mycompany.maquinacafe.modelos.tazacafe.TazaCafe;
 
 public class Main {
 

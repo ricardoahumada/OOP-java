@@ -1,4 +1,4 @@
-package es.netmind.maquinacafe.modelos.tazacafe;
+package com.mycompany.maquinacafe.modelos.tazacafe;
 
 public class TazaCafe {
     private int id;

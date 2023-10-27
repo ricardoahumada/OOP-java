@@ -1,4 +1,4 @@
-package es.netmind.maquinacafe.modelos;
+package com.mycompany.maquinacafe.modelos;
 
 public class Capsula {
     private int identificador;
@@ -93,7 +93,7 @@ public class Capsula {
 
     @Override
     public String toString() {
-        return "es.netmind.maquinacafe.modelos.Capsula{" +
+        return "modelos.com.mycompany.maquinacafe.Capsula{" +
                 "identificador=" + identificador +
                 ", marca='" + marca + '\'' +
                 ", tipoCafe='" + tipoCafe + '\'' +
