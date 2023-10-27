@@ -1,7 +1,9 @@
-import models.Deportivo;
-import models.Familiar;
-import models.ICoche;
-import models.SUV;
+package com.myautocompany;
+
+import com.myautocompany.models.Deportivo;
+import com.myautocompany.models.Familiar;
+import com.myautocompany.models.ICoche;
+import com.myautocompany.models.SUV;
 
 import java.util.*;
 

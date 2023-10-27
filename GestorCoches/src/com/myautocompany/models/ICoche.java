@@ -1,4 +1,4 @@
-package models;
+package com.myautocompany.models;
 
 public interface ICoche {
     public double avanzar(int distancia);

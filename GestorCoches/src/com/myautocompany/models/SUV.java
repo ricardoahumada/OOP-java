@@ -1,21 +1,19 @@
-package models;
+package com.myautocompany.models;
 
-public class Familiar extends Coche implements ICoche {
+public class SUV extends Coche implements ICoche {
 
-    private int nAsientos = 5;
+    private int nCambios = 2;
 
-    public Familiar(String marca, String tipoCoche, int velocidad, int nAsientos) {
+    public SUV(String marca, String tipoCoche, int velocidad, int nCambios) {
         super(marca, tipoCoche, velocidad);
-        this.nAsientos = nAsientos;
+        this.nCambios = nCambios;
     }
+
 
     @Override
     public double avanzar(int distancia) {
         if (this.arrancado) {
-            double inc = 1;
-            if (nAsientos > 5) inc = 0.5;
-            else if (nAsientos < 5) inc = 1.5;
-            else inc = 1;
+            double inc = (this.nCambios > 1) ? 0.5 : 1;
 
             double tiempo = (double) distancia / ((double) this.velocidad * inc);
             this.posicion += distancia;

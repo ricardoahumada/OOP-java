@@ -1,19 +1,21 @@
-package models;
+package com.myautocompany.models;
 
-public class Deportivo extends Coche implements ICoche  {
-    private boolean turbo;
+public class Familiar extends Coche implements ICoche {
 
-    public Deportivo(String marca, String tipoCoche, int velocidad, boolean turbo) {
+    private int nAsientos = 5;
+
+    public Familiar(String marca, String tipoCoche, int velocidad, int nAsientos) {
         super(marca, tipoCoche, velocidad);
-        this.turbo = turbo;
+        this.nAsientos = nAsientos;
     }
 
     @Override
     public double avanzar(int distancia) {
         if (this.arrancado) {
-            /*if (this.turbo) inc = 2;
-            else inc = 1;*/
-            int inc = this.turbo ? 2 : 1;
+            double inc = 1;
+            if (nAsientos > 5) inc = 0.5;
+            else if (nAsientos < 5) inc = 1.5;
+            else inc = 1;
 
             double tiempo = (double) distancia / ((double) this.velocidad * inc);
             this.posicion += distancia;
@@ -35,7 +37,6 @@ public class Deportivo extends Coche implements ICoche  {
     public void  arrancar() {
         this.arrancado = true;
     }
-
 
     @Override
     public void ralenti() {

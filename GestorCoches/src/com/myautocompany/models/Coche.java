@@ -1,4 +1,4 @@
-package models;
+package com.myautocompany.models;
 
 public abstract class Coche {
     public static int puertas = 5;
