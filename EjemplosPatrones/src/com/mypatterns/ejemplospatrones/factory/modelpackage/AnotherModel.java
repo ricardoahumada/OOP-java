@@ -1,4 +1,4 @@
-package es.netmind.ejemplospatrones.factory.modelpackage;
+package com.mypatterns.ejemplospatrones.factory.modelpackage;
 
 public class AnotherModel implements IModel{
     private Boolean firstProperty;

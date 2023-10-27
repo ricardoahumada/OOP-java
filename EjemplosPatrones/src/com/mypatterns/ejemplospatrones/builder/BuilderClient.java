@@ -1,7 +1,7 @@
-package es.netmind.ejemplospatrones.builder;
+package com.mypatterns.ejemplospatrones.builder;
 
-import es.netmind.ejemplospatrones.builder.modelpackage.AModel;
-import es.netmind.ejemplospatrones.builder.modelpackage.AModelBuilder;
+import com.mypatterns.ejemplospatrones.builder.modelpackage.AModel;
+import com.mypatterns.ejemplospatrones.builder.modelpackage.AModelBuilder;
 
 public class BuilderClient {
     public static void main(String[] args) {

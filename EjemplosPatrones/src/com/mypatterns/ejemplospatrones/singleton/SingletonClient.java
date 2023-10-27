@@ -1,4 +1,4 @@
-package es.netmind.ejemplospatrones.singleton;
+package com.mypatterns.ejemplospatrones.singleton;
 
 public class SingletonClient {
     public static void main(String[] args) {

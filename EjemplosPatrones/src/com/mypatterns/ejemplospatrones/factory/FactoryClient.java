@@ -1,7 +1,7 @@
-package es.netmind.ejemplospatrones.factory;
+package com.mypatterns.ejemplospatrones.factory;
 
-import es.netmind.ejemplospatrones.factory.modelpackage.IModel;
-import es.netmind.ejemplospatrones.factory.modelpackage.MyFactory;
+import com.mypatterns.ejemplospatrones.factory.modelpackage.IModel;
+import com.mypatterns.ejemplospatrones.factory.modelpackage.MyFactory;
 
 import java.util.HashMap;
 

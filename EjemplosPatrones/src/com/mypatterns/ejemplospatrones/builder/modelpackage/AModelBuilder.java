@@ -1,4 +1,4 @@
-package es.netmind.ejemplospatrones.builder.modelpackage;
+package com.mypatterns.ejemplospatrones.builder.modelpackage;
 
 public class AModelBuilder {
     private String aProperty;
