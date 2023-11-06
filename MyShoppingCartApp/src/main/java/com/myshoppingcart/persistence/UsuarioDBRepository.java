@@ -81,9 +81,12 @@ public class UsuarioDBRepository implements IUsuarioRepository {
 
         try (
                 Connection conn = DriverManager.getConnection(db_url);
-                Statement stmt = conn.createStatement();
-                ResultSet rs = stmt.executeQuery("SELECT * FROM usuario u WHERE u.nombre LIKE '%" + iniciales + "%'")
+                PreparedStatement stmt = conn.prepareStatement("SELECT * FROM usuario u WHERE u.nombre LIKE ?");
         ) {
+
+            stmt.setString(1, "%"+iniciales+"%");
+            ResultSet rs = stmt.executeQuery();
+
             while (rs.next()) {
                 users.add(
                         new Usuario(
