@@ -5,6 +5,8 @@ import com.myshoppingcart.model.Usuario;
 import com.myshoppingcart.properties.PropertyValues;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class UsuarioDBRepository implements IUsuarioRepository {
     PropertyValues props = new PropertyValues();
@@ -64,6 +66,40 @@ public class UsuarioDBRepository implements IUsuarioRepository {
         }
 
         return user;
+    }
+
+    public List<Usuario> getUsuarios(String iniciales) throws Exception {
+
+        String db_url = props.getPropValues().getProperty("db_url");
+        List<Usuario> users = new ArrayList<>();
+
+        try (
+                Connection conn = DriverManager.getConnection(db_url);
+                Statement stmt = conn.createStatement();
+                ResultSet rs = stmt.executeQuery("SELECT * FROM usuario u WHERE u.nombre LIKE '%" + iniciales + "%'")
+        ) {
+            while (rs.next()) {
+                users.add(
+                        new Usuario(
+                                rs.getInt("uid"),
+                                rs.getString("nombre"),
+                                rs.getString("apellido"),
+                                rs.getString("email"),
+                                rs.getInt("interes"),
+                                rs.getDouble("saldo"),
+                                rs.getString("password"),
+                                rs.getDate("nacimiento").toLocalDate(),
+                                rs.getBoolean("activo")
+                        )
+                );
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new Exception(e);
+        }
+
+        return users;
     }
 
     @Override

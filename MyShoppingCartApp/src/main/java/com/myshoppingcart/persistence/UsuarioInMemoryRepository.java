@@ -60,6 +60,11 @@ public class UsuarioInMemoryRepository implements IUsuarioRepository {
     }
 
     @Override
+    public List<Usuario> getUsuarios(String iniciales) throws Exception {
+        return null;
+    }
+
+    @Override
     public Usuario insertUsuario(Usuario nuevoUsuario) throws Exception {
         int newId = SecureRandom.getInstance("SHA1PRNG").nextInt();
 

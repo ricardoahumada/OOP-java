@@ -5,7 +5,10 @@ import com.myshoppingcart.model.Usuario;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.greaterThan;
 import static org.hamcrest.Matchers.is;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -38,6 +41,16 @@ public class UsuarioDBRepositoryTest {
         System.out.println(usuario);
 
         assertThat(usuario.getEmail(), is("juana@e.com"));
+
+    }
+
+    @Test
+    void dadosUsuarios_cuandogetUsuariosEnDB_entoncesUsuarios() throws Exception {
+        List<Usuario> usuarios = repo.getUsuarios("a");
+
+        System.out.println(usuarios);
+
+        assertThat(usuarios.size(), greaterThan(0));
 
     }
 
