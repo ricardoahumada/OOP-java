@@ -5,6 +5,7 @@ import com.myshoppingcart.model.Usuario;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -61,6 +62,17 @@ public class UsuarioDBRepositoryTest {
             Usuario usuario = repo.getUsuario("xxxx@e.com", "xxxx");
         });
 
+    }
+
+    @Test
+    void dadosUsuario_cuandoinsertarUsuarioEnDB_entoncesIdValido() throws Exception {
+        Usuario user = new Usuario(null, "nuevo", "usuario", "n@n.com", 10, 0, "xxxx", LocalDate.of(2005, 02, 01), true);
+
+        repo.insertUsuario(user);
+
+        System.out.println(user);
+
+        assertThat(user.getUid(), greaterThan(0));
     }
 
 }

@@ -84,7 +84,7 @@ public class UsuarioDBRepository implements IUsuarioRepository {
                 PreparedStatement stmt = conn.prepareStatement("SELECT * FROM usuario u WHERE u.nombre LIKE ?");
         ) {
 
-            stmt.setString(1, "%"+iniciales+"%");
+            stmt.setString(1, "%" + iniciales + "%");
             ResultSet rs = stmt.executeQuery();
 
             while (rs.next()) {
@@ -113,6 +113,35 @@ public class UsuarioDBRepository implements IUsuarioRepository {
 
     @Override
     public Usuario insertUsuario(Usuario nuevoUsuario) throws Exception {
+
+        String sql = "INSERT INTO usuario values (NULL,?,?,?,?,?,?,?,?)";
+
+        try (
+                Connection conn = DriverManager.getConnection(db_url);
+                PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+        ) {
+            stmt.setString(1, nuevoUsuario.getNombre());
+            stmt.setString(2, nuevoUsuario.getApellido());
+            stmt.setString(3, nuevoUsuario.getEmail());
+            stmt.setInt(4, nuevoUsuario.getInteres());
+            stmt.setDouble(5, nuevoUsuario.getSaldo());
+            stmt.setString(6, nuevoUsuario.getPassword());
+            stmt.setString(7, nuevoUsuario.getNacimiento().toString());
+            stmt.setInt(8, nuevoUsuario.isActivo() ? 1 : 0);
+
+            int rows = stmt.executeUpdate();
+
+            ResultSet genKeys = stmt.getGeneratedKeys();
+            if (genKeys.next()) {
+                nuevoUsuario.setUid(genKeys.getInt(1));
+            } else {
+                throw new SQLException("Usuario creado erroneamente!!!");
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new Exception(e);
+        }
 
         return nuevoUsuario;
     }
