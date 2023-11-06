@@ -17,7 +17,7 @@ public class UsuarioDBRepositoryTest {
     private IUsuarioRepository repo;
 
     @BeforeEach
-    void setUp() {
+    void setUp() throws Exception {
 //        repo = new UsuarioInMemoryRepository();
         repo = new UsuarioDBRepository();
     }

@@ -9,13 +9,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UsuarioDBRepository implements IUsuarioRepository {
-    PropertyValues props = new PropertyValues();
+
+    private static String db_url = null;
+
+    public UsuarioDBRepository() throws Exception {
+        PropertyValues props = new PropertyValues();
+        db_url = props.getPropValues().getProperty("db_url");
+    }
 
     @Override
     public boolean existeUsuario(String email, String pass) throws Exception {
         boolean existe = false;
-
-        String db_url = props.getPropValues().getProperty("db_url");
 
         try (
                 Connection conn = DriverManager.getConnection(db_url);
@@ -37,8 +41,6 @@ public class UsuarioDBRepository implements IUsuarioRepository {
 
     @Override
     public Usuario getUsuario(String email, String pass) throws UsuarioNotFoundException, Exception {
-
-        String db_url = props.getPropValues().getProperty("db_url");
         Usuario user = null;
 
         try (
@@ -70,7 +72,6 @@ public class UsuarioDBRepository implements IUsuarioRepository {
 
     public List<Usuario> getUsuarios(String iniciales) throws Exception {
 
-        String db_url = props.getPropValues().getProperty("db_url");
         List<Usuario> users = new ArrayList<>();
 
         try (
