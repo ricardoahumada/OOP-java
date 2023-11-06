@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UsuarioDBRepository implements IUsuarioRepository {
-
     private static String db_url = null;
 
     public UsuarioDBRepository() throws Exception {
