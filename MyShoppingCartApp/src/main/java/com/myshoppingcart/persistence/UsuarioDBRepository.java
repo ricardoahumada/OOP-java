@@ -113,7 +113,8 @@ public class UsuarioDBRepository implements IUsuarioRepository {
 
     @Override
     public Usuario insertUsuario(Usuario nuevoUsuario) throws Exception {
-        return null;
+
+        return nuevoUsuario;
     }
 
     @Override

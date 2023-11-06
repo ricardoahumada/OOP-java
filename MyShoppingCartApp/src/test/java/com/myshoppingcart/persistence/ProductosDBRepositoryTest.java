@@ -4,6 +4,7 @@ import com.myshoppingcart.model.Producto;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.io.IOException;
 import java.util.List;
 
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -15,7 +16,7 @@ public class ProductosDBRepositoryTest {
     private IProductoRepository repo;
 
     @BeforeEach
-    void sepUp() {
+    void sepUp() throws IOException {
         repo = new ProductoDBRepository();
     }
 
@@ -30,7 +31,7 @@ public class ProductosDBRepositoryTest {
     }
 
     @Test
-    public void dadosProductos_cuandogetUserProductsUsuarioNoEnDB_entoncesNull() throws Exception {
+    public void dadosProductos_cuandogetUserProductsUsuarioNoEnDB_entoncesVacio() throws Exception {
         List<Producto> productos = repo.getUserProducts(100);
 
         System.out.println(productos);
