@@ -14,26 +14,56 @@ public class UsuarioDBRepository implements IUsuarioRepository {
         boolean existe = false;
 
         String db_url = props.getPropValues().getProperty("db_url");
-        Connection conn = DriverManager.getConnection(db_url);
-        System.out.println("Conectado!");
 
-        Statement stmt = conn.createStatement();
-        ResultSet rs = stmt.executeQuery("SELECT * FROM usuario u WHERE u.email='" + email + "' AND password='" + pass + "'");
+        try (
+                Connection conn = DriverManager.getConnection(db_url);
+                Statement stmt = conn.createStatement();
+                ResultSet rs = stmt.executeQuery("SELECT * FROM usuario u WHERE u.email='" + email + "' AND password='" + pass + "'")
+        ) {
+            if (rs.next()) {
+                System.out.println(rs);
+                existe = true;
+            }
 
-        if (rs.next()) {
-            System.out.println(rs);
-            existe = true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new Exception(e);
         }
-
-        stmt.close();
-        conn.close();
 
         return existe;
     }
 
     @Override
     public Usuario getUsuario(String email, String pass) throws UsuarioNotFoundException, Exception {
-        return null;
+
+        String db_url = props.getPropValues().getProperty("db_url");
+        Usuario user = null;
+
+        try (
+                Connection conn = DriverManager.getConnection(db_url);
+                Statement stmt = conn.createStatement();
+                ResultSet rs = stmt.executeQuery("SELECT * FROM usuario u WHERE u.email='" + email + "' AND password='" + pass + "' LIMIT 1")
+        ) {
+            if (rs.next()) {
+                user = new Usuario(
+                        rs.getInt("uid"),
+                        rs.getString("nombre"),
+                        rs.getString("apellido"),
+                        rs.getString("email"),
+                        rs.getInt("interes"),
+                        rs.getDouble("saldo"),
+                        rs.getString("password"),
+                        rs.getDate("nacimiento").toLocalDate(),
+                        rs.getBoolean("activo")
+                );
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new Exception(e);
+        }
+
+        return user;
     }
 
     @Override
