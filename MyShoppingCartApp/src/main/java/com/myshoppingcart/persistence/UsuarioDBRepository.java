@@ -20,11 +20,17 @@ public class UsuarioDBRepository implements IUsuarioRepository {
     public boolean existeUsuario(String email, String pass) throws Exception {
         boolean existe = false;
 
+        String sql = "SELECT * FROM usuario u WHERE u.email=? AND password=?";
+
         try (
                 Connection conn = DriverManager.getConnection(db_url);
-                Statement stmt = conn.createStatement();
-                ResultSet rs = stmt.executeQuery("SELECT * FROM usuario u WHERE u.email='" + email + "' AND password='" + pass + "'")
+                PreparedStatement stmt = conn.prepareStatement(sql);
         ) {
+            stmt.setString(1, email);
+            stmt.setString(2, pass);
+
+            ResultSet rs = stmt.executeQuery();
+
             if (rs.next()) {
                 System.out.println(rs);
                 existe = true;
