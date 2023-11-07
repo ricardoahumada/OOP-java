@@ -7,6 +7,8 @@ import javax.persistence.*;
 @Entity
 //@Table(name = "cuenta_ahorro")
 public class Ahorro extends Cuenta {
+    public Ahorro() {
+    }
 
     public Ahorro(Integer id, LocalDate fechaCreacion, Double saldo, Double interes, Double comision) {
         super(id, fechaCreacion, saldo, interes, comision);

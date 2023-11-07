@@ -9,6 +9,10 @@ import javax.persistence.*;
 @Entity
 //@Table(name = "cuenta_corriente")
 public class Corriente extends Cuenta {
+
+    public Corriente() {
+    }
+
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "cuenta_id")
     private List<Cheque> chequesIngresados;

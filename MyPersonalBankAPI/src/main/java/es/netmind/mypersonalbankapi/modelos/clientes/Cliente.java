@@ -10,11 +10,13 @@ import java.util.List;
 
 @Entity
 //@MappedSuperclass
-@Inheritance(strategy=InheritanceType.SINGLE_TABLE)
+//@Inheritance(strategy=InheritanceType.SINGLE_TABLE)
+@Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
 @Table(name = "cliente")
 public abstract class Cliente {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     private String nombre;
     private String email;
@@ -23,9 +25,8 @@ public abstract class Cliente {
     private boolean activo;
     private boolean moroso;
 
-//    @OneToMany()
-//    @JoinColumn(name = "cuenta_id")
-    @Transient
+    @OneToMany()
+    @JoinColumn(name = "cliente_id")
     private List<Cuenta> cuentas;
     @OneToMany()
     @JoinColumn(name = "cliente_id")
