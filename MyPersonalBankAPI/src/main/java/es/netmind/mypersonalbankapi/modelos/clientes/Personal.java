@@ -1,16 +1,22 @@
 package es.netmind.mypersonalbankapi.modelos.clientes;
 
 import java.time.LocalDate;
+import javax.persistence.*;
 
+@Entity
+@Table(name = "cliente_personal")
 public class Personal extends Cliente {
     private String dni;
 
-    public Personal(Integer id, String nombre, String email, String direccion, LocalDate alta, boolean activo, boolean moroso, String dni) throws Exception{
+    public Personal() {
+    }
+
+    public Personal(Integer id, String nombre, String email, String direccion, LocalDate alta, boolean activo, boolean moroso, String dni) throws Exception {
         super(id, nombre, email, direccion, alta, activo, moroso);
         setDni(dni);
     }
 
-    private boolean validarDNI(String dni) throws Exception{
+    private boolean validarDNI(String dni) throws Exception {
         if (dni != null && dni.length() == 9) {
             String intPartDNI = dni.trim().replaceAll(" ", "").substring(0, 7);
             char ltrDNI = dni.charAt(8);
@@ -19,8 +25,8 @@ public class Personal extends Cliente {
         } else return false;
     }
 
-        @Override
-    public boolean validar() throws Exception{
+    @Override
+    public boolean validar() throws Exception {
         return validarComun() && validarDNI(this.dni);
     }
 
@@ -28,8 +34,8 @@ public class Personal extends Cliente {
         return dni;
     }
 
-    public void setDni(String dni) throws Exception{
-        if(validarDNI(dni)) this.dni = dni;
+    public void setDni(String dni) throws Exception {
+        if (validarDNI(dni)) this.dni = dni;
     }
 
     @Override

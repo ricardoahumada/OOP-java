@@ -1,8 +1,15 @@
 package es.netmind.mypersonalbankapi.modelos.cuentas;
 
 import java.time.LocalDate;
+import java.util.List;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "transaccion")
 public class Transaccion {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private Double importe;
     private LocalDate fecha;
@@ -42,6 +49,7 @@ public class Transaccion {
     public void setFecha(LocalDate fecha) {
         this.fecha = fecha;
     }
+
 
     @Override
     public String toString() {

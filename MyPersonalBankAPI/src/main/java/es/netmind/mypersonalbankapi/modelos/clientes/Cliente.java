@@ -3,11 +3,17 @@ package es.netmind.mypersonalbankapi.modelos.clientes;
 import es.netmind.mypersonalbankapi.modelos.cuentas.Cuenta;
 import es.netmind.mypersonalbankapi.modelos.prestamos.Prestamo;
 
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+//@Entity
+@MappedSuperclass
+@Table(name = "cliente")
 public abstract class Cliente {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String nombre;
     private String email;
@@ -15,10 +21,15 @@ public abstract class Cliente {
     private LocalDate alta;
     private boolean activo;
     private boolean moroso;
+    @Transient
     private List<Cuenta> cuentas;
+    @Transient
     private List<Prestamo> prestamos;
 
     /* CONSTRUCTOR */
+
+    public Cliente() {
+    }
 
     public Cliente(Integer id, String nombre, String email, String direccion, LocalDate alta, boolean activo, boolean moroso) {
         this.id = id;

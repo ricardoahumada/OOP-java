@@ -4,8 +4,16 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "cuenta_corriente")
 public class Corriente extends Cuenta {
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "cuenta_id")
     private List<Cheque> chequesIngresados;
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "cuenta_id")
     private List<Cheque> chequesEmitidos;
 
     public Corriente(Integer id, LocalDate fechaCreacion, Double saldo, Double interes, Double comision) {

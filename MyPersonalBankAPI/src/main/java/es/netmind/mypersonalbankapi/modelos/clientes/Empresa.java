@@ -2,18 +2,26 @@ package es.netmind.mypersonalbankapi.modelos.clientes;
 
 import java.time.LocalDate;
 import java.util.Arrays;
+import javax.persistence.*;
 
+@Entity
+@Table(name = "cliente_empresa")
 public class Empresa extends Cliente {
     private String cif;
+    @Transient
     private String[] unidadesNegocio;
+    private String unidadesDeNegocio;
 
-    public Empresa(Integer id, String nombre, String email, String direccion, LocalDate alta, boolean activo, boolean moroso, String cif, String[] unidadesNegocio) throws Exception{
+    public Empresa() {
+    }
+
+    public Empresa(Integer id, String nombre, String email, String direccion, LocalDate alta, boolean activo, boolean moroso, String cif, String[] unidadesNegocio) throws Exception {
         super(id, nombre, email, direccion, alta, activo, moroso);
         setCif(cif);
         this.unidadesNegocio = unidadesNegocio;
     }
 
-    private boolean validarCIF(String cif) throws Exception{
+    private boolean validarCIF(String cif) throws Exception {
         if (cif != null && cif.length() == 9) {
             String intPartCIF = cif.trim().replaceAll(" ", "").substring(1, 9);
             char ltrCIF = cif.charAt(0);
@@ -23,7 +31,7 @@ public class Empresa extends Cliente {
     }
 
     @Override
-    public boolean validar() throws Exception{
+    public boolean validar() throws Exception {
         return this.validarComun() && validarCIF(this.cif);
     }
 
@@ -31,8 +39,8 @@ public class Empresa extends Cliente {
         return cif;
     }
 
-    public void setCif(String cif) throws Exception{
-        if(validarCIF(cif)) this.cif = cif;
+    public void setCif(String cif) throws Exception {
+        if (validarCIF(cif)) this.cif = cif;
     }
 
     public String[] getUnidadesNegocio() {

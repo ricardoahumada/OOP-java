@@ -2,15 +2,22 @@ package es.netmind.mypersonalbankapi.modelos.prestamos;
 
 import java.time.LocalDate;
 import java.util.List;
+import javax.persistence.*;
 
+@Entity
+@Table(name = "prestamo")
 public class Prestamo {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private LocalDate fechaConcesion;
     private Double monto;
     private Double saldo;
     private Double mensualidad;
     private Integer anios;
+    @Transient
     private List<Pago> pagos;
+    @Transient
     private List<Mora> moras;
     private Integer interes;
     private Integer interesMora;
@@ -18,6 +25,10 @@ public class Prestamo {
     private boolean liquidado;
 
     /* CONSTRUCTOR */
+
+    public Prestamo() {
+    }
+
     public Prestamo(Integer id, LocalDate fechaConcesion, Double monto, Double saldo, Integer interes, Integer interesMora, boolean moroso, boolean liquidado, Integer anios) {
         this.id = id;
         this.fechaConcesion = fechaConcesion;

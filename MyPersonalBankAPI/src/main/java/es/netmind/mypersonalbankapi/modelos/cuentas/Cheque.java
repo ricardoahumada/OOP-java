@@ -2,7 +2,13 @@ package es.netmind.mypersonalbankapi.modelos.cuentas;
 
 import java.time.LocalDate;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "cheque")
 public class Cheque {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private Double importe;
     private LocalDate fecha;
