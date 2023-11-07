@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "cliente_personal")
+//@Table(name = "cliente_personal")
 public class Personal extends Cliente {
     private String dni;
 

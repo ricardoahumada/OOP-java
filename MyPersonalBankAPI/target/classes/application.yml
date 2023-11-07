@@ -1,24 +1,28 @@
 spring:
   application.name: MyPersonalBankAPI
-  sql.init.mode: always
+#  sql.init.mode: always
   devtools.restart.enabled: true
-  application:
-    name: ProductsService
   datasource:
-    url: "jdbc:h2:mem:personalapidb"
-    driverClassName: org.h2.Driver
-    username: sa
-    password: password
+    #    url: "jdbc:h2:mem:personalapidb"
+    url: "jdbc:mysql://localhost:3306/personalapi_db"
+    #    driverClassName: org.h2.Driver
+    driverClassName: com.mysql.cj.jdbc.Driver
+    #    username: sa
+    #    password: password
+    username: root
+    password: root
   jpa:
     show-sql: false
-    database-platform: org.hibernate.dialect.H2Dialect
+    #    database-platform: org.hibernate.dialect.H2Dialect
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: update
       generate-ddl: true
-    defer-datasource-initialization: true
-  h2:
-    console.enabled: true
-    console.path: /h2-ui
+#    defer-datasource-initialization: true
+#  h2:
+#    console.enabled: true
+#    console.path: /h2-ui
+
 
 server:
   port: 9090

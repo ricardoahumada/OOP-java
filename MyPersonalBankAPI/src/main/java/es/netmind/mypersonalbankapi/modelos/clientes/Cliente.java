@@ -8,8 +8,9 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-//@Entity
-@MappedSuperclass
+@Entity
+//@MappedSuperclass
+@Inheritance(strategy=InheritanceType.SINGLE_TABLE)
 @Table(name = "cliente")
 public abstract class Cliente {
     @Id
@@ -21,9 +22,13 @@ public abstract class Cliente {
     private LocalDate alta;
     private boolean activo;
     private boolean moroso;
+
+//    @OneToMany()
+//    @JoinColumn(name = "cuenta_id")
     @Transient
     private List<Cuenta> cuentas;
-    @Transient
+    @OneToMany()
+    @JoinColumn(name = "cliente_id")
     private List<Prestamo> prestamos;
 
     /* CONSTRUCTOR */

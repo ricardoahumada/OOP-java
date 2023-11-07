@@ -5,9 +5,10 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.*;
 
-//@Entity
+@Entity
 @Table(name = "cuenta")
-@MappedSuperclass
+//@MappedSuperclass
+@Inheritance(strategy=InheritanceType.SINGLE_TABLE)
 public abstract class Cuenta {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

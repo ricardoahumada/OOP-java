@@ -5,7 +5,7 @@ import java.util.Arrays;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "cliente_empresa")
+//@Table(name = "cliente_empresa")
 public class Empresa extends Cliente {
     private String cif;
     @Transient

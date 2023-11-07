@@ -7,7 +7,7 @@ import java.util.List;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "cuenta_corriente")
+//@Table(name = "cuenta_corriente")
 public class Corriente extends Cuenta {
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "cuenta_id")
