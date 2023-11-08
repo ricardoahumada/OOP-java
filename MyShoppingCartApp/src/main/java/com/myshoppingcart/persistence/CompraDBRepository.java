@@ -29,8 +29,10 @@ public class CompraDBRepository implements ICompraRepository {
 
             ResultSet rs = pstm.executeQuery();
             double precio = 0;
+            int existencias = 0;
             if (rs.next()) {
                 precio = rs.getDouble("precio");
+                existencias = rs.getInt("existencias");
             } else {
                 throw new ProductNotFoundException();
             }
@@ -66,6 +68,9 @@ public class CompraDBRepository implements ICompraRepository {
             pstm.close();
 
             // ACTUALIZAR EXISTENCIAS DE PRODUCTO
+            if (existencias < nuevaCompra.getCantidad()) {
+                throw new Exception("Existencias insuficientes");
+            }
             sql = "UPDATE producto p SET p.existencias=p.existencias - ? WHERE p.pid=?";
             pstm = conn.prepareStatement(sql);
             pstm.setInt(1, nuevaCompra.getCantidad());
@@ -78,6 +83,7 @@ public class CompraDBRepository implements ICompraRepository {
             conn.commit();
 
         } catch (Exception e) {
+            System.out.println("Transaccion rollback!!");
             conn.rollback();
             e.printStackTrace();
             throw e;
