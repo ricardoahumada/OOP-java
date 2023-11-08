@@ -17,6 +17,6 @@ public interface IUsuarioRepository {
 
     public Usuario updateUsuario(Usuario unUsuario) throws UsuarioNotFoundException;
 
-    public boolean deleteUsuario(Integer uid) throws UsuarioNotFoundException;
+    public boolean deleteUsuario(Integer uid) throws UsuarioNotFoundException, SQLException;
 
 }

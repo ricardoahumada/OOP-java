@@ -148,11 +148,48 @@ public class UsuarioDBRepository implements IUsuarioRepository {
 
     @Override
     public Usuario updateUsuario(Usuario unUsuario) throws UsuarioNotFoundException {
-        return null;
+        String sql = "UPDATE usuario set nombre=?, apellido=?, email=?, interes=?, saldo=?, password=?, nacimiento=?, activo=? WHERE uid=?";
+
+        try (
+                Connection conn = DriverManager.getConnection(db_url);
+                PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+        ) {
+            stmt.setString(1, unUsuario.getNombre());
+            stmt.setString(2, unUsuario.getApellido());
+            stmt.setString(3, unUsuario.getEmail());
+            stmt.setInt(4, unUsuario.getInteres());
+            stmt.setDouble(5, unUsuario.getSaldo());
+            stmt.setString(6, unUsuario.getPassword());
+            stmt.setString(7, unUsuario.getNacimiento().toString());
+            stmt.setInt(8, unUsuario.isActivo() ? 1 : 0);
+            stmt.setInt(9, unUsuario.getUid());
+
+            int rows = stmt.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return unUsuario;
     }
 
     @Override
-    public boolean deleteUsuario(Integer uid) throws UsuarioNotFoundException {
-        return false;
+    public boolean deleteUsuario(Integer uid) throws UsuarioNotFoundException,SQLException {
+       String sql = "DELETE FROM usuario WHERE uid=?";
+
+        try (
+                Connection conn = DriverManager.getConnection(db_url);
+                PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+        ) {
+            stmt.setInt(1, uid);
+
+            int rows = stmt.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw e;
+        }
+
+        return true;
     }
 }

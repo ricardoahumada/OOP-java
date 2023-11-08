@@ -75,4 +75,23 @@ public class UsuarioDBRepositoryTest {
         assertThat(user.getUid(), greaterThan(0));
     }
 
+    @Test
+    void dadoUsuarioExistente_cuandoActualiza_entonces_Ok() throws Exception {
+        Usuario user = repo.getUsuario("juana@e.com", "juanason_1");
+        user.setApellido("Juanez");
+        user.setInteres(2);
+
+        repo.updateUsuario(user);
+
+        assertThat(user.getApellido(), is("Juanez"));
+    }
+
+    @Test
+    void dadoUsuario_cuandoDelete_entonces_Ok() throws Exception {
+        int id = 11;
+        boolean ok = repo.deleteUsuario(id);
+
+        assertThat(ok, is(true));
+    }
+
 }
