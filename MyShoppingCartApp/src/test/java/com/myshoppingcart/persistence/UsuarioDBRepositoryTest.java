@@ -98,7 +98,6 @@ public class UsuarioDBRepositoryTest {
 
     }
 
-
     @Test
     void dadoUsuario_cuandoDelete_entonces_Ok() throws Exception {
         int id = 11;

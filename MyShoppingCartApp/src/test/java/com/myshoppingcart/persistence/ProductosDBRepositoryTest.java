@@ -39,4 +39,13 @@ public class ProductosDBRepositoryTest {
         assertThat(productos.size(), is(0));
 
     }
+
+    @Test
+    public void dadosunProducto_cuandoInserto_entoncesIDvalido() throws Exception {
+        Producto prod = new Producto(null, "prod1", "marca", "util", 20, 100);
+
+        repo.insertarProducto(prod);
+
+        assertThat(prod.getMid(), greaterThan(0));
+    }
 }

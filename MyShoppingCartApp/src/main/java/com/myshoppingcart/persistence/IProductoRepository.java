@@ -10,4 +10,6 @@ public interface IProductoRepository {
     public List<Producto> getProducts() throws Exception;
     public List<Producto> getUserProducts(int uid) throws Exception;
 
+    public Producto insertarProducto(Producto prod) throws Exception;
+
 }

@@ -4,11 +4,12 @@ import com.myshoppingcart.model.Producto;
 import com.myshoppingcart.properties.PropertyValues;
 
 import java.io.IOException;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Properties;
-import java.util.logging.Logger;
 
 public class ProductoDBRepository implements IProductoRepository {
     private static String connUrl;
@@ -64,6 +65,12 @@ public class ProductoDBRepository implements IProductoRepository {
 
         return listADevolver;
     }
+
+    @Override
+    public Producto insertarProducto(Producto prod) throws Exception {
+        return null;
+    }
+
 
 }
 
