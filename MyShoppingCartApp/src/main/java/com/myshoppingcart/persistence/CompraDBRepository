@@ -1,0 +1,44 @@
+package com.myshoppingcart.persistence;
+
+import com.myshoppingcart.properties.PropertyValues;
+import com.myshoppingcart.exception.ProductNotFoundException;
+import com.myshoppingcart.model.Compra;
+
+import java.sql.*;
+
+public class CompraDBRepository implements ICompraRepository {
+    private static String connUrl;
+
+    public CompraDBRepository() throws IOException {
+        PropertyValues props = new PropertyValues();
+        connUrl = props.getPropValues().getProperty("db_url");
+    }
+
+    @Override
+    public Compra insertCompra(Compra nuevaCompra) throws Exception {        
+
+        try (Connection conn = DriverManager.getConnection(connUrl)){
+            conn.setAutoCommit(false);
+
+            // OBTENEMOS EL PRODUCTO
+            
+
+            // INSERTAR EN COMPRA
+            
+
+            // ACTUALIZAR SALDO DE USUARIO
+            
+
+            // ACTUALIZAR EXISTENCIAS DE PRODUCTO
+            
+
+        } catch (Exception e) {
+            conn.rollback();
+            logger.severe("Transacción fallida:" + e.getMessage());
+            e.printStackTrace();
+            exito = false;
+        }
+
+        return nuevaCompra;
+    }
+}
