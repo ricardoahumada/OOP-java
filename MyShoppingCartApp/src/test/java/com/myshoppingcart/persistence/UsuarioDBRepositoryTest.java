@@ -87,6 +87,19 @@ public class UsuarioDBRepositoryTest {
     }
 
     @Test
+    void dadoUsuarioNoExistente_cuandoActualiza_entonces_Excepccion() throws Exception {
+        Usuario user = new Usuario(null, "nuevo", "usuario", "n@n.com", 10, 0, "xxxx", LocalDate.of(2005, 02, 01), true);
+        user.setApellido("Apellido nuevo");
+        user.setInteres(2);
+
+        assertThrows(Exception.class, () -> {
+            repo.updateUsuario(user);
+        });
+
+    }
+
+
+    @Test
     void dadoUsuario_cuandoDelete_entonces_Ok() throws Exception {
         int id = 11;
         boolean ok = repo.deleteUsuario(id);

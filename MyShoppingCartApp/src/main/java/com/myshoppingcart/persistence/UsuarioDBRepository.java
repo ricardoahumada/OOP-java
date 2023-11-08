@@ -147,12 +147,12 @@ public class UsuarioDBRepository implements IUsuarioRepository {
     }
 
     @Override
-    public Usuario updateUsuario(Usuario unUsuario) throws UsuarioNotFoundException {
+    public Usuario updateUsuario(Usuario unUsuario) throws Exception {
         String sql = "UPDATE usuario set nombre=?, apellido=?, email=?, interes=?, saldo=?, password=?, nacimiento=?, activo=? WHERE uid=?";
 
         try (
                 Connection conn = DriverManager.getConnection(db_url);
-                PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+                PreparedStatement stmt = conn.prepareStatement(sql);
         ) {
             stmt.setString(1, unUsuario.getNombre());
             stmt.setString(2, unUsuario.getApellido());
@@ -168,22 +168,28 @@ public class UsuarioDBRepository implements IUsuarioRepository {
 
         } catch (SQLException e) {
             e.printStackTrace();
+            throw e;
         }
 
         return unUsuario;
     }
 
     @Override
-    public boolean deleteUsuario(Integer uid) throws UsuarioNotFoundException,SQLException {
+    public boolean deleteUsuario(Integer uid) throws Exception {
        String sql = "DELETE FROM usuario WHERE uid=?";
 
         try (
                 Connection conn = DriverManager.getConnection(db_url);
-                PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+                PreparedStatement stmt = conn.prepareStatement(sql);
         ) {
             stmt.setInt(1, uid);
 
             int rows = stmt.executeUpdate();
+            System.out.println(rows);
+
+            if(rows<=0){
+                throw new UsuarioNotFoundException();
+            }
 
         } catch (SQLException e) {
             e.printStackTrace();
