@@ -40,4 +40,8 @@ public class ShoppingCart {
     public void empty() {
         items.clear();
     }
+
+    public void comprar(){
+
+    }
 }
