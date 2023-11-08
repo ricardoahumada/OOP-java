@@ -2,6 +2,7 @@ package com.myshoppingcart.persistence;
 
 import com.myshoppingcart.exception.ProductNotFoundException;
 import com.myshoppingcart.model.Compra;
+import com.myshoppingcart.model.Producto;
 import com.myshoppingcart.properties.PropertyValues;
 
 import java.io.IOException;

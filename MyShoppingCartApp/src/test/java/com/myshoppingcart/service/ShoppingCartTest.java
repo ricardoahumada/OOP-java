@@ -10,10 +10,12 @@ import java.util.Random;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 
+import static org.junit.jupiter.api.Assertions.*;
+
 public class ShoppingCartTest {
 
     @Test
-    void cuando_se_crea_el_carrito_tiene_0_artículos() {
+    void cuando_se_crea_el_carrito_tiene_0_artículos() throws Exception {
         // given ... void
 
         // when
@@ -29,7 +31,7 @@ public class ShoppingCartTest {
 
     @ParameterizedTest
     @ValueSource(ints = {0, 1, 2, 5, 10, 1000})
-    void cuando_está_vacío_el_carrito_tiene_0_artículos(int numProducts) {
+    void cuando_está_vacío_el_carrito_tiene_0_artículos(int numProducts) throws Exception {
         // given
         ShoppingCart cart = new ShoppingCart();
 
@@ -59,7 +61,7 @@ public class ShoppingCartTest {
 
     @ParameterizedTest
     @ValueSource(ints = {0, 1, 2, 5, 10, 1000})
-    void cuando_se_agrega_un_nuevo_producto_el_nuevo_saldo_debe_ser_la_suma_de_anteriores_más_el_costo_del_producto(int numProducts) {
+    void cuando_se_agrega_un_nuevo_producto_el_nuevo_saldo_debe_ser_la_suma_de_anteriores_más_el_costo_del_producto(int numProducts) throws Exception {
         // given
         ShoppingCart cart = new ShoppingCart();
         Random rand = new Random();
@@ -92,4 +94,19 @@ public class ShoppingCartTest {
 
     }
 
+    @Test
+    void dadoCarritoNoVacio_cuandoComprar_entoncesOK() throws Exception {
+        ShoppingCart cart = new ShoppingCart();
+
+        Random rand = new Random();
+
+        for (int i = 0; i < 3; i++) {
+            cart.addItem(new Producto(i + 1, "fake " + i, rand.nextDouble() * 100));
+        }
+
+        cart.comprar();
+
+        assertTrue(true);
+
+    }
 }

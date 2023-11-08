@@ -1,16 +1,23 @@
 package com.myshoppingcart.service;
 
 import com.myshoppingcart.exception.ProductNotFoundException;
+import com.myshoppingcart.model.Compra;
 import com.myshoppingcart.model.Producto;
+import com.myshoppingcart.persistence.CompraDBRepository;
+import com.myshoppingcart.persistence.ICompraRepository;
 
+import java.io.IOException;
+import java.time.LocalDate;
 import java.util.*;
 
 public class ShoppingCart {
 
-    private ArrayList items;
+    private ArrayList<Producto> items;
+    private ICompraRepository repoCompras;
 
-    public ShoppingCart() {
-        items = new ArrayList();
+    public ShoppingCart() throws Exception {
+        items = new ArrayList<>();
+        repoCompras = new CompraDBRepository();
     }
 
     public double getBalance() {
@@ -41,7 +48,16 @@ public class ShoppingCart {
         items.clear();
     }
 
-    public void comprar(){
-
+    public void comprar() {
+        for (Producto item : items) {
+            System.out.println("prod:" + item);
+            try {
+                Compra compra = new Compra(null, 1, item.getMid(), 1, LocalDate.now());
+                repoCompras.insertCompra(compra);
+            } catch (Exception e) {
+                e.printStackTrace();
+                throw new RuntimeException(e);
+            }
+        }
     }
 }

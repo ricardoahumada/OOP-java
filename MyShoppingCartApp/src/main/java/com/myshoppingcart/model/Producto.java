@@ -11,16 +11,17 @@ import lombok.ToString;
 @ToString
 public class Producto {
 
-	private Integer mid;
-	private String codigo;
-	private String marca;
-	private String tipo;
-	private double precio;
-	private int existencias;
+    private Integer mid;
+    private String codigo;
+    private String marca;
+    private String tipo;
+    private double precio;
+    private int existencias;
 
-	public Producto (Integer id, String cod, double prec) {
-		this.codigo = cod;
-		this.precio = prec;
-	}
+    public Producto(Integer id, String cod, double prec) {
+        this.mid = id;
+        this.codigo = cod;
+        this.precio = prec;
+    }
 
 }
