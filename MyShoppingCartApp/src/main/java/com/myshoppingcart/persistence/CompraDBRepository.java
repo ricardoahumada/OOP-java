@@ -1,10 +1,11 @@
 package com.myshoppingcart.persistence;
 
-import com.myshoppingcart.properties.PropertyValues;
-import com.myshoppingcart.exception.ProductNotFoundException;
 import com.myshoppingcart.model.Compra;
+import com.myshoppingcart.properties.PropertyValues;
 
-import java.sql.*;
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
 
 public class CompraDBRepository implements ICompraRepository {
     private static String connUrl;
@@ -15,28 +16,28 @@ public class CompraDBRepository implements ICompraRepository {
     }
 
     @Override
-    public Compra insertCompra(Compra nuevaCompra) throws Exception {        
-
-        try (Connection conn = DriverManager.getConnection(connUrl)){
-            conn.setAutoCommit(false);
+    public Compra insertCompra(Compra nuevaCompra) throws Exception {
+        Connection conn = null;
+        try {
+            conn = DriverManager.getConnection(connUrl);
 
             // OBTENEMOS EL PRODUCTO
-            
+
 
             // INSERTAR EN COMPRA
-            
+
 
             // ACTUALIZAR SALDO DE USUARIO
-            
+
 
             // ACTUALIZAR EXISTENCIAS DE PRODUCTO
-            
+
 
         } catch (Exception e) {
-            conn.rollback();
-            logger.severe("Transacción fallida:" + e.getMessage());
             e.printStackTrace();
-            exito = false;
+            throw e;
+        }finally {
+            if(conn!=null) conn.close();
         }
 
         return nuevaCompra;

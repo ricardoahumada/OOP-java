@@ -4,6 +4,7 @@ import com.myshoppingcart.model.Compra;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.io.IOException;
 import java.time.LocalDate;
 
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -14,7 +15,7 @@ public class CompraDBRepositoryTest {
     private ICompraRepository repo;
 
     @BeforeEach
-    void sepUp() {
+    void sepUp() throws IOException {
         repo = new CompraDBRepository();
     }
 
