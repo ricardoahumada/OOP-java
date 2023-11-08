@@ -10,6 +10,7 @@ import java.util.List;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.greaterThan;
 import static org.hamcrest.Matchers.is;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class ProductosDBRepositoryTest {
 
@@ -47,5 +48,46 @@ public class ProductosDBRepositoryTest {
         repo.insertarProducto(prod);
 
         assertThat(prod.getMid(), greaterThan(0));
+    }
+
+    @Test
+    public void dadoUnProductoNoValido_cuandoInserto_entoncesIDvalido() throws Exception {
+        Producto prod = new Producto(null, "texto1567", "marca", "util", 20, 100);
+
+        assertThrows(Exception.class, () -> {
+            repo.insertarProducto(prod);
+        });
+    }
+
+    @Test
+    public void dadoUnProducto_cuandoActualizo_entoncesOk() throws Exception {
+        Producto prod = repo.getProduct(1);
+
+        String nTipo = "nuevo tipo";
+        prod.setTipo(nTipo);
+
+        prod = repo.actualizarProducto(prod);
+
+        assertThat(prod.getTipo(), is(nTipo));
+    }
+
+    @Test
+    public void dadoUnProducto_cuandoActualizoNoValid_entoncesExcepcion() throws Exception {
+        Producto prod = repo.getProduct(1);
+        prod.setCodigo("texto");
+
+        assertThrows(Exception.class, () -> {
+            repo.actualizarProducto(prod);
+        });
+
+    }
+
+    @Test
+    public void dadoUnProducto_cuandoElimino_entoncesOk() throws Exception {
+        Producto prod = new Producto(12, null, null, null, 0, 0);
+
+        boolean ok = repo.borrarProducto(prod);
+
+        assertThat(ok, is(true));
     }
 }

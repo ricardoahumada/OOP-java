@@ -1,13 +1,11 @@
 package com.myshoppingcart.persistence;
 
+import com.myshoppingcart.exception.ProductNotFoundException;
 import com.myshoppingcart.model.Producto;
 import com.myshoppingcart.properties.PropertyValues;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,6 +15,29 @@ public class ProductoDBRepository implements IProductoRepository {
     public ProductoDBRepository() throws IOException {
         PropertyValues props = new PropertyValues();
         connUrl = props.getPropValues().getProperty("db_url");
+    }
+
+    @Override
+    public Producto getProduct(int id) throws Exception {
+        Producto prod = null;
+        String sql = "SELECT p.* FROM producto p WHERE pid=?";
+
+        try (
+                Connection conn = DriverManager.getConnection(connUrl);
+                // ordenes sql
+                PreparedStatement pstm = conn.prepareStatement(sql);
+        ) {
+            pstm.setInt(1, id);
+            ResultSet rs = pstm.executeQuery();
+            if (rs.next()) {
+                prod = new Producto(rs.getInt("pid"), rs.getString("codigo"), rs.getString("marca"),
+                        rs.getString("tipo"), rs.getInt("precio"), rs.getInt("existencias"));
+            } else {
+                throw new ProductNotFoundException();
+            }
+        }
+
+        return prod;
     }
 
     @Override
@@ -31,7 +52,7 @@ public class ProductoDBRepository implements IProductoRepository {
                 ResultSet rs = pstm.executeQuery();
         ) {
             while (rs.next()) {
-                listADevolver.add(new Producto(rs.getInt("mid"), rs.getString("codigo"), rs.getString("marca"),
+                listADevolver.add(new Producto(rs.getInt("pid"), rs.getString("codigo"), rs.getString("marca"),
                         rs.getString("tipo"), rs.getInt("precio"), rs.getInt("existencias")));
             }
         }
@@ -68,7 +89,83 @@ public class ProductoDBRepository implements IProductoRepository {
 
     @Override
     public Producto insertarProducto(Producto prod) throws Exception {
-        return null;
+        String sql = "INSERT INTO producto (`pid`, `codigo`, `marca`, `tipo`, `precio`, `existencias`)  values (NULL,?,?,?,?,?)";
+
+        try (
+                Connection conn = DriverManager.getConnection(connUrl);
+                PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+        ) {
+            stmt.setInt(1, Integer.parseInt(prod.getCodigo()));
+            stmt.setString(2, prod.getMarca());
+            stmt.setString(3, prod.getTipo());
+            stmt.setDouble(4, prod.getPrecio());
+            stmt.setInt(5, prod.getExistencias());
+
+            int rows = stmt.executeUpdate();
+
+            ResultSet genKeys = stmt.getGeneratedKeys();
+            if (genKeys.next()) {
+                prod.setMid(genKeys.getInt(1));
+            } else {
+                throw new SQLException("Usuario creado erroneamente!!!");
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new Exception(e);
+        }
+
+        return prod;
+    }
+
+    @Override
+    public Producto actualizarProducto(Producto prod) throws Exception {
+        String sql = "UPDATE producto set codigo=?, marca=?, tipo=?, precio=?, existencias=? WHERE pid=?";
+
+        try (
+                Connection conn = DriverManager.getConnection(connUrl);
+                PreparedStatement stmt = conn.prepareStatement(sql);
+        ) {
+            stmt.setInt(1, Integer.parseInt(prod.getCodigo()));
+            stmt.setString(2, prod.getMarca());
+            stmt.setString(3, prod.getTipo());
+            stmt.setDouble(4, prod.getPrecio());
+            stmt.setInt(5, prod.getExistencias());
+            stmt.setInt(6, prod.getMid());
+
+            int rows = stmt.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw e;
+        }
+
+        return prod;
+    }
+
+    @Override
+    public boolean borrarProducto(Producto prod) throws Exception {
+        String sql = "DELETE FROM producto WHERE pid=?";
+
+        try (
+                Connection conn = DriverManager.getConnection(connUrl);
+                PreparedStatement stmt = conn.prepareStatement(sql);
+        ) {
+            stmt.setInt(1, prod.getMid());
+
+            int rows = stmt.executeUpdate();
+            System.out.println(rows);
+
+            if (rows <= 0) {
+                throw new ProductNotFoundException();
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw e;
+        }
+
+        return true;
     }
 
 
