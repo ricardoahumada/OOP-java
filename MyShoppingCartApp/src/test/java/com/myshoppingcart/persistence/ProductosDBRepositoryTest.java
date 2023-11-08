@@ -41,8 +41,8 @@ public class ProductosDBRepositoryTest {
     }
 
     @Test
-    public void dadosunProducto_cuandoInserto_entoncesIDvalido() throws Exception {
-        Producto prod = new Producto(null, "prod1", "marca", "util", 20, 100);
+    public void dadoUnProducto_cuandoInserto_entoncesIDvalido() throws Exception {
+        Producto prod = new Producto(null, "1567", "marca", "util", 20, 100);
 
         repo.insertarProducto(prod);
 
