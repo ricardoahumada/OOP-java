@@ -20,7 +20,7 @@ public abstract class Coche {
     }
 
     public boolean arrancar() {
-        // necesita un motor con valor
+        // necesita un motor con valor para funcionar
         motor.arrancar();
         this.arrancado = true;
         return true;
