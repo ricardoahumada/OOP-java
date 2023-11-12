@@ -7,7 +7,7 @@ import com.mymotorcompany.simuladorcoches.modelos.ruedas.Rueda;
 
 public class GestorCoches {
 
-    static int DISTANCIA = 200;
+    static int DISTANCIA = 300;
 
     public static void main(String[] args) {
         System.out.println("SIMULADOR DE COCHES");
