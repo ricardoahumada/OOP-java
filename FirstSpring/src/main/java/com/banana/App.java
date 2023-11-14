@@ -1,27 +1,20 @@
 package com.banana;
 
+import com.banana.modelos.IMessage;
 import com.banana.modelos.Message;
 import com.banana.modelos.User;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class App {
     public static void main(String[] args) {
-        ApplicationContext context = new ClassPathXmlApplicationContext("file:src/main/resources/beans.xml");
+        System.out.println("FIRST SPRING APP");
 
-        try {
+        IMessage mess = new Message("Hola mundo!!");
+        User aUser= new User();
 
-            Message obj = (Message) context.getBean("aMessage");
-            String mss = obj.getMessage();
-            System.out.println("Your Message : " + mss);
+        aUser.setMensaje(mess);
+        aUser.getMensaje().convertMessage();
 
-            // Usuario user = (Usuario) context.getBean("aUser");
-            User user = context.getBean(User.class);
-            System.out.println(user);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        System.out.println(aUser);
 
     }
 }
