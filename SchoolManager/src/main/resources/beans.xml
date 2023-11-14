@@ -4,11 +4,4 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
     http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean id="repoEstudiantes" class="com.banana.persistence.StudentsRepository">
-    </bean>
-
-    <bean id="servEsTudiantes" class="com.banana.services.StudentsServiceI">
-        <property name="repository" ref="repoEstudiantes" />
-    </bean>
-
 </beans>
