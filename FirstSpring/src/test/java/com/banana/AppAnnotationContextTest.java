@@ -1,5 +1,6 @@
 package com.banana;
 
+import com.banana.config.SpringConfiguration;
 import com.banana.modelos.IMessage;
 import com.banana.modelos.Message;
 import com.banana.modelos.User;
@@ -14,7 +15,7 @@ class AppAnnotationContextTest {
 
     @Test
     public void createContext() {
-        AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(Message.class);
+        AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(SpringConfiguration.class);
         assertNotNull(ctx);
 
         IMessage mess = (IMessage) ctx.getBean("aMessage");
@@ -37,7 +38,7 @@ class AppAnnotationContextTest {
 
     @Test
     public void createContext2() {
-        ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("beans.xml");
+        AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(SpringConfiguration.class);
         assertNotNull(ctx);
 
         User user = ctx.getBean(User.class);
