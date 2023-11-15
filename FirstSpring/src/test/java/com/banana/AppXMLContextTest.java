@@ -28,6 +28,8 @@ class AppXMLContextTest {
         System.out.println(smess);
         System.out.println(smess.convertMessage());
 
+        ctx.close();
+
     }
 
     @Test
@@ -41,6 +43,8 @@ class AppXMLContextTest {
         System.out.println(user);
         user.getMensaje().convertMessage();
         System.out.println(user);
+        
+        ctx.close();
 
     }
 
