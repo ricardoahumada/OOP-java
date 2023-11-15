@@ -18,12 +18,12 @@ http://www.springframework.org/schema/context/spring-context.xsd">
 
     <bean id="secMessage" class="com.banana.modelos.SecretMessage">
         <property name="code" value="55"/>
-    </bean>
+    </bean>-->
 
     <bean id="aUser" class="com.banana.modelos.User">
         <property name="nombre" value="Ricardo"/>
         <property name="email" value="r@r.com"/>
         <property name="mensaje" ref="secMessage"/>
-    </bean>-->
+    </bean>
 
 </beans>
