@@ -18,7 +18,7 @@ class AppXMLContextTest {
         assertNotNull(mess);
 
         System.out.println(mess);
-//        mess.setMessage("Hola!");
+        mess.setMessage("Hola!");
         mess.convertMessage();
         System.out.println(mess);
 
@@ -41,9 +41,9 @@ class AppXMLContextTest {
         assertNotNull(user);
 
         System.out.println(user);
-        user.getMensaje().convertMessage();
+//        user.getMensaje().convertMessage();
         System.out.println(user);
-        
+
         ctx.close();
 
     }

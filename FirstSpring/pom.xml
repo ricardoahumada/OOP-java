@@ -59,6 +59,7 @@
             <version>${spring-version}</version>
             <scope>test</scope>
         </dependency>
+
         <dependency>
             <groupId>javax.inject</groupId>
             <artifactId>javax.inject</artifactId>

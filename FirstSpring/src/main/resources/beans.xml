@@ -1,10 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- The beans namespace is the default one for the document -->
 <beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans
-    http://www.springframework.org/schema/beans/spring-beans.xsd">
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xmlns:context="http://www.springframework.org/schema/context"
+xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans.xsd
+http://www.springframework.org/schema/context
+http://www.springframework.org/schema/context/spring-context.xsd">
+<context:component-scan base-package="com.myapp"/>
 
-    <bean id="aMessage" class="com.banana.modelos.Message">
+    <context:component-scan base-package="com.banana.modelos"/>
+
+
+    <!--<bean id="aMessage" class="com.banana.modelos.Message">
         <property name="message" value="Hello World Spring....yuju!"/>
     </bean>
 
@@ -16,6 +24,6 @@
         <property name="nombre" value="Ricardo"/>
         <property name="email" value="r@r.com"/>
         <property name="mensaje" ref="secMessage"/>
-    </bean>
+    </bean>-->
 
 </beans>
