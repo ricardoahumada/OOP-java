@@ -6,16 +6,17 @@ import org.junit.jupiter.api.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import java.util.List;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-import static org.junit.jupiter.api.Assertions.*;
-
+//@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class StudentsRepositoryTest {
 
     private ApplicationContext context;
     private StudentsRepositoryInf repoStudents;
 
     @BeforeEach
+//    @BeforeAll
     void setUp() {
         context = new ClassPathXmlApplicationContext("beans.xml");
         repoStudents = context.getBean(StudentsRepositoryInf.class);
@@ -26,7 +27,6 @@ class StudentsRepositoryTest {
         assertNotNull(context);
         assertNotNull(repoStudents);
     }
-
 
     @Test
     void getById() {
