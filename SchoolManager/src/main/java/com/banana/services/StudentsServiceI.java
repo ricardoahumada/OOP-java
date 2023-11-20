@@ -3,7 +3,9 @@ package com.banana.services;
 import com.banana.models.Student;
 import com.banana.persistence.StudentsRepository;
 import com.banana.persistence.StudentsRepositoryInf;
+import org.springframework.stereotype.Component;
 
+@Component
 public class StudentsServiceI implements IStudentService {
     private StudentsRepositoryInf repository;
 
