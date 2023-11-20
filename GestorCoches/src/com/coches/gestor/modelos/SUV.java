@@ -1,7 +1,6 @@
-package com.mymotorcompany.simuladorcoches.modelos.coches;
+package com.coches.gestor.modelos;
 
-public class SUV extends Coche implements ICoche{
-
+public class SUV extends Coche{
     private int nCambios = 2;
 
     public SUV(String marca, String tipoCoche, int velocidad, int nCambios) {
@@ -13,8 +12,10 @@ public class SUV extends Coche implements ICoche{
     @Override
     public double avanzar(int distancia) {
         if (this.arrancado) {
-            motor.acelerar();
 
+//            double inc;
+//            if (this.nCambios > 1) inc = 0.5;
+//            else inc = 1;
             double inc = (this.nCambios > 1) ? 0.5 : 1;
 
             double tiempo = (double) distancia / ((double) this.velocidad * inc);
@@ -26,13 +27,9 @@ public class SUV extends Coche implements ICoche{
     }
 
     @Override
-    public boolean acelarar(int kph) {
-        return false;
-    }
-
-
-    @Override
-    public void ralenti() {
-
+    public String toString() {
+        return "SUV{" +
+                "nCambios=" + nCambios +
+                "} " + super.toString();
     }
 }

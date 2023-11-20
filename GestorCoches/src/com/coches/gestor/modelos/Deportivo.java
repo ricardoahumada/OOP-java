@@ -1,6 +1,7 @@
-package com.mymotorcompany.simuladorcoches.modelos.coches;
+package com.coches.gestor.modelos;
 
-public class Deportivo extends Coche implements ICoche, IVolador {
+public class Deportivo extends Coche {
+
     private boolean turbo;
 
     public Deportivo(String marca, String tipoCoche, int velocidad, boolean turbo) {
@@ -12,29 +13,20 @@ public class Deportivo extends Coche implements ICoche, IVolador {
     @Override
     public double avanzar(int distancia) {
         if (this.arrancado) {
-            motor.acelerar();
             int inc = this.turbo ? 2 : 1;
 
             double tiempo = (double) distancia / ((double) this.velocidad * inc);
             this.posicion += distancia;
             return tiempo;
         } else {
-            return 0;
+            return Double.POSITIVE_INFINITY;
         }
     }
 
     @Override
-    public boolean acelarar(int kph) {
-        return false;
-    }
-
-    @Override
-    public boolean volar() {
-        return false;
-    }
-
-    @Override
-    public void ralenti() {
-
+    public String toString() {
+        return "Deportivo{" +
+                "turbo=" + turbo +
+                "} " + super.toString();
     }
 }

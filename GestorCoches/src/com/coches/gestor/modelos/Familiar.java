@@ -1,7 +1,6 @@
-package com.mymotorcompany.simuladorcoches.modelos.coches;
+package com.coches.gestor.modelos;
 
-public class Familiar extends Coche implements ICoche {
-
+public class Familiar extends Coche {
     private int nAsientos = 5;
 
     public Familiar(String marca, String tipoCoche, int velocidad, int nAsientos) {
@@ -12,7 +11,6 @@ public class Familiar extends Coche implements ICoche {
     @Override
     public double avanzar(int distancia) {
         if (this.arrancado) {
-            motor.acelerar();
 
             double inc = 1;
             if (nAsientos > 5) inc = 0.5;
@@ -28,13 +26,9 @@ public class Familiar extends Coche implements ICoche {
     }
 
     @Override
-    public boolean acelarar(int kph) {
-        return false;
-    }
-
-
-    @Override
-    public void ralenti() {
-
+    public String toString() {
+        return "Familiar{" +
+                "nAsientos=" + nAsientos +
+                "} " + super.toString();
     }
 }

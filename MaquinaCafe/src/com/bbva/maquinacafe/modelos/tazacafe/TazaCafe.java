@@ -1,10 +1,11 @@
-package com.mycompany.maquinacafe.modelos.tazacafe;
+package com.bbva.maquinacafe.modelos.tazacafe;
 
 public class TazaCafe {
     private int id;
     protected double volumen;
     private String fabricante;
-    private boolean lista;
+    protected boolean lista;
+    protected boolean tieneAsa;
 
     public TazaCafe(int id, double volumen, String fabricante, boolean lista) {
         this.id = id;

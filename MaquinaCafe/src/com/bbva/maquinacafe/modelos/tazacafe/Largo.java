@@ -1,6 +1,6 @@
-package com.mycompany.maquinacafe.modelos.tazacafe;
+package com.bbva.maquinacafe.modelos.tazacafe;
 
-public class Largo extends TazaCafe{
+public class Largo extends TazaCafe {
 
     private int porcentaje_agua;
 
@@ -11,7 +11,8 @@ public class Largo extends TazaCafe{
 
     @Override
     public boolean prepararTaza() {
-        System.out.println("Preparando taza café- con % de agua: " + this.porcentaje_agua);
+        // proceso diferente propio de largo
+        System.out.println("Preparando taza café con % aguar = " + this.porcentaje_agua + " ...");
         return true;
     }
 
