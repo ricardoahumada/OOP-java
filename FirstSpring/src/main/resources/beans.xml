@@ -12,13 +12,13 @@ http://www.springframework.org/schema/context/spring-context.xsd">
     <context:component-scan base-package="com.banana.modelos"/>
 
 
-    <!--<bean id="aMessage" class="com.banana.modelos.Message">
+    <bean id="aMessage" class="com.banana.modelos.Message">
         <property name="message" value="Hello World Spring....yuju!"/>
     </bean>
 
     <bean id="secMessage" class="com.banana.modelos.SecretMessage">
         <property name="code" value="55"/>
-    </bean>-->
+    </bean>
 
     <bean id="aUser" class="com.banana.modelos.User">
         <property name="nombre" value="Ricardo"/>
