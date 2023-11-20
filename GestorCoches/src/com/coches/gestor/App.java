@@ -1,6 +1,6 @@
 package com.coches.gestor;
 
-import com.coches.gestor.modelos.Coche;
+import com.coches.gestor.modelos.coches.Coche;
 
 public class App {
     final static int DISTANCIA = 100;

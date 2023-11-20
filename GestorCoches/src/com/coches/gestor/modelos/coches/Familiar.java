@@ -1,4 +1,4 @@
-package com.coches.gestor.modelos;
+package com.coches.gestor.modelos.coches;
 
 public class Familiar extends Coche {
     private int nAsientos = 5;
