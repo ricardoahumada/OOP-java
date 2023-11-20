@@ -3,12 +3,14 @@ package com.myshoppingcart.persistence;
 import com.myshoppingcart.exception.ProductNotFoundException;
 import com.myshoppingcart.model.Producto;
 import com.myshoppingcart.properties.PropertyValues;
+import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@Component
 public class ProductoDBRepository implements IProductoRepository {
     private static String connUrl;
 

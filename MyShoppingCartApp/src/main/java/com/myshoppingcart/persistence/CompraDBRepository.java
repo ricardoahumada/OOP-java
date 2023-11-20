@@ -4,10 +4,12 @@ import com.myshoppingcart.exception.ProductNotFoundException;
 import com.myshoppingcart.model.Compra;
 import com.myshoppingcart.model.Producto;
 import com.myshoppingcart.properties.PropertyValues;
+import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.sql.*;
 
+@Component
 public class CompraDBRepository implements ICompraRepository {
     private static String connUrl;
 

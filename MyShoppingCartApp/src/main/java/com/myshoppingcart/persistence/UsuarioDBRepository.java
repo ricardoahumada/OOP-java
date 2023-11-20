@@ -3,11 +3,13 @@ package com.myshoppingcart.persistence;
 import com.myshoppingcart.exception.UsuarioNotFoundException;
 import com.myshoppingcart.model.Usuario;
 import com.myshoppingcart.properties.PropertyValues;
+import org.springframework.stereotype.Component;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@Component
 public class UsuarioDBRepository implements IUsuarioRepository {
     private static String db_url = null;
 
