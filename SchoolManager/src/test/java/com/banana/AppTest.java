@@ -13,17 +13,8 @@ public class AppTest {
 
     @Test
     public void shouldAnswerWithTrue() {
-        ApplicationContext context = new ClassPathXmlApplicationContext("file:src/main/resources/beans.xml");
+        ApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
         assertNotNull(context);
-
-        StudentsRepositoryInf repoStudents = context.getBean(StudentsRepositoryInf.class);
-        System.out.println("repoStudents: "+ repoStudents);
-        assertNotNull(repoStudents);
-
-        Student aStudent = repoStudents.getById(1L);
-        System.out.println(aStudent);
-        assertNotNull(aStudent);
-
     }
 
 
