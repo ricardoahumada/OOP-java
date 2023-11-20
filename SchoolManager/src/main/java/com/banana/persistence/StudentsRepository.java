@@ -1,10 +1,13 @@
 package com.banana.persistence;
 
 import com.banana.models.Student;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 
+
+@Component
 public class StudentsRepository implements StudentsRepositoryInf {
     private List<Student> students = new ArrayList<>();
 

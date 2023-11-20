@@ -4,6 +4,7 @@ import com.banana.models.Student;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -18,7 +19,8 @@ class StudentsRepositoryTest {
     @BeforeEach
 //    @BeforeAll
     void setUp() {
-        context = new ClassPathXmlApplicationContext("beans.xml");
+//        context = new ClassPathXmlApplicationContext("beans.xml");
+        context = new AnnotationConfigApplicationContext(StudentsRepository.class);
         repoStudents = context.getBean(StudentsRepositoryInf.class);
     }
 
