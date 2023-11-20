@@ -23,6 +23,10 @@ public class Deportivo extends Coche {
         }
     }
 
+    public void acelerarTurbo(){
+        //....
+    }
+
     @Override
     public String toString() {
         return "Deportivo{" +

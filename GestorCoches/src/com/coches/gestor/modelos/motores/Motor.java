@@ -19,7 +19,7 @@ public class Motor {
 
     public Double mover() {
         if (this.encendido) {
-            // calulos basados en consumo, potencia y cillindros
+            // calculos basados en consumo, potencia y cillindros
             return 1.0;
         } else {
             return 0.0;

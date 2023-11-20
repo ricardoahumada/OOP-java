@@ -11,7 +11,9 @@ public class Coche {
     protected int posicion = 0;
     protected boolean arrancado = false;
 
-    Motor motor;
+    protected Motor motor;
+
+    public static int ruedas = 4;
 
     public Coche(String marca, String tipoCoche, int velocidad) {
         this.marca = marca;
@@ -44,6 +46,10 @@ public class Coche {
         if (this.motor != null) this.motor.arrancar();
         this.arrancado = false;
         return true;
+    }
+
+    public static void frenar(){
+        // cuerpo de frenar
     }
 
     public Motor getMotor() {

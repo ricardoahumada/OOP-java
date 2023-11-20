@@ -13,8 +13,29 @@ public class AppHerencia {
 
         System.out.println("Cargando ....");
         Coche c1 = new Deportivo("Porsche", "Deportivo", 150, false);
-        Coche c2 = new Familiar("Renault", "Familiar", 130,5);
+        Coche c2 = new Familiar("Renault", "Familiar", 130, 5);
         Coche c3 = new SUV("Seat", "SUV", 100, 2);
+
+        /* parentesis static */
+        System.out.println("c1.ruedas: " + c1.ruedas);
+        System.out.println("c2.ruedas: " + c2.ruedas);
+
+        c1.ruedas = 5;
+
+        System.out.println("c1.ruedas: " + c1.ruedas);
+        System.out.println("c2.ruedas: " + c2.ruedas);
+
+        Coche.ruedas = 3;
+        System.out.println("c1.ruedas: " + c1.ruedas);
+        System.out.println("c2.ruedas: " + c2.ruedas);
+
+        c1.frenar();
+        Coche.frenar();
+
+        String astr = "23";
+        Integer anum = new Integer(astr);
+
+        /* cierre parentesis static */
 
         Motor m1 = new Motor(7, 100, 6);
         Motor m2 = new Motor(9, 120, 9);
