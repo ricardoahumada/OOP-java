@@ -3,6 +3,7 @@ package com.coches.gestor;
 import com.coches.gestor.modelos.coches.Coche;
 import com.coches.gestor.modelos.coches.Deportivo;
 import com.coches.gestor.modelos.coches.Familiar;
+import com.coches.gestor.modelos.coches.SUV;
 import com.coches.gestor.modelos.motores.Motor;
 
 public class AppHerencia {
@@ -13,7 +14,7 @@ public class AppHerencia {
         System.out.println("Cargando ....");
         Coche c1 = new Deportivo("Porsche", "Deportivo", 150, false);
         Coche c2 = new Familiar("Renault", "Familiar", 130,5);
-        Coche c3 = new Deportivo.SUV("Seat", "SUV", 100, 2);
+        Coche c3 = new SUV("Seat", "SUV", 100, 2);
 
         Motor m1 = new Motor(7, 100, 6);
         Motor m2 = new Motor(9, 120, 9);
