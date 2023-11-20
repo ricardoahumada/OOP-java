@@ -16,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 //@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @ExtendWith(SpringExtension.class)
-@ContextConfiguration(classes = StudentsRepository.class)
+@ContextConfiguration(classes = {StudentsRepository.class})
 class StudentsRepositoryTest {
 
     @Autowired
