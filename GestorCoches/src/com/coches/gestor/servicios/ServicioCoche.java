@@ -4,22 +4,28 @@ import com.coches.gestor.modelos.coches.Coche;
 
 public class ServicioCoche {
 
-    public static Coche encontrarElMasRapido(Coche[] coches, int distancia) {
-        double[] tiempos = new double[coches.length];
-        for (int i = 0; i < coches.length; i++) {
-            coches[i].arrancar();
-            tiempos[i] = coches[i].avanzar(distancia);
-            coches[i].parar();
-        }
-
-        System.out.println("Calculando ....");
+    public static Coche encontrarElMasRapido(Coche[] coches, int distancia) throws Exception{
         Coche masRapido = null;
-        double tiempoMenor = Double.POSITIVE_INFINITY;
-        for (int i = 0; i < tiempos.length; i++) {
-            if (tiempos[i] < tiempoMenor) {
-                tiempoMenor = tiempos[i];
-                masRapido = coches[i];
+
+        try {
+            double[] tiempos = new double[coches.length];
+            for (int i = 0; i < coches.length; i++) {
+                coches[i].arrancar();
+                tiempos[i] = coches[i].avanzar(distancia);
+                coches[i].parar();
             }
+
+            System.out.println("Calculando ....");
+            double tiempoMenor = Double.POSITIVE_INFINITY;
+            for (int i = 0; i < tiempos.length; i++) {
+                if (tiempos[i] < tiempoMenor) {
+                    tiempoMenor = tiempos[i];
+                    masRapido = coches[i];
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Avisar al admin!!!!" + e.getMessage());
+            throw new Exception(e);
         }
 
         return masRapido;

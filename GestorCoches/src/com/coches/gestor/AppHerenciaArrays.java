@@ -29,11 +29,18 @@ public class AppHerenciaArrays {
 
 
         System.out.println("Simulando ....");
-        Coche masRapido = ServicioCoche.encontrarElMasRapido(coches, DISTANCIA);
+        coches = null;
 
-
-        System.out.println("El coche más rápido es:");
-        System.out.println(masRapido);
+        try {
+            Coche masRapido = ServicioCoche.encontrarElMasRapido(coches, DISTANCIA);
+            System.out.println("El coche más rápido es:");
+            System.out.println(masRapido);
+        } catch (NullPointerException e) {
+            System.out.println("Ha habido un error...inténtelo más tarde");
+        } catch (Exception e) {
+            // pedir revision
+            System.out.println("Exceptiom general....");
+        }
 
     }
 
