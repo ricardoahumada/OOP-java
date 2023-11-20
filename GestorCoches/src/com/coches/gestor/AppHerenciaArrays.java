@@ -1,9 +1,6 @@
 package com.coches.gestor;
 
-import com.coches.gestor.modelos.coches.Coche;
-import com.coches.gestor.modelos.coches.Deportivo;
-import com.coches.gestor.modelos.coches.Familiar;
-import com.coches.gestor.modelos.coches.SUV;
+import com.coches.gestor.modelos.coches.*;
 import com.coches.gestor.modelos.motores.Motor;
 
 public class AppHerenciaArrays {
@@ -16,7 +13,13 @@ public class AppHerenciaArrays {
         Coche c2 = new Familiar("Renault", "Familiar", 130, 5);
         Coche c3 = new SUV("Seat", "SUV", 100, 2);
 
-        Coche[] coches = {c1, c2, c3, new Deportivo("Mazda", "Deportivo", 130, true)};
+        Coche[] coches = {
+                c1,
+                c2,
+                c3,
+                new Deportivo("Mazda", "Deportivo", 130, true),
+                new Buggi("Buggi", "buggi", 60, true)
+        };
 
         for (int i = 0; i < coches.length; i++) {
             Motor m = new Motor(7, 100, 6);
