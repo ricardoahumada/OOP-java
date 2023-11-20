@@ -1,6 +1,7 @@
 package com.coches.gestor.modelos.coches;
 
 
+import com.coches.gestor.exceptions.MotorException;
 import com.coches.gestor.modelos.motores.Motor;
 
 public class Coche {
@@ -21,13 +22,14 @@ public class Coche {
         this.velocidad = velocidad;
     }
 
-    public boolean arrancar() {
+    public boolean arrancar() throws MotorException {
         if (motor != null) {
             this.motor.arrancar();
             this.arrancado = true;
             return true;
         } else {
-            return false;
+//            return false;
+            throw new MotorException("No tiene Motor!!");
         }
     }
 

@@ -1,5 +1,6 @@
 package com.coches.gestor;
 
+import com.coches.gestor.exceptions.MotorException;
 import com.coches.gestor.modelos.coches.*;
 import com.coches.gestor.modelos.motores.Motor;
 import com.coches.gestor.servicios.ServicioCoche;
@@ -24,12 +25,12 @@ public class AppHerenciaArrays {
 
         for (int i = 0; i < coches.length; i++) {
             Motor m = new Motor(7, 100, 6);
-            coches[i].setMotor(m);
+            if (i != 2) coches[i].setMotor(m);
         }
 
 
         System.out.println("Simulando ....");
-        coches = null;
+//        coches = null;
 
         try {
             Coche masRapido = ServicioCoche.encontrarElMasRapido(coches, DISTANCIA);
@@ -37,6 +38,8 @@ public class AppHerenciaArrays {
             System.out.println(masRapido);
         } catch (NullPointerException e) {
             System.out.println("Ha habido un error...inténtelo más tarde");
+        } catch (MotorException e) {
+            System.out.println("Ha habido un error..." + e.getMessage());
         } catch (Exception e) {
             // pedir revision
             System.out.println("Exceptiom general....");

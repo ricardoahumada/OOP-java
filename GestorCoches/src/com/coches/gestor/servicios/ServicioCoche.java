@@ -23,9 +23,9 @@ public class ServicioCoche {
                     masRapido = coches[i];
                 }
             }
-        } catch (Exception e) {
-            System.out.println("Avisar al admin!!!!" + e.getMessage());
-            throw new Exception(e);
+        } catch (Exception ex) {
+            System.out.println("Avisar al admin!!!! " + ex.getMessage());
+            throw ex;
         }
 
         return masRapido;
