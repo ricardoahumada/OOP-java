@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-public class StudentsServiceI implements IStudentService {
+public class StudentsService implements IStudentService {
     @Autowired
     private StudentsRepositoryInf repository;
 
