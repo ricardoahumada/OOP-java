@@ -11,12 +11,12 @@ public class AppHerencia {
 
     public static void main(String[] args) {
 
-        System.out.println("Cargando ....");
+       /* System.out.println("Cargando ....");
         Coche c1 = new Deportivo("Porsche", "Deportivo", 150, false);
         Coche c2 = new Familiar("Renault", "Familiar", 130, 5);
         Coche c3 = new SUV("Seat", "SUV", 100, 2);
 
-        /* parentesis static */
+        *//* parentesis static *//*
         System.out.println("c1.ruedas: " + c1.ruedas);
         System.out.println("c2.ruedas: " + c2.ruedas);
 
@@ -35,7 +35,7 @@ public class AppHerencia {
         String astr = "23";
         Integer anum = new Integer(astr);
 
-        /* cierre parentesis static */
+        *//* cierre parentesis static *//*
 
         Motor m1 = new Motor(7, 100, 6);
         Motor m2 = new Motor(9, 120, 9);
@@ -67,7 +67,7 @@ public class AppHerencia {
         c3.parar();
 
         System.out.println("El coche más rápido es:");
-        System.out.println(masRapido);
+        System.out.println(masRapido);*/
 
     }
 

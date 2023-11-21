@@ -1,6 +1,6 @@
 package com.coches.gestor.modelos.coches;
 
-public class Buggi extends Coche{
+public class Buggi extends Coche implements ICoche {
 
     private boolean arena;
 
@@ -20,5 +20,10 @@ public class Buggi extends Coche{
         } else {
             return Double.POSITIVE_INFINITY;
         }
+    }
+
+    @Override
+    public void acelerar(int aceleracion) {
+        System.out.println("Buggi acelerando....");
     }
 }

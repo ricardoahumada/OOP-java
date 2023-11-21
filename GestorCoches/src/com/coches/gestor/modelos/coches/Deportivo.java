@@ -1,6 +1,6 @@
 package com.coches.gestor.modelos.coches;
 
-public class Deportivo extends Coche {
+public class Deportivo extends Coche implements ICoche {
 
     private boolean turbo;
 
@@ -34,4 +34,8 @@ public class Deportivo extends Coche {
                 "} " + super.toString();
     }
 
+    @Override
+    public void acelerar(int aceleracion) {
+        System.out.println("Deportivo acelenrando....");
+    }
 }

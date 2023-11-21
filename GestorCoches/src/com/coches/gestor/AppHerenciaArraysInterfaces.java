@@ -5,17 +5,17 @@ import com.coches.gestor.modelos.coches.*;
 import com.coches.gestor.modelos.motores.Motor;
 import com.coches.gestor.servicios.ServicioCoche;
 
-public class AppHerenciaArrays {
+public class AppHerenciaArraysInterfaces {
     final static int DISTANCIA = 100;
 
     public static void main(String[] args) {
 
-        /*System.out.println("Cargando ....");
-        Coche c1 = new Deportivo("Porsche", "Deportivo", 150, false);
-        Coche c2 = new Familiar("Renault", "Familiar", 130, 5);
-        Coche c3 = new SUV("Seat", "SUV", 100, 2);
+        System.out.println("Cargando ....");
+        ICoche c1 = new Deportivo("Porsche", "Deportivo", 150, false);
+        ICoche c2 = new Familiar("Renault", "Familiar", 130, 5);
+        ICoche c3 = new SUV("Seat", "SUV", 100, 2);
 
-        Coche[] coches = {
+        ICoche[] coches = {
                 c1,
                 c2,
                 c3,
@@ -33,7 +33,7 @@ public class AppHerenciaArrays {
 //        coches = null;
 
         try {
-            Coche masRapido = ServicioCoche.encontrarElMasRapido(coches, DISTANCIA);
+            ICoche masRapido = ServicioCoche.encontrarElMasRapido(coches, DISTANCIA);
             System.out.println("El coche más rápido es:");
             System.out.println(masRapido);
         } catch (NullPointerException e) {
@@ -43,7 +43,7 @@ public class AppHerenciaArrays {
         } catch (Exception e) {
             // pedir revision
             System.out.println("Exceptiom general....");
-        }*/
+        }
 
     }
 

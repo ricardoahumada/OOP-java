@@ -1,11 +1,12 @@
 package com.coches.gestor.servicios;
 
 import com.coches.gestor.modelos.coches.Coche;
+import com.coches.gestor.modelos.coches.ICoche;
 
 public class ServicioCoche {
 
-    public static Coche encontrarElMasRapido(Coche[] coches, int distancia) throws Exception {
-        Coche masRapido = null;
+    public static ICoche encontrarElMasRapido(ICoche[] coches, int distancia) throws Exception {
+        ICoche masRapido = null;
 
         try {
             double[] tiempos = new double[coches.length];

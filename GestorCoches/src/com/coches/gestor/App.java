@@ -7,7 +7,7 @@ public class App {
 
     public static void main(String[] args) {
 
-        System.out.println("Cargando ....");
+        /*System.out.println("Cargando ....");
         Coche c1 = new Coche("Porsche", "Deportivo", 150);
         Coche c2 = new Coche("Renault", "Familiar", 130);
         Coche c3 = new Coche("Seat", "SUV", 100);
@@ -34,7 +34,7 @@ public class App {
         c3.parar();
 
         System.out.println("El coche más rápido es:");
-        System.out.println(masRapido);
+        System.out.println(masRapido);*/
 
     }
 

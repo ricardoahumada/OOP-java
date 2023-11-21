@@ -1,6 +1,6 @@
 package com.coches.gestor.modelos.coches;
 
-public class Familiar extends Coche {
+public class Familiar extends Coche implements ICoche {
     private int nAsientos = 5;
 
     public Familiar(String marca, String tipoCoche, int velocidad, int nAsientos) {
@@ -23,6 +23,11 @@ public class Familiar extends Coche {
         } else {
             return 0;
         }
+    }
+
+    @Override
+    public void acelerar(int aceleracion) {
+        System.out.println("Familiar acelerando....");
     }
 
     @Override

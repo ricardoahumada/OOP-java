@@ -33,6 +33,7 @@ public class Coche {
         }
     }
 
+    /*@Override
     public double avanzar(int distancia) {
         if (this.arrancado) {
             Double mueve = this.motor.mover();
@@ -42,7 +43,7 @@ public class Coche {
         } else {
             return Double.POSITIVE_INFINITY;
         }
-    }
+    }*/
 
     public boolean parar() {
         if (this.motor != null) this.motor.arrancar();

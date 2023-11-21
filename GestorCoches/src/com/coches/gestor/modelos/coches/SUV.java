@@ -1,6 +1,6 @@
 package com.coches.gestor.modelos.coches;
 
-public class SUV extends Coche {
+public class SUV extends Coche implements ICoche {
     private int nCambios = 2;
 
     public SUV(String marca, String tipoCoche, int velocidad, int nCambios) {
@@ -25,6 +25,12 @@ public class SUV extends Coche {
             return 0;
         }
     }
+
+    @Override
+    public void acelerar(int aceleracion) {
+        System.out.println("SUV acelerando....");
+    }
+
 
     @Override
     public String toString() {
