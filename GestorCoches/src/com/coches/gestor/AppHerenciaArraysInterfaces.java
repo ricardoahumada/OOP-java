@@ -25,6 +25,7 @@ public class AppHerenciaArraysInterfaces {
                 new Buggi("Buggi", "buggi", 60, true)
         };
 
+
         for (int i = 0; i < coches.length; i++) {
             Motor m = new Motor(7, 100, 6);
             if (i != 2) coches[i].setMotor(m);
