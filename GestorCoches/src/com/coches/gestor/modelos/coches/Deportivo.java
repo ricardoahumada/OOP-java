@@ -28,6 +28,11 @@ public class Deportivo extends Coche implements ICoche {
     }
 
     @Override
+    public void frenarLentamente() {
+
+    }
+
+    @Override
     public String toString() {
         return "Deportivo{" +
                 "turbo=" + turbo +

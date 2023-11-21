@@ -31,6 +31,11 @@ public class Familiar extends Coche implements ICoche {
     }
 
     @Override
+    public void frenarLentamente() {
+
+    }
+
+    @Override
     public String toString() {
         return "Familiar{" +
                 "nAsientos=" + nAsientos +

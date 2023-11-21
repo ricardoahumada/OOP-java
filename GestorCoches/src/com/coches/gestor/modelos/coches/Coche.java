@@ -4,7 +4,7 @@ package com.coches.gestor.modelos.coches;
 import com.coches.gestor.exceptions.MotorException;
 import com.coches.gestor.modelos.motores.Motor;
 
-public class Coche {
+public abstract class Coche {
 
     private String marca;
     private String tipoCoche;
@@ -16,7 +16,7 @@ public class Coche {
 
     public static int ruedas = 4;
 
-    public Coche(String marca, String tipoCoche, int velocidad) {
+    protected Coche(String marca, String tipoCoche, int velocidad) {
         this.marca = marca;
         this.tipoCoche = tipoCoche;
         this.velocidad = velocidad;
@@ -62,6 +62,8 @@ public class Coche {
     public void setMotor(Motor motor) {
         this.motor = motor;
     }
+
+    public abstract void frenarLentamente();
 
     @Override
     public String toString() {

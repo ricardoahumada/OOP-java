@@ -6,6 +6,8 @@ import com.coches.gestor.modelos.motores.Motor;
 import com.coches.gestor.servicios.ServicioCoche;
 
 public class AppHerenciaArraysInterfaces {
+
+
     final static int DISTANCIA = 100;
 
     public static void main(String[] args) {

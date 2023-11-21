@@ -33,6 +33,11 @@ public class SUV extends Coche implements ICoche {
 
 
     @Override
+    public void frenarLentamente() {
+
+    }
+    
+    @Override
     public String toString() {
         return "SUV{" +
                 "nCambios=" + nCambios +

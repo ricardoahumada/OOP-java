@@ -23,6 +23,10 @@ public class Buggi extends Coche implements ICoche {
     }
 
     @Override
+    public void frenarLentamente() {
+
+    }
+    @Override
     public void acelerar(int aceleracion) {
         System.out.println("Buggi acelerando....");
     }
