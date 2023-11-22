@@ -11,7 +11,7 @@ public class StudentsService implements IStudentService {
 //    @Autowired
     private StudentsRepositoryInf repository;
 
-    public void setRepository(StudentsRepository repository) {
+    public void setRepository(StudentsRepositoryInf repository) {
         this.repository = repository;
     }
 
