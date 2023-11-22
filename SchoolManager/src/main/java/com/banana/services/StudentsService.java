@@ -6,9 +6,9 @@ import com.banana.persistence.StudentsRepositoryInf;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-//@Component
+@Component
 public class StudentsService implements IStudentService {
-//    @Autowired
+    @Autowired
     private StudentsRepositoryInf repository;
 
     public void setRepository(StudentsRepositoryInf repository) {

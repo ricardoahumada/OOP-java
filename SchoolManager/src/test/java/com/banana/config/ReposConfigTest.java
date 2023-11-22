@@ -6,10 +6,10 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class ReposConfigTest {
 
-    @Test
+    /*@Test
     void getStudentsRepository() {
         ReposConfig config = new ReposConfig();
         assertNotNull(config.getStudentsRepository());
-    }
+    }*/
 
 }

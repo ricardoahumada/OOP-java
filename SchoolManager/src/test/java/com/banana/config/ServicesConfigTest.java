@@ -9,12 +9,12 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class ServicesConfigTest {
 
-    @Test
+    /*@Test
     void createStudentService() {
         ServicesConfig config = new ServicesConfig();
         config.repo = new StudentsRepository();
         IStudentService srv = config.createStudentService();
         assertNotNull(srv);
-    }
+    }*/
 
 }

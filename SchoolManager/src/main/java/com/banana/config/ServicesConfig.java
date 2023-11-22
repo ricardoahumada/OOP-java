@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class ServicesConfig {
 
-    @Autowired
+    /*@Autowired
     StudentsRepositoryInf repo;
 
     @Bean
@@ -18,5 +18,5 @@ public class ServicesConfig {
         StudentsService service = new StudentsService();
         service.setRepository(repo);
         return service;
-    }
+    }*/
 }
