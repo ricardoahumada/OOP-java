@@ -9,8 +9,8 @@ import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 //@Import({StudentsRepository.class, StudentsService.class})
 @PropertySource("classpath:application.properties")
 public class SpringConfig {
-    @Bean
+    /*@Bean
     public static PropertySourcesPlaceholderConfigurer propertyConfigurer() {
         return new PropertySourcesPlaceholderConfigurer();
-    }
+    }*/
 }
