@@ -4,19 +4,21 @@ import com.myshoppingcart.exception.ProductNotFoundException;
 import com.myshoppingcart.model.Compra;
 import com.myshoppingcart.model.Producto;
 import com.myshoppingcart.properties.PropertyValues;
+import lombok.Setter;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.sql.*;
 
-@Component
+//@Component
+@Setter
 public class CompraDBRepository implements ICompraRepository {
-    private static String connUrl;
+    private String connUrl;
 
-    public CompraDBRepository() throws IOException {
+    /*public CompraDBRepository() throws IOException {
         PropertyValues props = new PropertyValues();
         connUrl = props.getPropValues().getProperty("db_url");
-    }
+    }*/
 
     @Override
     public Compra insertCompra(Compra nuevaCompra) throws Exception {

@@ -8,7 +8,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-@Component
+//@Component
 public class DBConnector {
 //    private String db_url = "jdbc:mysql://localhost/productos_db?user=productos_user&password=prod123";
 
