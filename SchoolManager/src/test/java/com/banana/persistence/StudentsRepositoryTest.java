@@ -35,6 +35,7 @@ class StudentsRepositoryTest {
     void testBeans() {
         assertNotNull(context);
         assertNotNull(repoStudents);
+        System.out.println(repoStudents.getUrlConn());
     }
 
     @Test

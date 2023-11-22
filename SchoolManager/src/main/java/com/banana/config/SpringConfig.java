@@ -15,7 +15,9 @@ public class SpringConfig {
 
     @Bean
     public StudentsRepositoryInf getStudentsRepository() {
-        return new StudentsRepository();
+        StudentsRepository repo = new StudentsRepository();
+        repo.setUrlConn("jdbc://.....");
+        return repo;
     }
 
 }
