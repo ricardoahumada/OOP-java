@@ -3,6 +3,7 @@ package com.myshoppingcart.config;
 import com.myshoppingcart.persistence.*;
 import com.myshoppingcart.properties.PropertyValues;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -12,14 +13,15 @@ import java.io.IOException;
 @Configuration
 public class ReposConfig {
 
-    @Bean
+    /*@Bean
     public String getUrlConn() throws IOException {
         PropertyValues props = new PropertyValues();
         String connUrl = props.getPropValues().getProperty("db_url");
         return connUrl;
-    }
+    }*/
 
-    @Autowired
+//    @Autowired
+    @Value("${db_url}")
     String connUrl;
 
     @Bean
@@ -27,12 +29,12 @@ public class ReposConfig {
         return new DBConnector();
     }
 
-    @Bean
+    /*@Bean
     public ICompraRepository createICompraRepository() {
          CompraDBRepository repo = new CompraDBRepository();
          repo.setConnUrl(connUrl);
          return repo;
-    }
+    }*/
 
     @Bean
     public IProductoRepository createIProductoRepository() {

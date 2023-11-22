@@ -5,14 +5,18 @@ import com.myshoppingcart.model.Compra;
 import com.myshoppingcart.model.Producto;
 import com.myshoppingcart.properties.PropertyValues;
 import lombok.Setter;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import java.io.IOException;
 import java.sql.*;
 
 //@Component
+@Repository
 @Setter
 public class CompraDBRepository implements ICompraRepository {
+    @Value("${db_url}")
     private String connUrl;
 
     /*public CompraDBRepository() throws IOException {
