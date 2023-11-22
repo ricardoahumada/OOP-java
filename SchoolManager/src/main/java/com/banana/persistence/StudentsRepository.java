@@ -13,12 +13,12 @@ import java.util.List;
 
 //@Component
 //@Named
-@Repository
+//@Repository
 @Setter
 @Getter
 public class StudentsRepository implements StudentsRepositoryInf {
 
-    @Value("${db.conn}")
+//    @Value("${db.conn}")
     private String urlConn;
 
     private List<Student> students = new ArrayList<>();
