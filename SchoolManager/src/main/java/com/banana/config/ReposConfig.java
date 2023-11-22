@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class ReposConfig {
 
-    @Value("${db.conn}")
+    /*@Value("${db.conn}")
     String dbUrl;
 
     @Value("${max.conn}")
@@ -21,6 +21,6 @@ public class ReposConfig {
         StudentsRepository repo = new StudentsRepository();
         repo.setUrlConn(dbUrl);
         return repo;
-    }
+    }*/
 
 }

@@ -3,6 +3,7 @@ package com.banana.persistence;
 import com.banana.models.Student;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
@@ -12,10 +13,12 @@ import java.util.List;
 
 //@Component
 //@Named
-//@Repository
+@Repository
 @Setter
 @Getter
 public class StudentsRepository implements StudentsRepositoryInf {
+
+    @Value("${db.conn}")
     private String urlConn;
 
     private List<Student> students = new ArrayList<>();
