@@ -7,7 +7,7 @@ import javax.inject.Named;
 import java.util.ArrayList;
 import java.util.List;
 
-@Component
+//@Component
 //@Named
 public class StudentsRepository implements StudentsRepositoryInf {
     private List<Student> students = new ArrayList<>();

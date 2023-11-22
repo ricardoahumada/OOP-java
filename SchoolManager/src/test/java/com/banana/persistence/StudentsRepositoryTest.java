@@ -1,13 +1,11 @@
 package com.banana.persistence;
 
+import com.banana.config.SpringConfig;
 import com.banana.models.Student;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
@@ -16,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 //@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @ExtendWith(SpringExtension.class)
-@ContextConfiguration(classes = {StudentsRepository.class})
+@ContextConfiguration(classes = {SpringConfig.class})
 class StudentsRepositoryTest {
 
     @Autowired
