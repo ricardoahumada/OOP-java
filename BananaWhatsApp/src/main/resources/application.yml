@@ -20,7 +20,7 @@ spring:
     ## << mysql >>
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: create
       generate-ddl: true
       defer-datasource-initialization: true
 ## << h2 >>
