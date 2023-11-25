@@ -15,8 +15,8 @@ import java.time.LocalDate;
 @ToString
 public class Mensaje {
     @Id
-    //    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
     @OneToOne

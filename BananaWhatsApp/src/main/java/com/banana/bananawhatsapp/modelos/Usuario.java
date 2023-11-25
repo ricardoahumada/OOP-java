@@ -15,8 +15,8 @@ import java.time.LocalDate;
 @ToString
 public class Usuario {
     @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     private String nombre;
     private String email;
