@@ -14,8 +14,9 @@ public class App {
     public static void main(String[] args) {
 
         ApplicationContext context = new AnnotationConfigApplicationContext(SpringConfig.class);
+//        context.getEnvironment().matchesProfiles("dev");
 
-        IStudentService servicioEstudiantes= context.getBean(IStudentService.class);
+        IStudentService servicioEstudiantes = context.getBean(IStudentService.class);
 
         Student unEstudiante = servicioEstudiantes.getStudentByIndex(3);
         System.out.println(unEstudiante);
