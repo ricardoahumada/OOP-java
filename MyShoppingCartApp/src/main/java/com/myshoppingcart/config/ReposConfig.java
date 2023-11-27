@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 
 import java.io.IOException;
 
@@ -20,7 +21,7 @@ public class ReposConfig {
         return connUrl;
     }*/
 
-//    @Autowired
+    //    @Autowired
     @Value("${db_url}")
     String connUrl;
 
@@ -38,16 +39,26 @@ public class ReposConfig {
 
     @Bean
     public IProductoRepository createIProductoRepository() {
-         ProductoDBRepository repo = new ProductoDBRepository();
-         repo.setConnUrl(connUrl);
-         return repo;
+        ProductoDBRepository repo = new ProductoDBRepository();
+        repo.setConnUrl(connUrl);
+        return repo;
     }
 
     @Bean
+    @Profile("default")
     public IUsuarioRepository createIUsuarioRepository() {
-         UsuarioDBRepository repo = new UsuarioDBRepository();
-         repo.setDb_url(connUrl);
-         return repo;
+        System.out.println("usando UsuarioDBRepository...");
+        UsuarioDBRepository repo = new UsuarioDBRepository();
+        repo.setDb_url(connUrl);
+        return repo;
+    }
+
+    @Bean
+    @Profile("dev")
+    public IUsuarioRepository createInMemUsuarioRepository() {
+        System.out.println("usando UsuarioInMemoryRepository...");
+        UsuarioInMemoryRepository repo = new UsuarioInMemoryRepository();
+        return repo;
     }
 
 }
