@@ -13,8 +13,10 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class App {
     public static void main(String[] args) {
 
-        ApplicationContext context = new AnnotationConfigApplicationContext(SpringConfig.class);
-//        context.getEnvironment().matchesProfiles("dev");
+        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
+        context.getEnvironment().setActiveProfiles("dev");
+        context.register(SpringConfig.class);
+        context.refresh();
 
         IStudentService servicioEstudiantes = context.getBean(IStudentService.class);
 
