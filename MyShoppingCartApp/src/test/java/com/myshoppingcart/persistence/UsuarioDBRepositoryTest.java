@@ -20,7 +20,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = {SpringConfig.class})
-@ActiveProfiles("dev")
+//@ActiveProfiles("dev")
 public class UsuarioDBRepositoryTest {
 
     @Autowired
