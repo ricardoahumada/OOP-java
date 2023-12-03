@@ -3,7 +3,7 @@ package com.banana.bananawhatsapp.persistencia;
 import org.junit.jupiter.api.Test;
 
 class UsuarioRepositoryTest {
-    IMensajeRepository repo;
+    IUsuarioRepository repo;
 
     @Test
     void dadoUnUsuarioValido_cuandoCrear_entoncesUsuarioValido() {

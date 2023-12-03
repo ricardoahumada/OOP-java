@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 
 class MensajeRepositoryTest {
 
-    IUsuarioRepository repo;
+    IMensajeRepository repo;
 
     @Test
     void dadoUnMensajeValido_cuandoCrear_entoncesMensajeValido() {
