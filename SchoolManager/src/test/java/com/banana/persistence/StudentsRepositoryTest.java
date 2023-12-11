@@ -16,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 //@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = {SpringConfig.class})
-@ActiveProfiles("dev")
+//@ActiveProfiles("dev")
 class StudentsRepositoryTest {
 
     @Autowired
@@ -37,7 +37,7 @@ class StudentsRepositoryTest {
     void testBeans() {
         assertNotNull(context);
         assertNotNull(repoStudents);
-        System.out.println(repoStudents.getUrlConn());
+        System.out.println("UrlConn: "+repoStudents.getUrlConn());
     }
 
     @Test

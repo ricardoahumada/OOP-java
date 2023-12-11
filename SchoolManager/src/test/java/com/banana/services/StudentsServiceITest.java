@@ -20,12 +20,14 @@ class StudentsServiceITest {
     private ApplicationContext context;
 
     @Autowired
-    private IStudentService service;
+//    private IStudentService service;
+    private StudentsService service;
 
     @Test
     void testBeans() {
         assertNotNull(context);
         assertNotNull(service);
+        System.out.println("repo: "+service.getRepository());
     }
 
     @Test
