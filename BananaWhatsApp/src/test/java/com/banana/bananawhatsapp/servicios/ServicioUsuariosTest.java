@@ -31,7 +31,7 @@ class ServicioUsuariosTest {
     }
 
     @Test
-    void dadoUnUsuarioValido_cuandoObtenerPosiblesDesinatarios_entoncesUsuarioValido() {
+    void dadoUnUsuarioValido_cuandoObtenerPosiblesDesinatarios_entoncesUsuariosValidos() {
     }
 
     @Test
