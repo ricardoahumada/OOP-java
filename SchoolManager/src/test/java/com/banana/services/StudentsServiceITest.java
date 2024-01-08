@@ -27,7 +27,7 @@ class StudentsServiceITest {
     void testBeans() {
         assertNotNull(context);
         assertNotNull(service);
-        System.out.println("repo: "+service.getRepository());
+//        System.out.println("repo: "+service.getRepository());
     }
 
     @Test
