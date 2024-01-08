@@ -31,8 +31,8 @@ public class StudentsRepositoryJPA implements StudentsRepositoryInf {
         if (estudiante.isValid()) {
             Student aStd = em.find(Student.class, estudiante.getId());
             aStd.setNombre(estudiante.getNombre());
-//            em.flush();
-            aStd.setApellido(estudiante.getApellido()+"xx");
+            em.flush();
+            aStd.setApellido(estudiante.getApellido());
 //            em.persist(aStd);
             em.getTransaction().commit();
             return aStd;
