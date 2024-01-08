@@ -35,6 +35,11 @@ public class StudentsRepository implements StudentsRepositoryInf {
         this.students.add(student);
     }
 
+    @Override
+    public Student update(Student estudiante) {
+        return null;
+    }
+
     public Student get(int idx) {
         return this.students.get(idx);
     }

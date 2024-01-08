@@ -37,7 +37,7 @@ class StudentsRepositoryTest {
     void testBeans() {
         assertNotNull(context);
         assertNotNull(repoStudents);
-        System.out.println("UrlConn: "+repoStudents.getUrlConn());
+        System.out.println("UrlConn: " + repoStudents.getUrlConn());
     }
 
     @Test
@@ -55,6 +55,15 @@ class StudentsRepositoryTest {
         repoStudents.add(newStd);
         Student aStudent = repoStudents.getById(newStd.getId());
         assertEquals(aStudent.getId(), newStd.getId());
+    }
+
+
+    @Test
+    void update() {
+        Student aStd = new Student(1L, "Nombre Update", "Apellido Update", 2);
+        System.out.println(aStd);
+        Student updatedStd = repoStudents.update(aStd);
+        assertEquals(updatedStd.getNombre(), aStd.getNombre());
     }
 
     @Test

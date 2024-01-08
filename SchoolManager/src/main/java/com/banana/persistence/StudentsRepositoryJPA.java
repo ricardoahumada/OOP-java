@@ -8,7 +8,7 @@ import javax.persistence.EntityManager;
 
 @Setter
 @Getter
-public class StudentsRepositoryJPA implements StudentsRepositoryInf{
+public class StudentsRepositoryJPA implements StudentsRepositoryInf {
 
     private String urlConn;
 
@@ -17,11 +17,28 @@ public class StudentsRepositoryJPA implements StudentsRepositoryInf{
     @Override
     public void add(Student estudiante) {
         em.getTransaction().begin();
-        if(estudiante.isValid()) {
+        if (estudiante.isValid()) {
             em.persist(estudiante);
             em.getTransaction().commit();
-        }else {
+        } else {
             em.getTransaction().rollback();
+        }
+    }
+
+    @Override
+    public Student update(Student estudiante) {
+        em.getTransaction().begin();
+        if (estudiante.isValid()) {
+            Student aStd = em.find(Student.class, estudiante.getId());
+            aStd.setNombre(estudiante.getNombre());
+//            em.flush();
+            aStd.setApellido(estudiante.getApellido()+"xx");
+//            em.persist(aStd);
+            em.getTransaction().commit();
+            return aStd;
+        } else {
+            em.getTransaction().rollback();
+            return null;
         }
     }
 
