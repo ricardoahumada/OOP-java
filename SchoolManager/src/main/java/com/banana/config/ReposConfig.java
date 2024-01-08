@@ -2,7 +2,8 @@ package com.banana.config;
 
 import com.banana.persistence.StudentsRepository;
 import com.banana.persistence.StudentsRepositoryInf;
-import com.banana.persistence.StudentsRepositoryJDBC;
+import com.banana.persistence.StudentsRepositoryJPA;
+import com.banana.util.JPAUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -43,7 +44,8 @@ public class ReposConfig {
         String dbUrlEnv = env.getProperty("db.conn", String.class);
         System.out.println("dbUrlEnv:" + dbUrlEnv);
 
-        StudentsRepositoryJDBC repo = new StudentsRepositoryJDBC();
+        StudentsRepositoryJPA repo = new StudentsRepositoryJPA();
+        repo.setEm(JPAUtil.getEntityManagerFactory().createEntityManager());
         repo.setUrlConn(dbUrl);
         return repo;
     }

@@ -16,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 //@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = {SpringConfig.class})
-//@ActiveProfiles("dev")
+@ActiveProfiles("dev")
 class StudentsRepositoryTest {
 
     @Autowired
@@ -50,11 +50,11 @@ class StudentsRepositoryTest {
 
     @Test
     void add() {
-        Student newStd = new Student(6L, "El nuevo", "Apellido", 2);
+        Student newStd = new Student(null, "El nuevo", "Apellido", 2);
         System.out.println(newStd);
         repoStudents.add(newStd);
-        Student aStudent = repoStudents.getById(6L);
-        assertEquals(aStudent.getId(), 6L);
+        Student aStudent = repoStudents.getById(newStd.getId());
+        assertEquals(aStudent.getId(), newStd.getId());
     }
 
     @Test
