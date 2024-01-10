@@ -19,6 +19,7 @@ public class StudentsRepositoryJPA implements StudentsRepositoryInf {
         em.getTransaction().begin();
         if (estudiante.isValid()) {
             em.persist(estudiante);
+            estudiante.setNombre("Cambio de nombre");
             em.getTransaction().commit();
         } else {
             em.getTransaction().rollback();
@@ -31,7 +32,7 @@ public class StudentsRepositoryJPA implements StudentsRepositoryInf {
         if (estudiante.isValid()) {
             Student aStd = em.find(Student.class, estudiante.getId());
             aStd.setNombre(estudiante.getNombre());
-            em.flush();
+//            em.flush();
             aStd.setApellido(estudiante.getApellido());
 //            em.persist(aStd);
             em.getTransaction().commit();
