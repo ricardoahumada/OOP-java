@@ -29,12 +29,6 @@ public class PersistenceConfig {
         return transactionManager;
     }
 
-
-    @Bean
-    public static PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer() {
-        return new PropertySourcesPlaceholderConfigurer();
-    }
-
     @Bean
     DataSource schoolDataSource() {
         DriverManagerDataSource ds = new DriverManagerDataSource();
@@ -51,7 +45,7 @@ public class PersistenceConfig {
     @Bean
     public JpaVendorAdapter vendorAdapter() {
         HibernateJpaVendorAdapter va = new HibernateJpaVendorAdapter();
-        va.setShowSql(false);
+        va.setShowSql(true);
         va.setGenerateDdl(true);
 
         return va;
