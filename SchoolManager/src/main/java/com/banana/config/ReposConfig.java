@@ -9,6 +9,9 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 import org.springframework.core.env.Environment;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+
 @Configuration
 public class ReposConfig {
 
@@ -20,6 +23,9 @@ public class ReposConfig {
 
     @Value("${max.conn}")
     Integer maxConn;
+
+    @Autowired
+    EntityManagerFactory emf;
 
     @Bean
     @Profile("default")
@@ -43,7 +49,7 @@ public class ReposConfig {
         System.out.println("dbUrlEnv:" + dbUrlEnv);
 
         StudentsRepositoryJPA repo = new StudentsRepositoryJPA();
-        repo.setEm(JPAUtil.getEntityManagerFactory().createEntityManager());
+        repo.setEm(emf.createEntityManager());
         repo.setUrlConn(dbUrl);
         return repo;
     }
@@ -52,7 +58,7 @@ public class ReposConfig {
     @Profile("dev")
     public SchoolsRepositoryInf getSchoolRepositoryJPA() {
         SchoolsRepositoryJPA repo = new SchoolsRepositoryJPA();
-        repo.setEm(JPAUtil.getEntityManagerFactory().createEntityManager());
+        repo.setEm(emf.createEntityManager());
         return repo;
     }
 
