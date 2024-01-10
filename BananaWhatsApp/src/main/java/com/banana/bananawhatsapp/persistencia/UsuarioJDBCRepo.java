@@ -4,10 +4,7 @@ import com.banana.bananawhatsapp.exceptions.UsuarioException;
 import com.banana.bananawhatsapp.modelos.Usuario;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
 
-import java.lang.annotation.Repeatable;
 import java.sql.*;
 import java.util.Set;
 
@@ -56,7 +53,41 @@ public class UsuarioJDBCRepo implements IUsuarioRepository {
 
     @Override
     public boolean borrar(Usuario usuario) throws SQLException {
-        return false;
+        Connection conn = null;
+        try {
+            conn = DriverManager.getConnection(db_url);
+            conn.setAutoCommit(false);
+
+            String sql = "DELETE FROM mensaje WHERE from_user=? OR to_user=?";
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setInt(1, usuario.getId());
+            stmt.setInt(2, usuario.getId());
+
+            int rows = stmt.executeUpdate();
+
+            stmt.close();
+
+            sql = "DELETE FROM usuario WHERE id=?";
+            stmt = conn.prepareStatement(sql);
+            stmt.setInt(1, usuario.getId());
+
+            rows = stmt.executeUpdate();
+
+            if (rows <= 0) {
+                throw new UsuarioException("Usuario no existe");
+            }
+            stmt.close();
+
+            conn.commit();
+
+        } catch (SQLException e) {
+            conn.rollback();
+            e.printStackTrace();
+            throw e;
+        } finally {
+            if (conn != null) conn.close();
+        }
+        return true;
     }
 
     @Override
