@@ -9,6 +9,9 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(SpringExtension.class)
@@ -19,6 +22,9 @@ class SchoolsRepositoryInfTest {
     @Autowired
     private SchoolsRepositoryInf repo;
 
+    @Autowired
+    EntityManagerFactory emf;
+
     /*@Test
     void testBeans(){
         assertNotNull(repo);
@@ -26,10 +32,15 @@ class SchoolsRepositoryInfTest {
 
     @Test
     void add() {
+        EntityManager em = emf.createEntityManager();
+
         School sch = new School(null, "Mi escuela", null);
         repo.add(sch);
         assertNotNull(sch);
-        assertTrue(sch.getId() > 0);
+
+        School ssch = em.find(School.class, sch.getId());
+        assertNotNull(ssch);
+        assertEquals(ssch.getId(), sch.getId());
     }
 
     @Test
