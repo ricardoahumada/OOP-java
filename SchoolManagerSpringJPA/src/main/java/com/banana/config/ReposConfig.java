@@ -1,7 +1,6 @@
 package com.banana.config;
 
 import com.banana.persistence.*;
-import com.banana.util.JPAUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -10,7 +9,7 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.core.env.Environment;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
+import javax.persistence.PersistenceContext;
 
 @Configuration
 public class ReposConfig {
@@ -24,8 +23,8 @@ public class ReposConfig {
     @Value("${max.conn}")
     Integer maxConn;
 
-    @Autowired
-    EntityManagerFactory emf;
+    @PersistenceContext
+    EntityManager em;
 
     @Bean
     @Profile("default")
@@ -49,7 +48,7 @@ public class ReposConfig {
         System.out.println("dbUrlEnv:" + dbUrlEnv);
 
         StudentsRepositoryJPA repo = new StudentsRepositoryJPA();
-        repo.setEm(emf.createEntityManager());
+        repo.setEm(em);
         repo.setUrlConn(dbUrl);
         return repo;
     }
@@ -58,7 +57,7 @@ public class ReposConfig {
     @Profile("dev")
     public SchoolsRepositoryInf getSchoolRepositoryJPA() {
         SchoolsRepositoryJPA repo = new SchoolsRepositoryJPA();
-        repo.setEm(emf.createEntityManager());
+        repo.setEm(em);
         return repo;
     }
 
