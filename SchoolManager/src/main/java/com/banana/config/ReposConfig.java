@@ -1,8 +1,6 @@
 package com.banana.config;
 
-import com.banana.persistence.StudentsRepository;
-import com.banana.persistence.StudentsRepositoryInf;
-import com.banana.persistence.StudentsRepositoryJPA;
+import com.banana.persistence.*;
 import com.banana.util.JPAUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -38,7 +36,7 @@ public class ReposConfig {
 
     @Bean
     @Profile("dev")
-    public StudentsRepositoryInf getStudentsRepositoryJDBC() {
+    public StudentsRepositoryInf getStudentsRepositoryJPA() {
         System.out.println("maxConn JDBC:" + maxConn);
 
         String dbUrlEnv = env.getProperty("db.conn", String.class);
@@ -47,6 +45,14 @@ public class ReposConfig {
         StudentsRepositoryJPA repo = new StudentsRepositoryJPA();
         repo.setEm(JPAUtil.getEntityManagerFactory().createEntityManager());
         repo.setUrlConn(dbUrl);
+        return repo;
+    }
+
+    @Bean
+    @Profile("dev")
+    public SchoolsRepositoryInf getSchoolRepositoryJPA() {
+        SchoolsRepositoryJPA repo = new SchoolsRepositoryJPA();
+        repo.setEm(JPAUtil.getEntityManagerFactory().createEntityManager());
         return repo;
     }
 
