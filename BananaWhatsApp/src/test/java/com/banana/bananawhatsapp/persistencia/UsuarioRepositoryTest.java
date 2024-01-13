@@ -2,10 +2,7 @@ package com.banana.bananawhatsapp.persistencia;
 
 import com.banana.bananawhatsapp.config.SpringConfig;
 import com.banana.bananawhatsapp.modelos.Usuario;
-import org.junit.jupiter.api.MethodOrderer;
-import org.junit.jupiter.api.Order;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestMethodOrder;
+import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ActiveProfiles;
@@ -23,7 +20,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = {SpringConfig.class})
 @ActiveProfiles("prod")
-//@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class UsuarioRepositoryTest {
     @Autowired
     IUsuarioRepository repo;
@@ -31,8 +28,13 @@ class UsuarioRepositoryTest {
     @Autowired
     IMensajeRepository mensajeRepository;
 
+    @BeforeAll
+    void setUp(){
+        // inserts
+    }
+
     @Test
-//    @Order(1)
+    @Order(1)
     void dadoUnUsuarioValido_cuandoCrear_entoncesUsuarioValido() throws Exception {
         Usuario nuevo = new Usuario(null, "Ricardo", "r@r.com", LocalDate.now(), true);
         repo.crear(nuevo);
@@ -42,6 +44,7 @@ class UsuarioRepositoryTest {
     }
 
     @Test
+    @Order(2)
     void dadoUnUsuarioNOValido_cuandoCrear_entoncesExcepcion() {
         Usuario nuevo = new Usuario(null, "Ricardo", "r", LocalDate.now(), true);
         assertThrows(Exception.class, () -> {
@@ -50,6 +53,7 @@ class UsuarioRepositoryTest {
     }
 
     @Test
+    @Order(3)
     void dadoUnUsuarioValido_cuandoActualizar_entoncesUsuarioValido() {
     }
 
@@ -79,6 +83,19 @@ class UsuarioRepositoryTest {
 
     @Test
     void dadoUnUsuarioNOValido_cuandoObtenerPosiblesDestinatarios_entoncesExcepcion() {
+    }
+
+    @Test
+    void dadoUnUsuarioNOValido_cuandoCrearListarBorrar_entoncesOK(){
+        // insert
+        // verificar que id mayor 0
+        
+        // get
+        // verificar que existe para id
+
+        // delete
+        // verificar que excepcion cuando id
+
     }
 
 }
