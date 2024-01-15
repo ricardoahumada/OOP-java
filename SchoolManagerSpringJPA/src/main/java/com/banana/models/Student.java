@@ -12,6 +12,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "estudiante")
+@NamedQuery(name = "Student.getStudents", query = "SELECT s FROM Student s")
 public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

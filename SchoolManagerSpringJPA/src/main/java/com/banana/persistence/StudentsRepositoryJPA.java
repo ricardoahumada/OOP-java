@@ -42,17 +42,27 @@ public class StudentsRepositoryJPA implements StudentsRepositoryInf {
 
     @Override
     public Student get(int idx) {
-        TypedQuery query = em.createQuery("SELECT s FROM Student s", Student.class);
+        /*TypedQuery query = em.createQuery("SELECT s FROM Student s", Student.class);
 //        query.setParameter("id",1L);
         query.setFirstResult(idx).setMaxResults(1); //"LIMIT idx, 1"
 
+
+        // USANDO getResultList
 //        List<Student> resultados = query.getResultList();
 //        System.out.println("resultados:" + resultados);
 //        return resultados.get(0);
 
+        // USANDO getSingleResult
         Student unStd = (Student) query.getSingleResult();
         System.out.println("resultados:" + unStd);
-        return unStd;
+        return unStd;*/
+
+        // USANDO NamedQuery
+        TypedQuery query = em.createNamedQuery("Student.getStudents", Student.class);
+        query.setFirstResult(idx).setMaxResults(1); //"LIMIT idx, 1"
+        List<Student> resultados = query.getResultList();
+        System.out.println("resultados:" + resultados);
+        return resultados.get(0);
     }
 
     @Override
