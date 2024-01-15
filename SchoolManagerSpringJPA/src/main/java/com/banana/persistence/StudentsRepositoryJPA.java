@@ -46,7 +46,6 @@ public class StudentsRepositoryJPA implements StudentsRepositoryInf {
 //        query.setParameter("id",1L);
         query.setFirstResult(idx).setMaxResults(1); //"LIMIT idx, 1"
 
-
         // USANDO getResultList
 //        List<Student> resultados = query.getResultList();
 //        System.out.println("resultados:" + resultados);

@@ -19,7 +19,9 @@ public class School {
 
     private String name;
 
-    @Transient
+    //    @Transient
+    @OneToMany
+    @JoinColumn(name = "school_id")
     private List<Student> estudiantes = new ArrayList<>();
 
     public School(Long id, String name) {
