@@ -14,7 +14,7 @@ import javax.persistence.PersistenceContext;
 @Setter
 @Repository
 public class SchoolsRepositoryJPA implements SchoolsRepositoryInf {
-    @PersistenceContext
+    @PersistenceContext // Accede al emf; emf.createEntityManager();
     EntityManager em;
 
     @Override
