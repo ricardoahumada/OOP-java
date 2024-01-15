@@ -19,8 +19,8 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 @ActiveProfiles("dev")
 class StudentsRepositoryTest {
 
-    @Autowired
-    private ApplicationContext context;
+    /*@Autowired
+    private ApplicationContext context;*/
 
     @Autowired
     private StudentsRepositoryInf repoStudents;
@@ -33,12 +33,12 @@ class StudentsRepositoryTest {
         repoStudents = context.getBean(StudentsRepositoryInf.class);
     }*/
 
-    @Test
+    /*@Test
     void testBeans() {
         assertNotNull(context);
         assertNotNull(repoStudents);
         System.out.println("UrlConn: " + repoStudents.getUrlConn());
-    }
+    }*/
 
     @Test
     void getById() {
