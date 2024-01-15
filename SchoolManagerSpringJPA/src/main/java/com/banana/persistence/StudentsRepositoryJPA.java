@@ -7,7 +7,9 @@ import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
+import java.util.List;
 
 @Setter
 @Getter
@@ -40,7 +42,10 @@ public class StudentsRepositoryJPA implements StudentsRepositoryInf {
 
     @Override
     public Student get(int idx) {
-        return null;
+        TypedQuery query = em.createQuery("SELECT s FROM Student s ORDER BY s.nombre", Student.class);
+        List<Student> resultados = query.getResultList();
+        System.out.println("resultados:"+ resultados);
+        return resultados.get(0);
     }
 
     @Override
