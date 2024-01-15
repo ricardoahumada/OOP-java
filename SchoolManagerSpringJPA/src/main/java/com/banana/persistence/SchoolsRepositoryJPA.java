@@ -4,25 +4,31 @@ package com.banana.persistence;
 import com.banana.models.School;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 @Getter
 @Setter
+@Repository
 public class SchoolsRepositoryJPA implements SchoolsRepositoryInf {
+    @PersistenceContext
     EntityManager em;
 
     @Override
+    @Transactional
     public School add(School escuela) {
-        try {
-            em.getTransaction().begin();
+//        try {
+//            em.getTransaction().begin();
             em.persist(escuela);
-            em.getTransaction().commit();
-        } catch (Exception e) {
-            e.printStackTrace();
-            em.getTransaction().rollback();
-            return null;
-        }
+//            em.getTransaction().commit();
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            em.getTransaction().rollback();
+//            return null;
+//        }
         return escuela;
     }
 
