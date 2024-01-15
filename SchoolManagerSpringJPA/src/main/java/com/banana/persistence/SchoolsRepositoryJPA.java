@@ -22,7 +22,7 @@ public class SchoolsRepositoryJPA implements SchoolsRepositoryInf {
     public School add(School escuela) {
 //        try {
 //            em.getTransaction().begin();
-            em.persist(escuela);
+        em.persist(escuela);
 //            em.getTransaction().commit();
 //        } catch (Exception e) {
 //            e.printStackTrace();
@@ -33,19 +33,24 @@ public class SchoolsRepositoryJPA implements SchoolsRepositoryInf {
     }
 
     @Override
+    @Transactional
     public School update(School escuela) {
-        try {
-            em.getTransaction().begin();
-            School psch = em.find(School.class, escuela.getId());
-            psch.setName(escuela.getName());
-            psch.setEstudiantes(escuela.getEstudiantes());
-            em.getTransaction().commit();
-            return psch;
-        } catch (Exception e) {
-            e.printStackTrace();
-            em.getTransaction().rollback();
-            return null;
-        }
+//        try {
+//            em.getTransaction().begin();
+        System.out.println("escuela:" + escuela);
+
+        School psch = em.find(School.class, escuela.getId());
+        System.out.println("psch:" + psch);
+
+        psch.setName(escuela.getName());
+        psch.setEstudiantes(escuela.getEstudiantes());
+//            em.getTransaction().commit();
+        return psch;
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            em.getTransaction().rollback();
+//            return null;
+//        }
     }
 
     @Override

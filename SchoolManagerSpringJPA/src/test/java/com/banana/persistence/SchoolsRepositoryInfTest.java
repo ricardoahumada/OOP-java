@@ -76,7 +76,8 @@ class SchoolsRepositoryInfTest {
 
     @Test
     void update() {
-        School sch = new School(1L, "Mi escuela cambio", null);
+        School schToChange = schools.get(0);
+        School sch = new School(schToChange.getId(), "Mi escuela cambio", null);
         School schC = repo.update(sch);
         assertNotNull(sch);
         assertEquals(sch.getName(), schC.getName());
@@ -84,7 +85,8 @@ class SchoolsRepositoryInfTest {
 
     @Test
     void getById() {
-        School sch = repo.getById(1L);
+        School schToFind = schools.get(0);
+        School sch = repo.getById(schToFind.getId());
         assertNotNull(sch);
     }
 
