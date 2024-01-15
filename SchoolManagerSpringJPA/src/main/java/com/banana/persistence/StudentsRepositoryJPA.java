@@ -3,43 +3,37 @@ package com.banana.persistence;
 import com.banana.models.Student;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 
 @Setter
 @Getter
+@Repository
 public class StudentsRepositoryJPA implements StudentsRepositoryInf {
 
     private String urlConn;
 
+    @PersistenceContext
     private EntityManager em;
 
     @Override
+    @Transactional
     public void add(Student estudiante) {
-        em.getTransaction().begin();
-        if (estudiante.isValid()) {
-            em.persist(estudiante);
-            estudiante.setNombre("Cambio de nombre");
-            em.getTransaction().commit();
-        } else {
-            em.getTransaction().rollback();
-        }
+        em.persist(estudiante);
     }
 
     @Override
+    @Transactional
     public Student update(Student estudiante) {
-        em.getTransaction().begin();
         if (estudiante.isValid()) {
             Student aStd = em.find(Student.class, estudiante.getId());
             aStd.setNombre(estudiante.getNombre());
-//            em.flush();
             aStd.setApellido(estudiante.getApellido());
-//            em.persist(aStd);
-            em.getTransaction().commit();
             return aStd;
         } else {
-            em.getTransaction().rollback();
             return null;
         }
     }

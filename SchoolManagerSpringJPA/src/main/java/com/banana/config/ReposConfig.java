@@ -53,11 +53,11 @@ public class ReposConfig {
         return repo;
     }
 
-    /*@Bean
+    @Bean
     @Profile("dev")
     public SchoolsRepositoryInf getSchoolRepositoryJPA() {
         SchoolsRepositoryJPA repo = new SchoolsRepositoryJPA();
         repo.setEm(em);
         return repo;
-    }*/
+    }
 }
