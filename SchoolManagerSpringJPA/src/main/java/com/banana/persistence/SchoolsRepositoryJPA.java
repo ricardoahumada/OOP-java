@@ -34,13 +34,10 @@ public class SchoolsRepositoryJPA implements SchoolsRepositoryInf {
 
     @Override
     @Transactional
-    public School update(School escuela) {
+    public School update(School escuela){
 //        try {
 //            em.getTransaction().begin();
-        System.out.println("escuela:" + escuela);
-
         School psch = em.find(School.class, escuela.getId());
-        System.out.println("psch:" + psch);
 
         psch.setName(escuela.getName());
         psch.setEstudiantes(escuela.getEstudiantes());
