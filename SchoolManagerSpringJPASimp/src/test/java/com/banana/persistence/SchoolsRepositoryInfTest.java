@@ -87,6 +87,12 @@ class SchoolsRepositoryInfTest {
         assertNotNull(sch);
     }
 
+    @Test
+    void getAll() throws SQLException {
+        List<School> escuelas = repo.getAll();
+        assertNotNull(escuelas);
+        assertTrue(escuelas.size() >= schools.size());
+    }
 
     @AfterAll
     void tearDown() {
@@ -102,7 +108,5 @@ class SchoolsRepositoryInfTest {
         tx.commit();
     }
 
-    @Test
-    void getAll() {
-    }
+
 }

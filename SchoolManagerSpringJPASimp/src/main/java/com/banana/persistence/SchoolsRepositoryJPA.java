@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.util.List;
 
 @Getter
 @Setter
@@ -40,7 +41,7 @@ public class SchoolsRepositoryJPA implements SchoolsRepositoryInf {
     }
 
     @Override
-    public School getAll() throws RuntimeException {
+    public List<School> getAll() throws RuntimeException {
         return null;
     }
 }

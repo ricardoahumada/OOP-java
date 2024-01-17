@@ -16,7 +16,7 @@ import java.util.List;
 @Repository
 public class StudentsRepositoryJPA implements StudentsRepositoryInf {
 
-    @PersistenceContext
+    @PersistenceContext  // Accede al emf; emf.createEntityManager();
     private EntityManager em;
 
     @Override
