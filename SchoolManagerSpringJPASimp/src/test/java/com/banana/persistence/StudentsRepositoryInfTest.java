@@ -1,6 +1,7 @@
 package com.banana.persistence;
 
 import com.banana.config.SpringConfig;
+import com.banana.models.School;
 import com.banana.models.Student;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -33,7 +34,16 @@ class StudentsRepositoryInfTest {
 
     @Test
     void add() throws SQLException {
-        Student newStd = new Student(null, "El nuevo", "Apellido", 2);
+        Student newStd = new Student(null, "Matias", "Mattel", 2);
+        System.out.println(newStd);
+        repoStudents.add(newStd);
+        Student aStudent = repoStudents.getById(newStd.getId());
+        assertEquals(aStudent.getId(), newStd.getId());
+    }
+
+    @Test
+    void addwithschool() throws SQLException {
+        Student newStd = new Student(null, "Rita", "Narvaez", 2, new School(null, "Otra escuela", null), null);
         System.out.println(newStd);
         repoStudents.add(newStd);
         Student aStudent = repoStudents.getById(newStd.getId());
