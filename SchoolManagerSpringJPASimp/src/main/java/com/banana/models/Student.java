@@ -27,6 +27,7 @@ public class Student {
 
     @ManyToOne(cascade = {CascadeType.ALL})
     @JoinColumn(name = "school_id")
+    @ToString.Exclude
     private School mySchool;
 
     public Student(Long id, String nombre, String apellido, int curso) {

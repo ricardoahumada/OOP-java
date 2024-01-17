@@ -100,8 +100,8 @@ class SchoolsRepositoryInfTest {
     @Test
     @Transactional
     void getById() throws SQLException {
-        School schToFind = schools.get(0);
-        School sch = repo.getById(schToFind.getId());
+//        School schToFind = schools.get(0);
+        School sch = repo.getById(8L);
         System.out.println(sch);
         assertNotNull(sch);
     }
