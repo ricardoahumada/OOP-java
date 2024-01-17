@@ -32,6 +32,7 @@ public class Student {
     private School mySchool;
 
     @ManyToMany(fetch = FetchType.LAZY, mappedBy = "estudiantes")
+    @ToString.Exclude
     private Set<Project> proyectos;
 
     public Student(Long id, String nombre, String apellido, int curso) {
