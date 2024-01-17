@@ -20,8 +20,9 @@ public class School {
     private String name;
 
     //    @Transient
-    @OneToMany(cascade = {CascadeType.ALL})
+    @OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
     @JoinColumn(name = "school_id")
+//    @ToString.Exclude
     private List<Student> estudiantes = new ArrayList<>();
 
     public School(Long id, String name) {
