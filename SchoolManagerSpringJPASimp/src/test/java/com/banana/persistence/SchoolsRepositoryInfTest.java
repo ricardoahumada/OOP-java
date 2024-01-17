@@ -76,11 +76,16 @@ class SchoolsRepositoryInfTest {
     @Test
     void addWithStudents() throws SQLException {
         List<Student> estudiantes = List.of(
-            new Student(null, "Pere", "Perez", 2),
-            new Student(null, "Rosa", "Rosalez", 3)
+            new Student(null, "Juan", "Perez", 2),
+            new Student(null, "Luisa", "Rosalez", 3)
         );
 
-        School sch = new School(null, "Mi escuela", estudiantes);
+        School sch = new School(null, "Mi escuela con estudiantes", estudiantes);
+
+        for (Student estudiante : estudiantes) {
+            estudiante.setMySchool(sch);
+        }
+
         repo.add(sch);
 //        System.out.println(sch);
         assertNotNull(sch);
