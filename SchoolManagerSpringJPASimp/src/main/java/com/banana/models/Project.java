@@ -13,7 +13,7 @@ import java.util.List;
 @AllArgsConstructor
 @ToString
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-public class AClass {
+public class Project {
     private Long id;
     private String name;
     private List<Student> estudiantes = new ArrayList<>();
