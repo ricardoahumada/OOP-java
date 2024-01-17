@@ -2,6 +2,7 @@ package com.banana.persistence;
 
 import com.banana.config.SpringConfig;
 import com.banana.models.School;
+import com.banana.models.Student;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -70,6 +71,21 @@ class SchoolsRepositoryInfTest {
         assertEquals(ssch.getId(), sch.getId());
 
         schools.add(sch);
+    }
+
+    @Test
+    void addWithStudents() throws SQLException {
+        List<Student> estudiantes = List.of(
+            new Student(null, "Pere", "Perez", 2),
+            new Student(null, "Rosa", "Rosalez", 3)
+        );
+
+        School sch = new School(null, "Mi escuela", estudiantes);
+        repo.add(sch);
+//        System.out.println(sch);
+        assertNotNull(sch);
+        assertTrue(sch.getId() > 0);
+
     }
 
     @Test

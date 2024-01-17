@@ -20,8 +20,8 @@ public class School {
     private String name;
 
     //    @Transient
-    @OneToMany(mappedBy = "mySchool")
-//    @JoinColumn(name = "school_id")
+    @OneToMany(cascade = {CascadeType.ALL})
+    @JoinColumn(name = "school_id")
     private List<Student> estudiantes = new ArrayList<>();
 
     public School(Long id, String name) {

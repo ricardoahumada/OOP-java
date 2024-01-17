@@ -25,7 +25,7 @@ public class Student {
 
     private int curso;
 
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.ALL})
     @JoinColumn(name = "school_id")
     private School mySchool;
 
