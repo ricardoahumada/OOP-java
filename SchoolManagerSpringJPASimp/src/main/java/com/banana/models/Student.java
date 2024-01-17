@@ -3,6 +3,7 @@ package com.banana.models;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -29,6 +30,9 @@ public class Student {
     @JoinColumn(name = "school_id")
     @ToString.Exclude
     private School mySchool;
+
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "estudiantes")
+    private Set<Project> proyectos;
 
     public Student(Long id, String nombre, String apellido, int curso) {
         this.id = id;

@@ -12,8 +12,18 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
+@Entity
 public class Project {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "proyectos_estudiantes",
+            joinColumns = {@JoinColumn(name = "proj_id")},
+            inverseJoinColumns = {@JoinColumn(name = "std_id")}
+    )
     private List<Student> estudiantes = new ArrayList<>();
 }
