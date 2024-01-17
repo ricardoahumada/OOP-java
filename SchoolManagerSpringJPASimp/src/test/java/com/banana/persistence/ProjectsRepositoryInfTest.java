@@ -3,12 +3,17 @@ package com.banana.persistence;
 import com.banana.config.SpringConfig;
 import com.banana.models.Project;
 import com.banana.models.Student;
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.MethodOrderer;
+import org.junit.jupiter.api.Order;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestMethodOrder;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import javax.transaction.Transactional;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -19,6 +24,7 @@ import static org.hamcrest.Matchers.notNullValue;
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = {SpringConfig.class})
 @TestMethodOrder( MethodOrderer.OrderAnnotation.class)
+@EnableAutoConfiguration
 class ProjectsRepositoryInfTest {
 
     @Autowired
@@ -51,6 +57,7 @@ class ProjectsRepositoryInfTest {
 
     @Test
     @Order(3)
+    @Transactional
     void getAll() throws SQLException {
         List<Project> classes = repo.getAll();
         assertThat(classes, notNullValue());
@@ -60,6 +67,7 @@ class ProjectsRepositoryInfTest {
 
     @Test
     @Order(4)
+    @Transactional
     void getById() throws SQLException {
         Project aProject = repo.getById(4L);
         System.out.println(aProject);

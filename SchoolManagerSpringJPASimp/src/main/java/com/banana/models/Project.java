@@ -19,7 +19,7 @@ public class Project {
     private Long id;
     private String name;
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinTable(
             name = "proyectos_estudiantes",
             joinColumns = {@JoinColumn(name = "proj_id")},
