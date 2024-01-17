@@ -14,6 +14,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -81,15 +82,20 @@ class SchoolsRepositoryInfTest {
     }
 
     @Test
+    @Transactional
     void getById() throws SQLException {
         School schToFind = schools.get(0);
         School sch = repo.getById(schToFind.getId());
+        System.out.println(sch);
         assertNotNull(sch);
     }
 
     @Test
+    @Transactional
     void getAll() throws SQLException {
         List<School> escuelas = repo.getAll();
+        System.out.println(escuelas);
+
         assertNotNull(escuelas);
         assertTrue(escuelas.size() >= schools.size());
     }

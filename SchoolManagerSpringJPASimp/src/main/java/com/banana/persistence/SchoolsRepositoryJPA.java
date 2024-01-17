@@ -42,6 +42,6 @@ public class SchoolsRepositoryJPA implements SchoolsRepositoryInf {
 
     @Override
     public List<School> getAll() throws RuntimeException {
-        return null;
+        return em.createQuery("SELECT s FROM School s", School.class).getResultList();
     }
 }
