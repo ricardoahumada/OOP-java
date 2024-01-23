@@ -8,9 +8,12 @@ import javax.persistence.*;
 //@Table(name = "cliente_empresa")
 public class Empresa extends Cliente {
     private String cif;
-    @Transient
+//    @Transient
+    @ElementCollection
+    @Column(name="unidades_de_negocio")
+    @OrderColumn
     private String[] unidadesNegocio;
-    private String unidadesDeNegocio;
+//    private String unidadesDeNegocio;
 
     public Empresa() {
     }
