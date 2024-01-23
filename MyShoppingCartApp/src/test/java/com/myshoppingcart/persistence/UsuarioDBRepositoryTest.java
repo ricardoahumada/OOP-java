@@ -2,6 +2,7 @@ package com.myshoppingcart.persistence;
 
 import com.myshoppingcart.config.SpringConfig;
 import com.myshoppingcart.exception.UsuarioNotFoundException;
+import com.myshoppingcart.model.Direccion;
 import com.myshoppingcart.model.Usuario;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -74,7 +75,7 @@ public class UsuarioDBRepositoryTest {
 
     @Test
     void dadosUsuario_cuandoinsertarUsuarioEnDB_entoncesIdValido() throws Exception {
-        Usuario user = new Usuario(null, "nuevo", "usuario", "n@n.com", 10, 0, "xxxx", LocalDate.of(2005, 02, 01), true);
+        Usuario user = new Usuario(null, "nuevo", "usuario", "n@n.com", 10, 0, "xxxx", LocalDate.of(2005, 02, 01), true, new Direccion(null, "c/algria 23"));
 
         repo.insertUsuario(user);
 
@@ -96,7 +97,7 @@ public class UsuarioDBRepositoryTest {
 
     @Test
     void dadoUsuarioNoExistente_cuandoActualiza_entonces_Excepccion() throws Exception {
-        Usuario user = new Usuario(null, "nuevo", "usuario", "n@n.com", 10, 0, "xxxx", LocalDate.of(2005, 02, 01), true);
+        Usuario user = new Usuario(null, "nuevo", "usuario", "n@n.com", 10, 0, "xxxx", LocalDate.of(2005, 02, 01), true, new Direccion(null, "c/algria 24"));
         user.setApellido("Apellido nuevo");
         user.setInteres(2);
 

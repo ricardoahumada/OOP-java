@@ -1,20 +1,32 @@
 package com.myshoppingcart.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
+import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.List;
 
 @AllArgsConstructor
+@NoArgsConstructor
 @Getter
 @Setter
 @ToString
+@Entity
 public class Compra {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer cid;
-    private int usuario;
-    private int producto;
-    private int cantidad;
+    @ManyToOne()
+    @JoinColumn(name = "usuario_id")
+    private Usuario usuario;
+
+    @ManyToMany()
+    @JoinTable(
+            name = "compra_productos",
+            joinColumns = {@JoinColumn(name = "compra_id")},
+            inverseJoinColumns = {@JoinColumn(name = "producto_id")}
+    )
+    private List<Producto> productos;
+
     private LocalDate fecha;
 }

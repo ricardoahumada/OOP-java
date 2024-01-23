@@ -2,6 +2,9 @@ package com.myshoppingcart.persistence;
 
 import com.myshoppingcart.config.SpringConfig;
 import com.myshoppingcart.model.Compra;
+import com.myshoppingcart.model.Producto;
+import com.myshoppingcart.model.Usuario;
+import com.sun.xml.bind.v2.runtime.reflect.opt.Const;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -11,6 +14,8 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.greaterThan;
@@ -21,6 +26,9 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 @ContextConfiguration(classes = {SpringConfig.class})
 public class CompraDBRepositoryTest {
 
+    Usuario currentUser;
+    List<Producto> productos;
+
     @Autowired
     private ICompraRepository repo;
 
@@ -30,9 +38,19 @@ public class CompraDBRepositoryTest {
     }
 
 
+    void setUp() {
+        this.currentUser = new Usuario(1);
+        this.productos = List.of(
+                new Producto(1),
+                new Producto(2)
+        );
+
+
+    }
+
     @Test
     public void dadaCompraValida_cuandoinsertCompra_entoncesOK() throws Exception {
-        Compra compra = new Compra(null, 1, 1, 3, LocalDate.now());
+        Compra compra = new Compra(null, currentUser, productos, LocalDate.now());
 
         Compra ncompra = repo.insertCompra(compra);
 
@@ -42,7 +60,7 @@ public class CompraDBRepositoryTest {
 
     @Test
     public void dadaCompraProductoNoValido_cuandoinsertCompra_entoncesExcepcion() throws Exception {
-        Compra compra = new Compra(null, 1, 1034, 3, LocalDate.now());
+        Compra compra = new Compra(null, currentUser, null, LocalDate.now());
         assertThrows(Exception.class, () -> {
             Compra ncompra = repo.insertCompra(compra);
         });
@@ -50,7 +68,12 @@ public class CompraDBRepositoryTest {
 
     @Test
     public void dadaCompraProductoSinexistenciasSuficients_cuandoinsertCompra_entoncesExcepcion() throws Exception {
-        Compra compra = new Compra(null, 1, 1, 300, LocalDate.now());
+
+        List<Producto> demasiadosProductos = new ArrayList<>();
+        for (int i = 0; i < 300; i++) {
+            demasiadosProductos.add(new Producto(1));
+        }
+        Compra compra = new Compra(null, currentUser, demasiadosProductos, LocalDate.now());
         assertThrows(Exception.class, () -> {
             Compra ncompra = repo.insertCompra(compra);
         });

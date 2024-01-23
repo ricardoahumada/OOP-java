@@ -3,23 +3,28 @@ package com.myshoppingcart.service;
 import com.myshoppingcart.exception.ProductNotFoundException;
 import com.myshoppingcart.model.Compra;
 import com.myshoppingcart.model.Producto;
+import com.myshoppingcart.model.Usuario;
 import com.myshoppingcart.persistence.ICompraRepository;
+import com.myshoppingcart.persistence.IUsuarioRepository;
 import lombok.Setter;
+import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.*;
 
-//@Component
+
 @Setter
+@Service
 public class ShoppingCart implements IShoppingCart {
 
     private ArrayList<Producto> items;
-//    @Autowired
-    private ICompraRepository repoCompras;
 
-    public ShoppingCart() /*throws Exception*/ {
+    //    @Autowired
+    private ICompraRepository repoCompras;
+    private IUsuarioRepository repoUsuarios;
+
+    public ShoppingCart() {
         items = new ArrayList<>();
-//        repoCompras = new CompraDBRepository();
     }
 
     @Override
@@ -57,15 +62,14 @@ public class ShoppingCart implements IShoppingCart {
 
     @Override
     public void comprar() {
-        for (Producto item : items) {
-            System.out.println("prod:" + item);
-            try {
-                Compra compra = new Compra(null, 1, item.getMid(), 1, LocalDate.now());
-                repoCompras.insertCompra(compra);
-            } catch (Exception e) {
-                e.printStackTrace();
-                throw new RuntimeException(e);
-            }
+
+        try {
+            Usuario currentUser = repoUsuarios.getUsuario("juana@e.com", "juanason_1");
+            Compra compra = new Compra(null, currentUser, items, LocalDate.now());
+            repoCompras.insertCompra(compra);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 
