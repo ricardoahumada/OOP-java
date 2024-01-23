@@ -11,22 +11,9 @@ import java.util.List;
 @Getter
 @Setter
 @ToString
-@Entity
 public class Compra {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer cid;
-    @ManyToOne()
-    @JoinColumn(name = "usuario_id")
     private Usuario usuario;
-
-    @ManyToMany()
-    @JoinTable(
-            name = "compra_productos",
-            joinColumns = {@JoinColumn(name = "compra_id")},
-            inverseJoinColumns = {@JoinColumn(name = "producto_id")}
-    )
     private List<Producto> productos;
-
     private LocalDate fecha;
 }
