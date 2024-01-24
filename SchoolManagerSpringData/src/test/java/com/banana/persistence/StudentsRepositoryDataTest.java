@@ -11,6 +11,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import javax.transaction.Transactional;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -32,9 +33,22 @@ class StudentsRepositoryDataTest {
         System.out.println("aStudent:"+aStudent);
         assertEquals(aStudent.getId(), 1L);
         assertNotNull(aStudent);
-
     }
 
-    
+    @Test
+    @Transactional
+    void getAll() throws SQLException {
+        List<Student> students = repoStudents.findAll();
+        System.out.println("students:"+students);
+        assertNotNull(students);
+    }
 
+    @Test
+    void save() throws SQLException {
+        Student newStd = new Student(null, "Matias", "Mattel", 2);
+        System.out.println(newStd);
+        repoStudents.save(newStd);
+        Student aStudent = repoStudents.getById(newStd.getId());
+        assertEquals(aStudent.getId(), newStd.getId());
+    }
 }
