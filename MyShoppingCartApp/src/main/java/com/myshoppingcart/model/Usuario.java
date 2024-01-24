@@ -5,6 +5,7 @@ import lombok.*;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Set;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -30,9 +31,28 @@ public class Usuario {
     @OneToOne(mappedBy = "usuario")
     private Direccion direccion;
 
+    /*
+    // unidirecciona usuario - compra
+    @OneToMany()
+    @JoinColumn(name = "user_id")*/
+    //bidireccional usuario-usuario
+    @OneToMany(mappedBy = "usuario")
+    private Set<Compra> compras;
+
     public Usuario(Integer uid) {
         this.uid = uid;
     }
 
-
+    public Usuario(Integer uid, String nombre, String apellido, String email, int interes, double saldo, String password, LocalDate nacimiento, boolean activo, Direccion direccion) {
+        this.uid = uid;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.email = email;
+        this.interes = interes;
+        this.saldo = saldo;
+        this.password = password;
+        this.nacimiento = nacimiento;
+        this.activo = activo;
+        this.direccion = direccion;
+    }
 }
