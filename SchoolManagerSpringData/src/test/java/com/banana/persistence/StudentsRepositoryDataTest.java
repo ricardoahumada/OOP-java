@@ -59,4 +59,28 @@ class StudentsRepositoryDataTest {
         System.out.println("students:"+students);
         assertNotNull(students);
     }
+
+    @Test
+    @Transactional
+    void getAllByNameAndSurn() throws SQLException {
+        List<Student> students = repoStudents.findByNombreAndApellidoIgnoreCase("juan","perez");
+        System.out.println("students:"+students);
+        assertNotNull(students);
+    }
+
+    @Test
+    @Transactional
+    void findByNombrEndsWith() throws SQLException {
+        List<Student> students = repoStudents.findByNombreWith("n");
+        System.out.println("students:"+students);
+        assertNotNull(students);
+    }
+
+    @Test
+    @Transactional
+    void findByNombreWithNative() throws SQLException {
+        List<Student> students = repoStudents.findByNombreWithNative("n");
+        System.out.println("students:"+students);
+        assertNotNull(students);
+    }
 }
