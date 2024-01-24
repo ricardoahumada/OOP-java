@@ -51,4 +51,12 @@ class StudentsRepositoryDataTest {
         Student aStudent = repoStudents.getById(newStd.getId());
         assertEquals(aStudent.getId(), newStd.getId());
     }
+
+    @Test
+    @Transactional
+    void getAllByName() throws SQLException {
+        List<Student> students = repoStudents.findByNombreIgnoreCase("Juan");
+        System.out.println("students:"+students);
+        assertNotNull(students);
+    }
 }
