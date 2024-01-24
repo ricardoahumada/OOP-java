@@ -11,7 +11,10 @@ import java.util.List;
 @Getter
 @Setter
 @ToString
+@Entity
 public class Usuario {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer uid;
     private String nombre;
     private String apellido;
@@ -21,6 +24,10 @@ public class Usuario {
     private String password;
     private LocalDate nacimiento;
     private boolean activo;
+
+//    @OneToOne
+//    @JoinColumn(name = "direccion_id")
+    @OneToOne(mappedBy = "usuario")
     private Direccion direccion;
 
     public Usuario(Integer uid) {
