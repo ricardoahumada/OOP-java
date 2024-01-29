@@ -10,6 +10,8 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.sql.SQLException;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
@@ -30,12 +32,12 @@ class StudentRepositoryExtendedTest {
         assertNotNull(aStudent);
     }
 
-    /*@Test
+    @Test
     void get() throws SQLException {
         Student aStudent = repo.get(2);
         System.out.println(aStudent);
         assertEquals(aStudent.getId(), 3L);
         assertNotNull(aStudent);
-    }*/
+    }
 
 }
