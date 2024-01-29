@@ -3,11 +3,11 @@ package com.banana.persistence;
 import com.banana.config.SpringConfig;
 import com.banana.models.School;
 import com.banana.models.Student;
+import com.banana.persistence.student.StudentsRepositoryInf;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 

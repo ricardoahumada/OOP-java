@@ -2,6 +2,7 @@ package com.banana.persistence;
 
 import com.banana.config.SpringConfig;
 import com.banana.models.Student;
+import com.banana.persistence.student.StudentsRepositoryData;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;

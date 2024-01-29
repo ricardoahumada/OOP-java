@@ -3,8 +3,8 @@ package com.banana.persistence;
 import com.banana.config.SpringConfig;
 import com.banana.models.School;
 import com.banana.models.Student;
+import com.banana.persistence.school.SchoolsRepositoryData;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -20,7 +20,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = {SpringConfig.class})
-@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @EnableAutoConfiguration
 class SchoolsRepositoryDataTest {
     @Autowired
