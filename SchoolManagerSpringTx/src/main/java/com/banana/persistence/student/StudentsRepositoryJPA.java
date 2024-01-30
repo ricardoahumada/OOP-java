@@ -23,7 +23,7 @@ public class StudentsRepositoryJPA implements StudentsRepositoryInf {
     private EntityManager em;
 
     @Override
-    @Transactional(propagation = Propagation.MANDATORY)
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
     public void add(Student estudiante) {
         em.persist(estudiante);
     }
