@@ -13,7 +13,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @ComponentScan(basePackages = {"com.banana.persistence", "com.banana.services"})
 @EntityScan("com.banana.models")
 @EnableJpaRepositories("com.banana.persistence")
-@EnableTransactionManagement
+//@EnableTransactionManagement
 public class SpringConfig {
 
 }

@@ -51,6 +51,7 @@ public class StudentsService implements IStudentService {
     }
 
     @Override
+    @Transactional
     public void saveCollection(Collection<Student> students) throws Exception {
         for (Student aStudent : students) {
             System.out.println("Attempting to save " + aStudent);

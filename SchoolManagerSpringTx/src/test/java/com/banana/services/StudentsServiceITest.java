@@ -26,9 +26,8 @@ class StudentsServiceITest {
     private IStudentService service;
 
     @Test
-
     void storeStudent() throws Exception {
-        service.storeStudent(new Student("juan","juarez",2));
+        service.storeStudent(new Student("juan", "juare", 2));
     }
 
     @Test

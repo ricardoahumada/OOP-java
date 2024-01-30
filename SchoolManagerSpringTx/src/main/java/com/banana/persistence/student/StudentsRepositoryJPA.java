@@ -29,6 +29,7 @@ public class StudentsRepositoryJPA implements StudentsRepositoryInf {
     }
 
     @Override
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
     public Student update(Student estudiante) {
         if (estudiante.isValid()) {
             Student aStd = em.find(Student.class, estudiante.getId());
@@ -65,6 +66,7 @@ public class StudentsRepositoryJPA implements StudentsRepositoryInf {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public Student getById(Long id) {
         return em.find(Student.class, id);
     }
@@ -77,6 +79,7 @@ public class StudentsRepositoryJPA implements StudentsRepositoryInf {
     }
 
     @Override
+    @Transactional(propagation = Propagation.NEVER, readOnly = true)
     public long count() {
         Query query = em.createQuery("SELECT count(*) FROM Student");
         return (long) query.getSingleResult();
