@@ -26,7 +26,11 @@ class StudentRepositoryExtendedTest {
     @Test
     @Transactional
     void getById() throws RuntimeException {
-        Student aStudent = repo.findById(1L).orElseThrow(() -> new RuntimeException());
+//         Student aStudent = repo.findById(100L).get();
+
+//        Student aStudent = repo.findById(100L).orElse(new Student());
+        Student aStudent = repo.findById(100L).orElseThrow(() -> new RuntimeException());
+
         System.out.println("aStudent:" + aStudent);
         assertEquals(aStudent.getId(), 1L);
         assertNotNull(aStudent);
