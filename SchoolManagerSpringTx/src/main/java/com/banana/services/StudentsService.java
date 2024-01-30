@@ -20,6 +20,7 @@ public class StudentsService implements IStudentService {
     }
 
     @Override
+    @Transactional(propagation = Propagation.REQUIRED)
     public boolean storeStudent(Student student) throws Exception {
         if (student.isValid()) {
             repository.add(student);
