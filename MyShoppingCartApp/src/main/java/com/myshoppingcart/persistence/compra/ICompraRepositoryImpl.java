@@ -21,18 +21,18 @@ public class ICompraRepositoryImpl implements ICompraRepository {
     @Transactional
     public Compra insertCompra(Compra nuevaCompra) throws Exception {
 
+        // verificamos la compra
         nuevaCompra.isValid();
 
-        System.out.println("nuevaCompra:" + nuevaCompra);
-
-        List<Producto> productos = nuevaCompra.getProductos();
-
+        // recuperamos el usuario
         Usuario usuario = em.find(Usuario.class, nuevaCompra.getUsuario().getUid());
 
+        // verificamos saldos y existencias
         if (usuario.getSaldo() < nuevaCompra.calcTotal()) {
-            throw new RuntimeException("Saldo insuficiente en usuario");
+            throw new RuntimeException("Saldo insuficiente en usuario:" + usuario.getSaldo() + "<" + nuevaCompra.calcTotal());
         }
 
+        List<Producto> productos = nuevaCompra.getProductos();
         if (productos != null && productos.size() > 0) {
             List<Integer> pids = productos.stream().map(aP -> aP.getPid()).collect(Collectors.toList());
 
@@ -41,12 +41,12 @@ public class ICompraRepositoryImpl implements ICompraRepository {
             productos = q.getResultList();
 
             for (Producto producto : productos) {
-//                producto = em.find(Producto.class, producto.getPid());
                 if (producto.getExistencias() - 1 <= 0) {
-                    throw new RuntimeException("Producto SIN existencias suficientes: " + producto);
+                    throw new RuntimeException("Producto SIN existencias suficientes: " + producto.getExistencias());
                 }
             }
 
+            // actualizamos los sados y existencias
             usuario.setSaldo(usuario.getSaldo() - nuevaCompra.calcTotal());
             nuevaCompra.setUsuario(usuario);
 
@@ -55,6 +55,7 @@ public class ICompraRepositoryImpl implements ICompraRepository {
             }
             nuevaCompra.setProductos(productos);
 
+            // persistimos
             em.persist(nuevaCompra);
 
             return nuevaCompra;
