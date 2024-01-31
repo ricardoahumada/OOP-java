@@ -4,7 +4,7 @@ import com.myshoppingcart.exception.ProductNotFoundException;
 import com.myshoppingcart.model.Compra;
 import com.myshoppingcart.model.Producto;
 import com.myshoppingcart.model.Usuario;
-import com.myshoppingcart.persistence.ICompraRepository;
+import com.myshoppingcart.persistence.compra.ICompraRepository;
 import com.myshoppingcart.persistence.IUsuarioRepository;
 import lombok.Setter;
 import org.springframework.stereotype.Service;

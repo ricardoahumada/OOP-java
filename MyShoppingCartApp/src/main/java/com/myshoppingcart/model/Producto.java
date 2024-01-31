@@ -1,14 +1,12 @@
 package com.myshoppingcart.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.Set;
 
 @AllArgsConstructor
+@NoArgsConstructor
 @Getter
 @Setter
 @ToString
@@ -28,7 +26,8 @@ public class Producto {
         this.pid = mid;
     }
 
-    @ManyToMany(mappedBy = "productos")
+    @ToString.Exclude
+    @ManyToMany(mappedBy = "productos", cascade = CascadeType.ALL)
     private Set<Compra> compras;
 
     public Producto(Integer id, String cod, double prec) {

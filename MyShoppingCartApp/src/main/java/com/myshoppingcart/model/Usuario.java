@@ -36,7 +36,8 @@ public class Usuario {
     @OneToMany()
     @JoinColumn(name = "user_id")*/
     //bidireccional usuario-usuario
-    @OneToMany(mappedBy = "usuario")
+    @ToString.Exclude
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
     private Set<Compra> compras;
 
     public Usuario(Integer uid) {

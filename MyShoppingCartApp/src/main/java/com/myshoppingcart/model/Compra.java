@@ -22,11 +22,11 @@ public class Compra {
     @ManyToOne()
     @JoinColumn(name = "user_id")*/
     //bidireccional compra - usuario
-    @ManyToOne()
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id")
     private Usuario usuario;
 
-    @ManyToMany()
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name = "compra_productos",
             joinColumns = {@JoinColumn(name = "compra_id")},
@@ -35,4 +35,22 @@ public class Compra {
     private List<Producto> productos;
 
     private LocalDate fecha;
+
+    public double calcTotal() {
+        double total = 0.0;
+        if (productos != null) {
+            for (Producto producto : productos) {
+                total += producto.getPrecio();
+            }
+        }
+
+        return total;
+    }
+
+    public boolean isValid() throws Exception {
+        if (usuario.getUid() > 0 && productos.size() > 0) return true;
+        else {
+            throw new RuntimeException("Compra no valida");
+        }
+    }
 }

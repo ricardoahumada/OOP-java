@@ -8,5 +8,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface ProductoRepository extends JpaRepository<Producto, Integer> {
-    public List<Producto> findByUsuarioId(int id);
+    public List<Producto> findByCompras_Usuario_Uid(int id);
 }

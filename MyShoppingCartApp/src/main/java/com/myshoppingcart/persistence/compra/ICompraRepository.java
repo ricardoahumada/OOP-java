@@ -1,4 +1,4 @@
-package com.myshoppingcart.persistence;
+package com.myshoppingcart.persistence.compra;
 
 import com.myshoppingcart.model.Compra;
 import com.myshoppingcart.model.Producto;

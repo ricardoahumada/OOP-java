@@ -1,18 +1,16 @@
-package com.myshoppingcart.persistence;
+package com.myshoppingcart.persistence.compra;
 
 import com.myshoppingcart.config.SpringConfig;
 import com.myshoppingcart.model.Compra;
 import com.myshoppingcart.model.Producto;
 import com.myshoppingcart.model.Usuario;
-import com.sun.xml.bind.v2.runtime.reflect.opt.Const;
-import org.junit.jupiter.api.BeforeEach;
+import com.myshoppingcart.persistence.compra.ICompraRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
