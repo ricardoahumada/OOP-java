@@ -1,8 +1,8 @@
-CREATE SCHEMA `schooldbsol` ;
+CREATE SCHEMA `schooldb` ;
 
 USE mysql;
 
-CREATE USER 'schoolusersol'@'%' IDENTIFIED BY 'school123sol';
+CREATE USER 'schooluser'@'%' IDENTIFIED BY 'school123';
 
-GRANT ALL PRIVILEGES ON schooldbsol.* TO 'schoolusersol'@'%';
+GRANT ALL PRIVILEGES ON schooldb.* TO 'schooluser'@'%';
 FLUSH PRIVILEGES;
