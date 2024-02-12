@@ -1,5 +1,6 @@
 package com.microcompany.productsservice.controller;
 
+import com.microcompany.productsservice.exception.ProductExceptionController;
 import com.microcompany.productsservice.model.Product;
 import com.microcompany.productsservice.persistence.ProductsRepository;
 import com.microcompany.productsservice.service.ProductsService;
@@ -44,7 +45,8 @@ public class ProductServiceController {
 
     @RequestMapping(value = "/{pid}", method = RequestMethod.PUT)
     public Product update(@PathVariable("pid") Long id, @RequestBody Product product) {
-        return repo.save(product);
+        if (id == product.getId()) return repo.save(product);
+        else throw new RuntimeException();
     }
 
 }
