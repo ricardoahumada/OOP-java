@@ -5,6 +5,8 @@ import com.microcompany.productsservice.persistence.ProductsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import java.util.List;
 
 @Service
@@ -12,7 +14,19 @@ public class ProductsService {
     @Autowired
     private ProductsRepository productsRepository;
 
+    @PersistenceContext
+    EntityManager em;
+
     public List<Product> getProductsByText(String text) {
         return productsRepository.findByNameContaining(text);
     }
+
+    public Product duplicate(Long id) {
+        Product currProd = productsRepository.findById(id).get();
+        em.detach(currProd);
+//        Product newProduct = new Product(null, currProd.getName(), currProd.getSerial());
+        currProd.setId(null);
+        return productsRepository.save(currProd);
+    }
+
 }

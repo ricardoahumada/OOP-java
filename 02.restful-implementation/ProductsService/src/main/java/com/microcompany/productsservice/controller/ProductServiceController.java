@@ -27,8 +27,6 @@ public class ProductServiceController {
     @Autowired
     private ProductsRepository repo;
 
-    @PersistenceContext
-    EntityManager em;
 
 //    @RequestMapping(value = "", method = RequestMethod.GET)
     /*@GetMapping("")
@@ -77,11 +75,7 @@ public class ProductServiceController {
 
     @PostMapping(value = "/duplicarProducto/{pid}")
     public ResponseEntity<Product> duplicate(@PathVariable Long pid) {
-        Product currProd = repo.findById(pid).get();
-        em.detach(currProd);
-//        Product newProduct = new Product(null, currProd.getName(), currProd.getSerial());
-        currProd.setId(null);
-        return new ResponseEntity<>(repo.save(currProd), HttpStatus.CREATED);
+        return new ResponseEntity<>(service.duplicate(pid), HttpStatus.CREATED);
     }
 
 }
