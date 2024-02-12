@@ -2,6 +2,7 @@ package com.microcompany.productsservice.controller;
 
 import com.microcompany.productsservice.exception.ProductExceptionController;
 import com.microcompany.productsservice.model.Product;
+import com.microcompany.productsservice.model.StatusMessage;
 import com.microcompany.productsservice.persistence.ProductsRepository;
 import com.microcompany.productsservice.service.ProductsService;
 import org.slf4j.Logger;
@@ -61,10 +62,12 @@ public class ProductServiceController {
 
     //    @RequestMapping(value = "/{pid}", method = RequestMethod.PUT)
     @PutMapping("/{pid}")
-    public ResponseEntity<Product> update(@PathVariable("pid") Long id, @RequestBody Product product) {
+    public ResponseEntity<Object> update(@PathVariable("pid") Long id, @RequestBody Product product) {
         if (id == product.getId()) {
             return new ResponseEntity<>(repo.save(product), HttpStatus.ACCEPTED);
-        } else throw new RuntimeException();
+        } else {
+            return new ResponseEntity<>(new StatusMessage(HttpStatus.PRECONDITION_FAILED.value(), "Id y produt.id deben cohincidir"), HttpStatus.PRECONDITION_FAILED);
+        }
     }
 
 }
