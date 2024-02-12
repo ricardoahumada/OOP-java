@@ -12,6 +12,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import java.util.List;
 
 @RestController
@@ -24,6 +26,9 @@ public class ProductServiceController {
 
     @Autowired
     private ProductsRepository repo;
+
+    @PersistenceContext
+    EntityManager em;
 
 //    @RequestMapping(value = "", method = RequestMethod.GET)
     /*@GetMapping("")
@@ -73,8 +78,10 @@ public class ProductServiceController {
     @PostMapping(value = "/duplicarProducto/{pid}")
     public ResponseEntity<Product> duplicate(@PathVariable Long pid) {
         Product currProd = repo.findById(pid).get();
-        Product newProduct = new Product(null, currProd.getName(), currProd.getSerial());
-        return new ResponseEntity<>(repo.save(newProduct), HttpStatus.CREATED);
+        em.detach(currProd);
+//        Product newProduct = new Product(null, currProd.getName(), currProd.getSerial());
+        currProd.setId(null);
+        return new ResponseEntity<>(repo.save(currProd), HttpStatus.CREATED);
     }
 
 }
