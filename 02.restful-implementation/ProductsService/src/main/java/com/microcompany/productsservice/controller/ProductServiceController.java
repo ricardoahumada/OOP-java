@@ -70,4 +70,11 @@ public class ProductServiceController {
         }
     }
 
+    @PostMapping(value = "/duplicarProducto/{pid}")
+    public ResponseEntity<Product> duplicate(@PathVariable Long pid) {
+        Product currProd = repo.findById(pid).get();
+        Product newProduct = new Product(null, currProd.getName(), currProd.getSerial());
+        return new ResponseEntity<>(repo.save(newProduct), HttpStatus.CREATED);
+    }
+
 }
