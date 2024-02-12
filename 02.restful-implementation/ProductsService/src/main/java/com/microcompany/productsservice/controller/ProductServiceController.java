@@ -6,6 +6,7 @@ import com.microcompany.productsservice.service.ProductsService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -27,6 +28,12 @@ public class ProductServiceController {
     public List<Product> getAll() {
 //        return service.getProductsByText("");
         return repo.findAll();
+    }
+
+    @RequestMapping(value = "", method = RequestMethod.POST)
+    public Product save(@RequestBody Product newProduct) {
+        logger.info("newProduct:" + newProduct);
+        return repo.save(newProduct);
     }
 
 }
