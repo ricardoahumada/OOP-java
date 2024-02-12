@@ -37,4 +37,14 @@ public class ProductServiceController {
         return repo.findById(id).get();
     }
 
+    @RequestMapping(value = "/{pid}", method = RequestMethod.DELETE)
+    public void delete(@PathVariable("pid") Long id) {
+        repo.deleteById(id);
+    }
+
+    @RequestMapping(value = "/{pid}", method = RequestMethod.PUT)
+    public Product update(@PathVariable("pid") Long id, @RequestBody Product product) {
+        return repo.save(product);
+    }
+
 }
