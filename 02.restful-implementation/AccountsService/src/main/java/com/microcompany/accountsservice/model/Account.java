@@ -1,12 +1,13 @@
 package com.microcompany.accountsservice.model;
 
-import javax.persistence.*;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 
-
+import javax.persistence.*;
 import java.util.Date;
 
 @Getter
@@ -31,7 +32,7 @@ public class Account {
     private Long ownerId;
 
     @Transient
-//    @JsonIgnore
+    @JsonIgnore
     Customer owner;
 
 
