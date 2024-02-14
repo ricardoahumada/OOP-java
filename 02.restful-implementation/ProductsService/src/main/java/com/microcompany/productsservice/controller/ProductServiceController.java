@@ -49,6 +49,7 @@ public class ProductServiceController {
     @RequestMapping(value = "", method = RequestMethod.POST)
     public ResponseEntity<Product> save(@RequestBody Product newProduct) {
         logger.info("newProduct:" + newProduct);
+        newProduct.setId(null);
         return new ResponseEntity<>(repo.save(newProduct), HttpStatus.CREATED);
     }
 
