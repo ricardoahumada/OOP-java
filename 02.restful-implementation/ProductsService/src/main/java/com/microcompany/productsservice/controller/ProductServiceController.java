@@ -10,13 +10,16 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import javax.validation.constraints.Min;
 import java.util.List;
 
 @RestController
 @RequestMapping("/products")
+@Validated
 public class ProductServiceController {
     private static final Logger logger = LoggerFactory.getLogger(ProductServiceController.class);
 
@@ -56,19 +59,19 @@ public class ProductServiceController {
     }
 
     @RequestMapping(value = "/{pid}", method = RequestMethod.GET)
-    public Product getOne(@PathVariable("pid") Long id) {
+    public Product getOne(@PathVariable("pid") @Min(1) Long id) {
         return repo.findById(id).get();
     }
 
     @RequestMapping(value = "/{pid}", method = RequestMethod.DELETE)
-    public ResponseEntity delete(@PathVariable("pid") Long id) {
+    public ResponseEntity delete(@PathVariable("pid") @Min(1) Long id) {
         repo.deleteById(id);
         return ResponseEntity.noContent().build();
     }
 
     //    @RequestMapping(value = "/{pid}", method = RequestMethod.PUT)
     @PutMapping("/{pid}")
-    public ResponseEntity<Object> update(@PathVariable("pid") Long id, @RequestBody Product product) {
+    public ResponseEntity<Object> update(@PathVariable("pid") @Min(1) Long id, @RequestBody Product product) {
         if (id == product.getId()) {
             return new ResponseEntity<>(repo.save(product), HttpStatus.ACCEPTED);
         } else {
@@ -77,7 +80,7 @@ public class ProductServiceController {
     }
 
     @PostMapping(value = "/duplicarProducto/{pid}")
-    public ResponseEntity<Product> duplicate(@PathVariable Long pid) {
+    public ResponseEntity<Product> duplicate(@PathVariable @Min(1) Long pid) {
         return new ResponseEntity<>(service.duplicate(pid), HttpStatus.CREATED);
     }
 
