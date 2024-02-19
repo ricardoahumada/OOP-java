@@ -68,7 +68,7 @@ public class ProductServiceController {
     }
 
     //    @RequestMapping(value = "/{pid}", method = RequestMethod.PUT)
-    @PutMapping("/{pid}")
+    @PutMapping(value = "/{pid}", consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE}, produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     public ResponseEntity<Object> update(@PathVariable("pid") @Min(1) Long id, @RequestBody Product product) {
         if (id == product.getId()) {
             return new ResponseEntity<>(repo.save(product), HttpStatus.ACCEPTED);
@@ -77,7 +77,7 @@ public class ProductServiceController {
         }
     }
 
-    @PostMapping(value = "/duplicarProducto/{pid}")
+    @PostMapping(value = "/duplicarProducto/{pid}", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     public ResponseEntity<Product> duplicate(@PathVariable @Min(1) Long pid) {
         return new ResponseEntity<>(service.duplicate(pid), HttpStatus.CREATED);
     }
