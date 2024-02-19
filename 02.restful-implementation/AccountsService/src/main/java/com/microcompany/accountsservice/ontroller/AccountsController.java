@@ -3,6 +3,7 @@ package com.microcompany.accountsservice.ontroller;
 import com.microcompany.accountsservice.exception.AccountNotfoundException;
 import com.microcompany.accountsservice.model.Account;
 import com.microcompany.accountsservice.payload.ApiResponse;
+import com.microcompany.accountsservice.payload.MoneyForOwner;
 import com.microcompany.accountsservice.services.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -49,53 +50,84 @@ public class AccountsController {
 
     @PutMapping("/{id}")
     public ResponseEntity<Account> updateAccount(
-            @RequestBody @Valid Account account,
-            @PathVariable @Min(1) Long id
+            @RequestBody Account account,
+            @PathVariable Long id
     ) {
         account.setId(id);
         return ResponseEntity.status(HttpStatus.ACCEPTED).body(accountService.updateAccount(id, account));
     }
 
     // Add Money
-    @PutMapping("/addmoney/{id}")
+   /* @PutMapping("/addmoney/{id}")
     public ResponseEntity<Account> addMoney(
-            @PathVariable @Min(1) Long id,
-            @RequestParam @Min(1) int amount,
-            @RequestParam @Min(1) Long ownerId
+            @PathVariable Long id,
+            @RequestParam int amount,
+            @RequestParam Long ownerId
     ) {
         return ResponseEntity.status(HttpStatus.ACCEPTED).body(accountService.addBalance(id, amount, ownerId));
+    }*/
+
+     @PutMapping("/addmoney/{id}")
+    public ResponseEntity<Account> addMoney(
+            @PathVariable Long id,
+            @RequestBody MoneyForOwner moneyForOwner
+    ) {
+        return ResponseEntity.status(HttpStatus.ACCEPTED).body(accountService.addBalance(id, moneyForOwner.getAmount(), moneyForOwner.getOwnerId()));
     }
 
     // withdraw Money
-    @PutMapping("/withdraw/{id}")
+   /* @PutMapping("/withdraw/{id}")
     public ResponseEntity<Account> withdraw(
-            @PathVariable @Min(1) Long id,
-            @RequestParam @Min(1) int amount,
-            @RequestParam @Min(1) Long ownerId
+            @PathVariable Long id,
+            @RequestParam int amount,
+            @RequestParam Long ownerId
     ) {
         return ResponseEntity.status(HttpStatus.ACCEPTED).body(accountService.withdrawBalance(id, amount, ownerId));
+    }*/
+     @PutMapping("/withdraw/{id}")
+    public ResponseEntity<Account> withdraw(
+            @PathVariable Long id,
+            @RequestBody MoneyForOwner moneyForOwner
+    ) {
+        return ResponseEntity.status(HttpStatus.ACCEPTED).body(accountService.withdrawBalance(id, moneyForOwner.getAmount(), moneyForOwner.getOwnerId()));
     }
 
     // Delete Account
-
-    @DeleteMapping("/{id}")
+    /*@DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.ACCEPTED)
     public ApiResponse deleteAccount(
-            @PathVariable @Min(1) Long id
+            @PathVariable Long id
     ) {
         this.accountService.delete(id);
         return new ApiResponse("Account is Successfully Deleted", true);
+    }*/
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity deleteAccount(
+            @PathVariable Long id
+    ) {
+        this.accountService.delete(id);
+        return ResponseEntity.noContent().build();
     }
 
     // Delete Account using ownerId
 
-    @DeleteMapping("user/{ownerId}")
+    /*@DeleteMapping("user/{ownerId}")
     @ResponseStatus(HttpStatus.ACCEPTED)
     public ApiResponse deleteAccountByUserId(
-            @PathVariable @Min(1) Long ownerId
+            @PathVariable Long ownerId
     ) {
         this.accountService.deleteAccountsUsingOwnerId(ownerId);
         return new ApiResponse(" Accounts with given userId is deleted Successfully", true);
+
+    }*/
+
+    @DeleteMapping("user/{ownerId}")
+    public ResponseEntity deleteAccountByUserId(
+            @PathVariable Long ownerId
+    ) {
+        this.accountService.deleteAccountsUsingOwnerId(ownerId);
+        return ResponseEntity.noContent().build();
 
     }
 }
