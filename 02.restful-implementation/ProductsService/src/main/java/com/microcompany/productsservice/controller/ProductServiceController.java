@@ -38,10 +38,7 @@ public class ProductServiceController {
 
     @GetMapping("")
     public ResponseEntity<List<Product>> getAll() {
-        List<Product> products = repo.findAll();
-        if (products != null && products.size() > 0) return new ResponseEntity<>(repo.findAll(), HttpStatus.OK);
-//        else return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
-        else throw new ProductNotfoundException("La lista de productos está vacía");
+        return new ResponseEntity<>(service.getAll(), HttpStatus.OK);
     }
 
     /*@RequestMapping(value = "", method = RequestMethod.POST)
@@ -50,7 +47,7 @@ public class ProductServiceController {
         return repo.save(newProduct);
     }*/
 
-//    @RequestMapping(value = "", method = RequestMethod.POST)
+    //    @RequestMapping(value = "", method = RequestMethod.POST)
     @PostMapping("")
     public ResponseEntity<Product> save(@RequestBody @Valid Product newProduct) {
         logger.info("newProduct:" + newProduct);
