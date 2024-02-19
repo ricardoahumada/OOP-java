@@ -5,6 +5,11 @@ import com.microcompany.productsservice.model.Product;
 import com.microcompany.productsservice.model.StatusMessage;
 import com.microcompany.productsservice.persistence.ProductsRepository;
 import com.microcompany.productsservice.service.ProductsService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +26,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/products")
 @Validated
+@Tag(name = "Products API", description = "Products management APIs")
 public class ProductServiceController {
     private static final Logger logger = LoggerFactory.getLogger(ProductServiceController.class);
 
@@ -56,8 +62,16 @@ public class ProductServiceController {
         return new ResponseEntity<>(repo.save(newProduct), HttpStatus.CREATED);
     }
 
+    @Operation(summary = "Get a product by id", description = "Returns a product as per the id")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Successfully retrieved"),
+            @ApiResponse(responseCode = "404", description = "Not found - The product was not found")
+    })
     @RequestMapping(value = "/{pid}", method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
-    public Product getOne(@PathVariable("pid") @Min(1) Long id) {
+    public Product getOne(
+            @Parameter(name = "id", description = "Product id", example = "1", required = true)
+            @PathVariable("pid") @Min(1) Long id
+    ) {
         return repo.findById(id).get();
     }
 
