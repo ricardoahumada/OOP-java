@@ -8,6 +8,7 @@ import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import javax.validation.constraints.*;
 import java.util.Date;
 
 @Getter
@@ -20,15 +21,20 @@ public class Account {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Min(1)
     private Long id;
 
+    @Size(min = 3, max = 10)
     private String type;
 
     @DateTimeFormat
+    @NotNull
     Date openingDate;
 
+    @Min(0)
     private int balance;
 
+    @Min(1)
     private Long ownerId;
 
     @Transient

@@ -8,12 +8,16 @@ import com.microcompany.accountsservice.services.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+import javax.validation.constraints.Min;
 import java.util.List;
 
 @RestController
 @RequestMapping("/accounts")
+@Validated
 public class AccountsController {
 
     @Autowired
@@ -24,12 +28,12 @@ public class AccountsController {
     public ResponseEntity getAccount() {
         List<Account> accs = accountService.getAccounts();
         if (accs != null && accs.size() > 0) return ResponseEntity.status(HttpStatus.OK).body(accs);
-        else return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ApiResponse("Vacio", false));
+        else throw new AccountNotfoundException("Lista vacia");
     }
 
     @PostMapping("")
     public ResponseEntity<Account> createAccount(
-            @RequestBody Account account
+            @RequestBody @Valid Account account
     ) {
         return ResponseEntity.status(HttpStatus.CREATED).body(accountService.create(account));
     }
@@ -37,7 +41,7 @@ public class AccountsController {
 
     @GetMapping("/{id}")
     public ResponseEntity<Account> getAccount(
-            @PathVariable Long id
+            @PathVariable @Min(1) Long id
     ) {
         try {
             return ResponseEntity.status(HttpStatus.OK).body(accountService.getAccount(id));
@@ -51,7 +55,7 @@ public class AccountsController {
     @PutMapping("/{id}")
     public ResponseEntity<Account> updateAccount(
             @RequestBody Account account,
-            @PathVariable Long id
+            @PathVariable @Min(1) Long id
     ) {
         account.setId(id);
         return ResponseEntity.status(HttpStatus.ACCEPTED).body(accountService.updateAccount(id, account));
@@ -67,10 +71,10 @@ public class AccountsController {
         return ResponseEntity.status(HttpStatus.ACCEPTED).body(accountService.addBalance(id, amount, ownerId));
     }*/
 
-     @PutMapping("/addmoney/{id}")
+    @PutMapping("/addmoney/{id}")
     public ResponseEntity<Account> addMoney(
-            @PathVariable Long id,
-            @RequestBody MoneyForOwner moneyForOwner
+            @PathVariable @Min(1) Long id,
+            @RequestBody @Valid MoneyForOwner moneyForOwner
     ) {
         return ResponseEntity.status(HttpStatus.ACCEPTED).body(accountService.addBalance(id, moneyForOwner.getAmount(), moneyForOwner.getOwnerId()));
     }
@@ -84,10 +88,10 @@ public class AccountsController {
     ) {
         return ResponseEntity.status(HttpStatus.ACCEPTED).body(accountService.withdrawBalance(id, amount, ownerId));
     }*/
-     @PutMapping("/withdraw/{id}")
+    @PutMapping("/withdraw/{id}")
     public ResponseEntity<Account> withdraw(
-            @PathVariable Long id,
-            @RequestBody MoneyForOwner moneyForOwner
+            @PathVariable @Min(1) Long id,
+            @RequestBody @Valid MoneyForOwner moneyForOwner
     ) {
         return ResponseEntity.status(HttpStatus.ACCEPTED).body(accountService.withdrawBalance(id, moneyForOwner.getAmount(), moneyForOwner.getOwnerId()));
     }
@@ -104,7 +108,7 @@ public class AccountsController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity deleteAccount(
-            @PathVariable Long id
+            @PathVariable @Min(1) Long id
     ) {
         this.accountService.delete(id);
         return ResponseEntity.noContent().build();
@@ -124,7 +128,7 @@ public class AccountsController {
 
     @DeleteMapping("user/{ownerId}")
     public ResponseEntity deleteAccountByUserId(
-            @PathVariable Long ownerId
+            @PathVariable @Min(1) Long ownerId
     ) {
         this.accountService.deleteAccountsUsingOwnerId(ownerId);
         return ResponseEntity.noContent().build();
