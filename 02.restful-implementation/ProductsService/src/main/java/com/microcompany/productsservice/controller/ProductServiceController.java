@@ -9,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -36,7 +37,7 @@ public class ProductServiceController {
         return repo.findAll();
     }*/
 
-    @GetMapping("")
+    @GetMapping(value = "", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     public ResponseEntity<List<Product>> getAll() {
         return new ResponseEntity<>(service.getAll(), HttpStatus.OK);
     }
@@ -48,14 +49,14 @@ public class ProductServiceController {
     }*/
 
     //    @RequestMapping(value = "", method = RequestMethod.POST)
-    @PostMapping("")
+    @PostMapping(value = "", consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE}, produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     public ResponseEntity<Product> save(@RequestBody @Valid Product newProduct) {
         logger.info("newProduct:" + newProduct);
         newProduct.setId(null);
         return new ResponseEntity<>(repo.save(newProduct), HttpStatus.CREATED);
     }
 
-    @RequestMapping(value = "/{pid}", method = RequestMethod.GET)
+    @RequestMapping(value = "/{pid}", method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     public Product getOne(@PathVariable("pid") @Min(1) Long id) {
         return repo.findById(id).get();
     }
