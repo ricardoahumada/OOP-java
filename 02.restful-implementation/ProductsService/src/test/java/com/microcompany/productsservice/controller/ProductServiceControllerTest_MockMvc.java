@@ -59,4 +59,17 @@ class ProductServiceControllerTest_MockMvc {
 
     }
 
+    @Test
+    @Order(3)
+    void givenProducts_whenInVaildCreateProduct_thenBadRequest() throws Exception {
+        Product newProduct = new Product(null, "Nuevo producto", "123-123-123X");
+
+        mvc.perform(post("/products")
+                        .content(JsonUtil.asJsonString(newProduct))
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .accept(MediaType.APPLICATION_JSON)
+                )
+                .andExpect(status().isBadRequest());
+    }
+
 }
