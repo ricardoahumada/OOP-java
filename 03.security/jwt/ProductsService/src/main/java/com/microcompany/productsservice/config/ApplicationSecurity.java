@@ -38,7 +38,7 @@ public class ApplicationSecurity {
     public UserDetailsService userDetailsService() {
         return new UserDetailsService() {
 
-            /*@Override
+            @Override
             public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
                 return userRepo.findByEmail(email)
                         .orElseThrow(
@@ -46,9 +46,9 @@ public class ApplicationSecurity {
                                         "User " + email + " not found"
                                 )
                         );
-            }*/
+            }
 
-            @Override
+           /* @Override
             public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
                 BCryptPasswordEncoder enc = new BCryptPasswordEncoder();
 
@@ -62,7 +62,7 @@ public class ApplicationSecurity {
                         .findFirst()
                         .orElseThrow(() -> new UsernameNotFoundException("User with username - " + username + " not found"));
 
-            }
+            }*/
         };
     }
 
