@@ -1,6 +1,6 @@
 package com.banana.bananamint.services;
 
-import com.banana.bananamint.Payload.IncomeExpenseComparison;
+import com.banana.bananamint.payload.IncomeExpenseComparison;
 import com.banana.bananamint.domain.Income;
 import com.banana.bananamint.exception.IncomeExpenseException;
 

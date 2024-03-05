@@ -1,4 +1,4 @@
-package com.banana.bananamint.Payload;
+package com.banana.bananamint.payload;
 
 
 import lombok.AllArgsConstructor;
